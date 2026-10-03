@@ -1,0 +1,10 @@
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\bin\Debug\UNO_Game.exe.config
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\bin\Debug\UNO_Game.exe
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\bin\Debug\UNO_Game.pdb
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\obj\Debug\UNO_Game.csproj.AssemblyReference.cache
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\obj\Debug\UNO_Game.Form1.resources
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\obj\Debug\UNO_Game.Properties.Resources.resources
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\obj\Debug\UNO_Game.csproj.GenerateResource.cache
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\obj\Debug\UNO_Game.csproj.CoreCompileInputs.cache
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\obj\Debug\UNO_Game.exe
+C:\Users\mxrls\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\semestre 5\Interfaces Gráficas\U2\proyecto\Proyecto_UNO\UNO_Game\UNO_Game\obj\Debug\UNO_Game.pdb
