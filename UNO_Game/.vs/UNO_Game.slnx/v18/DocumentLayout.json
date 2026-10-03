@@ -1,10 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\",
+  "WorkspaceRootPath": "C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\onedrive - universidad autonoma de san luis potosi - uaslp\\semestre 5\\interfaces gr\u00E1ficas\\u2\\proyecto\\proyecto_uno\\uno_game\\uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:UNO_Game\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\dell\\documents\\interfaces graficas\\proyecto parcial 2\\proyecto_uno\\uno_game\\uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:UNO_Game\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs",
               "RelativeDocumentMoniker": "UNO_Game\\Form1.cs",
-              "ToolTip": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs [Design]",
-              "RelativeToolTip": "UNO_Game\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UNO_Game\\Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-03T04:34:00.189Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-10-03T04:55:50.642Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "UNO_Game\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.Designer.cs",
+              "RelativeToolTip": "UNO_Game\\Form1.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T04:54:53.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs",
+              "RelativeDocumentMoniker": "UNO_Game\\Form1.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\Interfaces graficas\\Proyecto parcial 2\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs",
+              "RelativeToolTip": "UNO_Game\\Form1.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAjwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T04:54:49.44Z",
+              "EditorCaption": ""
             }
           ]
         }
