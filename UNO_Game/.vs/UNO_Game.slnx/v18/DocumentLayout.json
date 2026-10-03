@@ -5,6 +5,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\onedrive - universidad autonoma de san luis potosi - uaslp\\semestre 5\\interfaces gr\u00E1ficas\\u2\\proyecto\\proyecto_uno\\uno_game\\uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\onedrive - universidad autonoma de san luis potosi - uaslp\\semestre 5\\interfaces gr\u00E1ficas\\u2\\proyecto\\proyecto_uno\\uno_game\\uno_game\\mazo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\mazo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\onedrive - universidad autonoma de san luis potosi - uaslp\\semestre 5\\interfaces gr\u00E1ficas\\u2\\proyecto\\proyecto_uno\\uno_game\\uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\onedrive - universidad autonoma de san luis potosi - uaslp\\semestre 5\\interfaces gr\u00E1ficas\\u2\\proyecto\\proyecto_uno\\uno_game\\uno_game\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\onedrive - universidad autonoma de san luis potosi - uaslp\\semestre 5\\interfaces gr\u00E1ficas\\u2\\proyecto\\proyecto_uno\\uno_game\\uno_game\\carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,8 +41,61 @@
               "ToolTip": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs [Design]",
               "RelativeToolTip": "UNO_Game\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-03T04:34:00.189Z",
+              "WhenOpened": "2026-10-03T04:56:42.793Z",
+              "IsPinned": true,
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Mazo.cs",
+              "DocumentMoniker": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Mazo.cs",
+              "RelativeDocumentMoniker": "UNO_Game\\Mazo.cs",
+              "ToolTip": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Mazo.cs",
+              "RelativeToolTip": "UNO_Game\\Mazo.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAkwCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T05:12:01.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "UNO_Game\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.Designer.cs",
+              "RelativeToolTip": "UNO_Game\\Form1.Designer.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAIwC8AAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T05:26:53.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Carta.cs",
+              "DocumentMoniker": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Carta.cs",
+              "RelativeDocumentMoniker": "UNO_Game\\Carta.cs",
+              "ToolTip": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Carta.cs",
+              "RelativeToolTip": "UNO_Game\\Carta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T05:11:46.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs",
+              "RelativeDocumentMoniker": "UNO_Game\\Form1.cs",
+              "ToolTip": "C:\\Users\\mxrls\\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\\semestre 5\\Interfaces Gr\u00E1ficas\\U2\\proyecto\\Proyecto_UNO\\UNO_Game\\UNO_Game\\Form1.cs",
+              "RelativeToolTip": "UNO_Game\\Form1.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAACgAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T04:58:43.756Z",
+              "EditorCaption": ""
             }
           ]
         }
