@@ -58,19 +58,5 @@ namespace UNO_Game
 
         }
 
-        private void btn_play_Click(object sender, EventArgs e)
-        {
-            panelMenu.Visible = false;
-            panelJuego.Visible = true;
-
-            IniciarPartida();    
-        }
-
-        private void btn_salir_Click(object sender, EventArgs e)
-        {
-            panelMenu.Visible = true;
-            panelJuego.Visible = false;
-            panelMenu.BringToFront();
-        }
     }
 }
