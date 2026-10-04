@@ -17,7 +17,23 @@ namespace UNO_Game
             InitializeComponent();
         }
 
+        
+
+        private void Start_Button_Click(object sender, EventArgs e)
+        {
+            FormPartida formPartida = new FormPartida(this);
+            formPartida.Show();
+            this.Hide();
+        }
+
         private void button1_Click(object sender, EventArgs e)
+        {
+            FormHistorial formHistorial = new FormHistorial(this);
+            formHistorial.Show();
+            this.Hide();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
