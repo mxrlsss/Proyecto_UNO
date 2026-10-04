@@ -18,34 +18,41 @@ namespace UNO_Game
     public partial class Form1 : Form
     {
 
-        private Mazo mazoJuego;
-        private List<Carta> mazoP1;
-        private List<Carta> mazoP2;
-        private Carta CartaEnMesa;
-
         public Form1()
         {
             InitializeComponent();
         }
 
+<<<<<<< HEAD
        
+=======
+        
+
+        private void Start_Button_Click(object sender, EventArgs e)
+        {
+            FormPartida formPartida = new FormPartida(this);
+            formPartida.Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormHistorial formHistorial = new FormHistorial(this);
+            formHistorial.Show();
+            this.Hide();
+        }
+
+>>>>>>> 03f2644a26e5a20e2df5f579d01be9154c25b2dd
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void IniciarPartida()
-        {
-            mazoJuego = new Mazo();
-            mazoP1 = mazoJuego.RepartirMazo(7); 
-            mazoP2 = mazoJuego.RepartirMazo(7);
-            CartaEnMesa = mazoJuego.RobarCarta();
-        }
 
-        private void Mazo_P1_Click(object sender, EventArgs e) 
-        {
+       
 
+<<<<<<< HEAD
         }
 
         private void Mazo_P2_Click(object sender, EventArgs e)
@@ -58,5 +65,7 @@ namespace UNO_Game
 
         }
 
+=======
+>>>>>>> 03f2644a26e5a20e2df5f579d01be9154c25b2dd
     }
 }

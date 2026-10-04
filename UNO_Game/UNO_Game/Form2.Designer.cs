@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.btnVolverMenu = new System.Windows.Forms.Button();
+            this.Pozo = new System.Windows.Forms.PictureBox();
+            this.PanelMazoP1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.PanelMazoP2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.Pozo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnVolverMenu
@@ -36,7 +42,7 @@
             this.btnVolverMenu.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolverMenu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnVolverMenu.Location = new System.Drawing.Point(721, 12);
+            this.btnVolverMenu.Location = new System.Drawing.Point(1086, 12);
             this.btnVolverMenu.Name = "btnVolverMenu";
             this.btnVolverMenu.Size = new System.Drawing.Size(67, 54);
             this.btnVolverMenu.TabIndex = 0;
@@ -44,21 +50,78 @@
             this.btnVolverMenu.UseVisualStyleBackColor = false;
             this.btnVolverMenu.Click += new System.EventHandler(this.btnVolverMenu_Click);
             // 
+            // Pozo
+            // 
+            this.Pozo.Image = global::UNO_Game.Properties.Resources.Red1;
+            this.Pozo.Location = new System.Drawing.Point(540, 318);
+            this.Pozo.Name = "Pozo";
+            this.Pozo.Size = new System.Drawing.Size(54, 93);
+            this.Pozo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Pozo.TabIndex = 5;
+            this.Pozo.TabStop = false;
+            // 
+            // PanelMazoP1
+            // 
+            this.PanelMazoP1.Location = new System.Drawing.Point(473, 60);
+            this.PanelMazoP1.Name = "PanelMazoP1";
+            this.PanelMazoP1.Size = new System.Drawing.Size(200, 100);
+            this.PanelMazoP1.TabIndex = 6;
+            this.PanelMazoP1.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP1_Paint);
+            // 
+            // PanelMazoP2
+            // 
+            this.PanelMazoP2.Location = new System.Drawing.Point(473, 567);
+            this.PanelMazoP2.Name = "PanelMazoP2";
+            this.PanelMazoP2.Size = new System.Drawing.Size(200, 100);
+            this.PanelMazoP2.TabIndex = 7;
+            this.PanelMazoP2.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP2_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(810, 109);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "P1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Cursor = System.Windows.Forms.Cursors.PanNE;
+            this.label2.Location = new System.Drawing.Point(810, 602);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "P2";
+            // 
             // FormPartida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1165, 756);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.PanelMazoP2);
+            this.Controls.Add(this.PanelMazoP1);
+            this.Controls.Add(this.Pozo);
             this.Controls.Add(this.btnVolverMenu);
             this.Name = "FormPartida";
             this.Text = "UNO";
             this.Load += new System.EventHandler(this.FormPartida_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Pozo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button btnVolverMenu;
+        private System.Windows.Forms.PictureBox Pozo;
+        private System.Windows.Forms.FlowLayoutPanel PanelMazoP1;
+        private System.Windows.Forms.FlowLayoutPanel PanelMazoP2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

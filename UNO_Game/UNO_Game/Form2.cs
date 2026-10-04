@@ -14,6 +14,11 @@ namespace UNO_Game
     public partial class FormPartida : Form
     {
         private Form1 menuPrincipal; //Guarda una referencia al menú
+        private Mazo mazoJuego;
+        private List<Carta> mazoP1;
+        private List<Carta> mazoP2;
+        private Carta CartaEnMesa;
+
         public FormPartida(Form1 menu)
         {
             InitializeComponent();
@@ -24,6 +29,12 @@ namespace UNO_Game
         public FormPartida()
         {
             InitializeComponent();
+        }
+
+
+
+        private void ActualizarInterfazVisual()
+        { 
         }
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
@@ -39,6 +50,34 @@ namespace UNO_Game
         }
 
         private void FormPartida_Load(object sender, EventArgs e)
+        {
+            mazoJuego = new Mazo();
+            mazoP1 = mazoJuego.RepartirMazo(7);
+            mazoP2 = mazoJuego.RepartirMazo(7);
+
+            CartaEnMesa = mazoJuego.RobarCarta();
+
+            ActualizarInterfazVisual();
+        }
+
+        private void MostrarMazoJugador(List<Carta> mazo, FlowLayoutPanel panel)
+        { 
+
+        }
+        
+
+
+        private void Pozo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PanelMazoP2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void PanelMazoP1_Paint(object sender, PaintEventArgs e)
         {
 
         }
