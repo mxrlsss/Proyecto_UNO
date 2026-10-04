@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\documents\\proyecto\\uno_game\\uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\documents\\proyecto\\uno_game\\uno_game\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\uno_game\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\documents\\proyecto\\uno_game\\uno_game\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\uno_game\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:UNO_Game\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:UNO_Game\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\documents\\proyecto\\uno_game\\uno_game\\form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\documents\\proyecto\\uno_game\\uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,11 +38,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.cs",
               "RelativeDocumentMoniker": "UNO_Game\\Form1.cs",
@@ -55,20 +55,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "Form2.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form2.Designer.cs",
+              "RelativeDocumentMoniker": "UNO_Game\\Form2.Designer.cs",
+              "ToolTip": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form2.Designer.cs",
+              "RelativeToolTip": "UNO_Game\\Form2.Designer.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAswE8AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T21:32:50.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.cs",
+              "RelativeDocumentMoniker": "UNO_Game\\Form1.cs",
+              "ToolTip": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.cs",
+              "RelativeToolTip": "UNO_Game\\Form1.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwCoAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T04:58:43.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Form2.cs",
               "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form2.cs",
               "RelativeDocumentMoniker": "UNO_Game\\Form2.cs",
               "ToolTip": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form2.cs",
               "RelativeToolTip": "UNO_Game\\Form2.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAA0wEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-04T20:09:58.018Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Form2.cs [Design]",
               "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form2.cs",
               "RelativeDocumentMoniker": "UNO_Game\\Form2.cs",
@@ -88,21 +114,7 @@
               "RelativeToolTip": "UNO_Game\\Mazo.cs",
               "ViewState": "AgIAAEoAAAAAAAAAAAAswCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-03T05:12:01.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "UNO_Game\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.Designer.cs",
-              "RelativeToolTip": "UNO_Game\\Form1.Designer.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAgwEIAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-03T05:26:53.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-03T05:12:01.844Z"
             },
             {
               "$type": "Document",
@@ -115,19 +127,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-03T05:11:46.499Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.cs",
-              "RelativeDocumentMoniker": "UNO_Game\\Form1.cs",
-              "ToolTip": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.cs",
-              "RelativeToolTip": "UNO_Game\\Form1.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAD0AAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-03T04:58:43.756Z",
               "EditorCaption": ""
             }
           ]

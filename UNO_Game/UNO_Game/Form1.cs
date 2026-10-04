@@ -18,11 +18,6 @@ namespace UNO_Game
     public partial class Form1 : Form
     {
 
-        private Mazo mazoJuego;
-        private List<Carta> mazoP1;
-        private List<Carta> mazoP2;
-        private Carta CartaEnMesa;
-
         public Form1()
         {
             InitializeComponent();
@@ -50,14 +45,6 @@ namespace UNO_Game
 
         }
 
-
-        private void IniciarPartida()
-        {
-            mazoJuego = new Mazo();
-            mazoP1 = mazoJuego.RepartirMazo(7); 
-            mazoP2 = mazoJuego.RepartirMazo(7);
-            CartaEnMesa = mazoJuego.RobarCarta();
-        }
 
        
 
