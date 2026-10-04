@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\uno_game\\carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|c:\\users\\mxrls\\documents\\proyecto\\uno_game\\uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\uno_game\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\uno_game\\carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|solutionrelative:uno_game\\carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2BBA7AD-AD36-494F-B7BC-BD2D4B352803}|UNO_Game\\UNO_Game.csproj|C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\uno_game\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,11 +30,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.cs",
               "RelativeDocumentMoniker": "UNO_Game\\Form1.cs",
@@ -47,7 +47,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Mazo.cs",
               "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Mazo.cs",
               "RelativeDocumentMoniker": "UNO_Game\\Mazo.cs",
@@ -55,12 +55,11 @@
               "RelativeToolTip": "UNO_Game\\Mazo.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAkwCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-03T05:12:01.844Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-03T05:12:01.844Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "UNO_Game\\Form1.Designer.cs",
@@ -68,18 +67,17 @@
               "RelativeToolTip": "UNO_Game\\Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-03T05:26:53.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-03T05:26:53.032Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Carta.cs",
               "DocumentMoniker": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Carta.cs",
               "RelativeDocumentMoniker": "UNO_Game\\Carta.cs",
               "ToolTip": "C:\\Users\\mxrls\\Documents\\Proyecto\\UNO_Game\\UNO_Game\\Carta.cs",
               "RelativeToolTip": "UNO_Game\\Carta.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-03T05:11:46.499Z",
               "EditorCaption": ""
@@ -94,8 +92,7 @@
               "RelativeToolTip": "UNO_Game\\Form1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-03T04:58:43.756Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-03T04:58:43.756Z"
             }
           ]
         }
