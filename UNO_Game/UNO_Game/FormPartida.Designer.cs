@@ -108,6 +108,7 @@
             this.Controls.Add(this.btnVolverMenu);
             this.Name = "FormPartida";
             this.Text = "UNO";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPartida_FormClosing_1);
             this.Load += new System.EventHandler(this.FormPartida_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Pozo)).EndInit();
             this.ResumeLayout(false);

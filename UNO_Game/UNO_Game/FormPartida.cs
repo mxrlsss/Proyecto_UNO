@@ -23,9 +23,9 @@ namespace UNO_Game
         {
             InitializeComponent();
             this.menuPrincipal = menu; //Guarda la referencia al menú principal
-            this.FormClosed += FormPartida_VentanaCerrada; 
+            this.FormClosed += FormPartida_VentanaCerrada;
+            this.FormClosing += FormPartida_FormClosing;
         }
-
         public FormPartida()
         {
             InitializeComponent();
@@ -34,12 +34,24 @@ namespace UNO_Game
 
 
         private void ActualizarInterfazVisual()
-        { 
+        {
         }
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
+        { 
+             this.Close();
+        }
+
+        private void FormPartida_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Close();
+            var respuesta = MessageBox.Show(
+                "¿Seguro que quieres salir de la partida?",
+                "Salir",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.No)
+                e.Cancel = true;
         }
 
         private void FormPartida_VentanaCerrada(object sender, FormClosedEventArgs e)
@@ -101,5 +113,6 @@ namespace UNO_Game
         {
 
         }
+
     }
 }
