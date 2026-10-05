@@ -52,27 +52,27 @@
             // 
             // Pozo
             // 
-            this.Pozo.Image = global::UNO_Game.Properties.Resources.Red1;
-            this.Pozo.Location = new System.Drawing.Point(540, 318);
+            this.Pozo.Image = global::UNO_Game.Properties.Resources.Rojo1;
+            this.Pozo.Location = new System.Drawing.Point(449, 271);
             this.Pozo.Name = "Pozo";
-            this.Pozo.Size = new System.Drawing.Size(54, 93);
+            this.Pozo.Size = new System.Drawing.Size(66, 102);
             this.Pozo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Pozo.TabIndex = 5;
             this.Pozo.TabStop = false;
             // 
             // PanelMazoP1
             // 
-            this.PanelMazoP1.Location = new System.Drawing.Point(473, 60);
+            this.PanelMazoP1.Location = new System.Drawing.Point(181, 24);
             this.PanelMazoP1.Name = "PanelMazoP1";
-            this.PanelMazoP1.Size = new System.Drawing.Size(200, 100);
+            this.PanelMazoP1.Size = new System.Drawing.Size(605, 174);
             this.PanelMazoP1.TabIndex = 6;
             this.PanelMazoP1.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP1_Paint);
             // 
             // PanelMazoP2
             // 
-            this.PanelMazoP2.Location = new System.Drawing.Point(473, 567);
+            this.PanelMazoP2.Location = new System.Drawing.Point(181, 470);
             this.PanelMazoP2.Name = "PanelMazoP2";
-            this.PanelMazoP2.Size = new System.Drawing.Size(200, 100);
+            this.PanelMazoP2.Size = new System.Drawing.Size(605, 163);
             this.PanelMazoP2.TabIndex = 7;
             this.PanelMazoP2.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP2_Paint);
             // 
