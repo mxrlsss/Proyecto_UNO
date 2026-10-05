@@ -93,6 +93,16 @@ namespace UNO_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Reverso {
+            get {
+                object obj = ResourceManager.GetObject("Reverso", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Rojo0 {
             get {
                 object obj = ResourceManager.GetObject("Rojo0", resourceCulture);

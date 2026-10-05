@@ -100,8 +100,29 @@ namespace UNO_Game
 
             if (cartaElegida != null)
             {
-                // Aquí puedes manejar la lógica de lo que sucede cuando se hace clic en una carta
-                MessageBox.Show($"Carta elegida: {cartaElegida.Color} {cartaElegida.Valor}");
+               if(cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor)
+                {
+                    // La carta es válida para jugar
+                    CartaEnMesa = cartaElegida; // Actualiza la carta en mesa
+                    string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
+                    Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
+
+                    FlowLayoutPanel PanelPadre = PicClickeado.Parent as FlowLayoutPanel;
+
+                    if(PanelPadre == PanelMazoP1)
+                    {
+                        mazoP1.Remove(cartaElegida); // Elimina la carta del mazo del jugador
+                    }
+                    else if (PanelPadre == PanelMazoP2)
+                    {
+                        mazoP2.Remove(cartaElegida); // Elimina la carta del mazo del jugador 2
+                    }
+                   PicClickeado.Dispose(); 
+                }
+                else
+                {
+                    MessageBox.Show("No puedes jugar esa carta. Debe coincidir en color o valor con la carta en mesa.");
+                }
             }
         }
 
@@ -120,6 +141,21 @@ namespace UNO_Game
         private void PanelMazoP1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void MazoRobar_Click(object sender, EventArgs e)
+        {
+            Carta nuevaCarta = mazoJuego.RobarCarta();
+
+            if(nuevaCarta != null)
+            {
+                mazoP1.Add(nuevaCarta);
+                MostrarMazoJugador(mazoP1, PanelMazoP1);
+            }
+            else
+            {
+                MessageBox.Show("No hay más cartas en el mazo para robar.");
+            }
         }
     }
 }
