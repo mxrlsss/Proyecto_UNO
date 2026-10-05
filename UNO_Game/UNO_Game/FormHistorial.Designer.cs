@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.btnVolverMenu = new System.Windows.Forms.Button();
+            this.dataGridViewPartida = new System.Windows.Forms.DataGridView();
+            this.dataGridViewMovimiento = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPartida)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimiento)).BeginInit();
             this.SuspendLayout();
             // 
             // btnVolverMenu
@@ -44,15 +48,40 @@
             this.btnVolverMenu.UseVisualStyleBackColor = false;
             this.btnVolverMenu.Click += new System.EventHandler(this.btnVolverMenu_Click);
             // 
+            // dataGridViewPartida
+            // 
+            this.dataGridViewPartida.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPartida.Location = new System.Drawing.Point(114, 27);
+            this.dataGridViewPartida.Name = "dataGridViewPartida";
+            this.dataGridViewPartida.RowHeadersWidth = 62;
+            this.dataGridViewPartida.RowTemplate.Height = 28;
+            this.dataGridViewPartida.Size = new System.Drawing.Size(240, 150);
+            this.dataGridViewPartida.TabIndex = 2;
+            this.dataGridViewPartida.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPartida_CellContentClick);
+            // 
+            // dataGridViewMovimiento
+            // 
+            this.dataGridViewMovimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMovimiento.Location = new System.Drawing.Point(417, 27);
+            this.dataGridViewMovimiento.Name = "dataGridViewMovimiento";
+            this.dataGridViewMovimiento.RowHeadersWidth = 62;
+            this.dataGridViewMovimiento.RowTemplate.Height = 28;
+            this.dataGridViewMovimiento.Size = new System.Drawing.Size(240, 150);
+            this.dataGridViewMovimiento.TabIndex = 3;
+            // 
             // FormHistorial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridViewMovimiento);
+            this.Controls.Add(this.dataGridViewPartida);
             this.Controls.Add(this.btnVolverMenu);
             this.Name = "FormHistorial";
             this.Text = "Historial";
             this.Load += new System.EventHandler(this.FormHistorial_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPartida)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimiento)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -60,5 +89,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnVolverMenu;
+        private System.Windows.Forms.DataGridView dataGridViewPartida;
+        private System.Windows.Forms.DataGridView dataGridViewMovimiento;
     }
 }
