@@ -23,9 +23,9 @@ namespace UNO_Game
         {
             InitializeComponent();
             this.menuPrincipal = menu; //Guarda la referencia al menú principal
-            this.FormClosed += FormPartida_VentanaCerrada; 
+            this.FormClosed += FormPartida_VentanaCerrada;
+            this.FormClosing += FormPartida_FormClosing;
         }
-
         public FormPartida()
         {
             InitializeComponent();
@@ -34,12 +34,24 @@ namespace UNO_Game
 
 
         private void ActualizarInterfazVisual()
-        { 
+        {
         }
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
+        { 
+             this.Close();
+        }
+
+        private void FormPartida_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Close();
+            var respuesta = MessageBox.Show(
+                "¿Seguro que quieres salir de la partida?",
+                "Salir",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.No)
+                e.Cancel = true;
         }
 
         private void FormPartida_VentanaCerrada(object sender, FormClosedEventArgs e)
@@ -61,6 +73,7 @@ namespace UNO_Game
             CartaEnMesa = mazoJuego.RobarCarta();
 
             string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
+            MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
             Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
 
             MostrarMazoJugador(mazoP1, PanelMazoP1);
@@ -80,11 +93,13 @@ namespace UNO_Game
                 pic.Height = 100;
                 pic.Margin = new Padding(5);
 
+
                 string nombreImg = $"{carta.Color}{carta.Valor.ToString()}";
+              
+
                 pic.Image = (Image)Properties.Resources.ResourceManager.GetObject(nombreImg);
 
-                pic.Tag = carta; // Almacena la carta en la propiedad Tag del PictureBox
-
+                pic.Tag = carta; // Almacena la carta en la propiedad Tag del PictureBoBox
                 
                 pic.Click += CartaJugador_Click; // Asigna el evento Click al PictureBox 
 
@@ -97,7 +112,7 @@ namespace UNO_Game
             PictureBox PicClickeado = sender as PictureBox;
 
             Carta cartaElegida = PicClickeado.Tag as Carta; // Recupera la carta del PictureBox clickeado
-
+            MessageBox.Show($"Carta elegida: {cartaElegida.Color} {cartaElegida.Valor}");
             if (cartaElegida != null)
             {
                if(cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor)
@@ -142,6 +157,7 @@ namespace UNO_Game
         {
 
         }
+
 
         private void MazoRobar_Click(object sender, EventArgs e)
         {

@@ -56,7 +56,7 @@
             // 
             this.PanelMazoP1.Location = new System.Drawing.Point(41, 24);
             this.PanelMazoP1.Name = "PanelMazoP1";
-            this.PanelMazoP1.Size = new System.Drawing.Size(736, 174);
+            this.PanelMazoP1.Size = new System.Drawing.Size(874, 174);
             this.PanelMazoP1.TabIndex = 6;
             this.PanelMazoP1.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP1_Paint);
             // 
@@ -64,14 +64,14 @@
             // 
             this.PanelMazoP2.Location = new System.Drawing.Point(41, 470);
             this.PanelMazoP2.Name = "PanelMazoP2";
-            this.PanelMazoP2.Size = new System.Drawing.Size(745, 163);
+            this.PanelMazoP2.Size = new System.Drawing.Size(874, 163);
             this.PanelMazoP2.TabIndex = 7;
             this.PanelMazoP2.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP2_Paint);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(810, 109);
+            this.label1.Location = new System.Drawing.Point(961, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 20);
             this.label1.TabIndex = 8;
@@ -81,7 +81,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Cursor = System.Windows.Forms.Cursors.PanNE;
-            this.label2.Location = new System.Drawing.Point(810, 602);
+            this.label2.Location = new System.Drawing.Point(961, 571);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 20);
             this.label2.TabIndex = 9;

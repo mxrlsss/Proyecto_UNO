@@ -30,16 +30,17 @@ namespace UNO_Game
 
                 for (int i = 0; i < 2; i++) //cartas accion de cada color
                 {
-                    Cartas.Add(new Carta(color, "MasDos", $"{color}_mas2"));
-                    Cartas.Add(new Carta(color, "Salto", $"{color}_salto"));
-                    Cartas.Add(new Carta(color, "Reversa", $"{color}_reversa"));
+                    Cartas.Add(new Carta(color, "MasDos", $"{color}MasDos"));
+                    Cartas.Add(new Carta(color, "Salto", $"{color}Salto"));
+                    Cartas.Add(new Carta(color, "Reversa", $"{color}Reversa"));
                 }
 
-                for (int i = 0; i < 4; i++)  //comodines
-                {
-                    Cartas.Add(new Carta("Comodin", "CambioColor", "Comodin_colores"));
-                    Cartas.Add(new Carta("Comodin", "MasCuatro", "Comodin_mas4"));
-                }
+            }
+
+            for (int i = 0; i < 4; i++)  //comodines
+            {
+                Cartas.Add(new Carta("Comodin", "CambioColor", "ComodinCambioColor"));
+                Cartas.Add(new Carta("Comodin", "MasCuatro", "ComodinMasCuatro"));
             }
         }
 
