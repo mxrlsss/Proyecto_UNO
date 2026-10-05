@@ -193,36 +193,6 @@ namespace UNO_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Azul_mas2 {
-            get {
-                object obj = ResourceManager.GetObject("Azul_mas2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Azul_reversa {
-            get {
-                object obj = ResourceManager.GetObject("Azul_reversa", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Azul_salto {
-            get {
-                object obj = ResourceManager.GetObject("Azul_salto", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Azul1 {
             get {
                 object obj = ResourceManager.GetObject("Azul1", resourceCulture);
@@ -313,6 +283,36 @@ namespace UNO_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AzulMasDos {
+            get {
+                object obj = ResourceManager.GetObject("AzulMasDos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AzulReversa {
+            get {
+                object obj = ResourceManager.GetObject("AzulReversa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AzulSalto {
+            get {
+                object obj = ResourceManager.GetObject("AzulSalto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ComodinCambioColor {
             get {
                 object obj = ResourceManager.GetObject("ComodinCambioColor", resourceCulture);
@@ -336,36 +336,6 @@ namespace UNO_Game.Properties {
         internal static System.Drawing.Bitmap Reverso {
             get {
                 object obj = ResourceManager.GetObject("Reverso", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Rojo_mas2 {
-            get {
-                object obj = ResourceManager.GetObject("Rojo_mas2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Rojo_reversa {
-            get {
-                object obj = ResourceManager.GetObject("Rojo_reversa", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Rojo_salto {
-            get {
-                object obj = ResourceManager.GetObject("Rojo_salto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -473,9 +443,9 @@ namespace UNO_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Verde_mas2 {
+        internal static System.Drawing.Bitmap RojoMasDos {
             get {
-                object obj = ResourceManager.GetObject("Verde_mas2", resourceCulture);
+                object obj = ResourceManager.GetObject("RojoMasDos", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -483,9 +453,9 @@ namespace UNO_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Verde_reversa {
+        internal static System.Drawing.Bitmap RojoReversa {
             get {
-                object obj = ResourceManager.GetObject("Verde_reversa", resourceCulture);
+                object obj = ResourceManager.GetObject("RojoReversa", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -493,9 +463,9 @@ namespace UNO_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Verde_salto {
+        internal static System.Drawing.Bitmap RojoSalto {
             get {
-                object obj = ResourceManager.GetObject("Verde_salto", resourceCulture);
+                object obj = ResourceManager.GetObject("RojoSalto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -596,6 +566,36 @@ namespace UNO_Game.Properties {
         internal static System.Drawing.Bitmap Verde9 {
             get {
                 object obj = ResourceManager.GetObject("Verde9", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VerdeMasDos {
+            get {
+                object obj = ResourceManager.GetObject("VerdeMasDos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VerdeReversa {
+            get {
+                object obj = ResourceManager.GetObject("VerdeReversa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VerdeSalto {
+            get {
+                object obj = ResourceManager.GetObject("VerdeSalto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

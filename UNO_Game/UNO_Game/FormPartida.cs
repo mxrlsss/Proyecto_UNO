@@ -73,7 +73,7 @@ namespace UNO_Game
             CartaEnMesa = mazoJuego.RobarCarta();
 
             string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
-            MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
+            //MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
             Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
 
             MostrarMazoJugador(mazoP1, PanelMazoP1);
@@ -112,7 +112,7 @@ namespace UNO_Game
             PictureBox PicClickeado = sender as PictureBox;
 
             Carta cartaElegida = PicClickeado.Tag as Carta; // Recupera la carta del PictureBox clickeado
-            MessageBox.Show($"Carta elegida: {cartaElegida.Color} {cartaElegida.Valor}");
+            // MessageBox.Show($"Carta elegida: {cartaElegida.Color} {cartaElegida.Valor}");
             if (cartaElegida != null)
             {
                if(cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor)
