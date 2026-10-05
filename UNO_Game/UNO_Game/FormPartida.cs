@@ -19,6 +19,8 @@ namespace UNO_Game
         private List<Carta> mazoP2;
         private Carta CartaEnMesa;
 
+        private int turnoActual = 1; //1 para P1 y 2 para P2
+
         public FormPartida(Form1 menu)
         {
             InitializeComponent();
@@ -72,7 +74,7 @@ namespace UNO_Game
 
             CartaEnMesa = mazoJuego.RobarCarta();
 
-            string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
+            string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}"; 
             //MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
             Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
 
@@ -110,35 +112,85 @@ namespace UNO_Game
         private void CartaJugador_Click(object sender, EventArgs e)
         {
             PictureBox PicClickeado = sender as PictureBox;
+            FlowLayoutPanel PanelPadre = PicClickeado.Parent as FlowLayoutPanel;
 
-            Carta cartaElegida = PicClickeado.Tag as Carta; // Recupera la carta del PictureBox clickeado
-            // MessageBox.Show($"Carta elegida: {cartaElegida.Color} {cartaElegida.Valor}");
-            if (cartaElegida != null)
+            if(PanelPadre == PanelMazoP1 && turnoActual != 1)
             {
-               if(cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor)
-                {
-                    // La carta es válida para jugar
-                    CartaEnMesa = cartaElegida; // Actualiza la carta en mesa
-                    string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
-                    Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
+                MessageBox.Show("Esperad Brochaho!, aun no es tu turno");
+                return;
+            }
+            if(PanelPadre == PanelMazoP2 && turnoActual != 2)
+            {
+                MessageBox.Show("Esperad Brochaho!, aun no es tu turno");
+                return;
+            }
 
-                    FlowLayoutPanel PanelPadre = PicClickeado.Parent as FlowLayoutPanel;
+            Carta cartaElegida = PicClickeado.Tag as Carta;
+
+            if(cartaElegida != null)
+            {
+                if(cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor)
+                {
+                    CartaEnMesa = cartaElegida;
+
+                    string imgPozo = cartaElegida.NombreRecurso;
+                    Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
 
                     if(PanelPadre == PanelMazoP1)
                     {
-                        mazoP1.Remove(cartaElegida); // Elimina la carta del mazo del jugador
+                        mazoP1.Remove(cartaElegida);
                     }
                     else if (PanelPadre == PanelMazoP2)
                     {
-                        mazoP2.Remove(cartaElegida); // Elimina la carta del mazo del jugador 2
+                        mazoP2.Remove(cartaElegida);
                     }
-                   PicClickeado.Dispose(); 
+
+
+                    PicClickeado.Dispose();
+
+                    //cartas especiales 
+
+                    bool pierdeTurno = false;
+                    int oponente = (turnoActual == 1) ? 2 : 1; // Determina el oponente
+                    string valorSTR = cartaElegida.Valor.ToString();
+
+                    //+2
+                    if(valorSTR == "MasDos")
+                    {
+                        CastigarJugador(oponente, 2);
+                        pierdeTurno = true;
+                        MessageBox.Show($"Toma 2, Jugador {oponente}");
+                    }
+                    //Saltos (para 1 a 1 funciona, si es de mas jugadores debe cambiarse (proximosmparciales)
+                    if (valorSTR == "Salto" || valorSTR == "Reversa")
+                    {
+                        pierdeTurno = true;
+                        MessageBox.Show("Vuelves a tirar");
+                    }
+                    //mas 4 y cambio de clor
+                    if (cartaElegida.Color == "Comodin")
+                    {
+                        if(valorSTR == "MasCuatro")
+                        {
+                            CastigarJugador(oponente, 4);
+                            pierdeTurno = true;
+                            MessageBox.Show($"Toma 4, Jugador {oponente}");
+                        }
+
+                        CartaEnMesa.Color = "Rojo"; // por ahora. 
+                    }
+
+                    //cierran cartas especiales
+
+                    if(!pierdeTurno)
+                        turnoActual = (turnoActual == 1) ? 2 : 1; // Cambia el turno al otro jugador
                 }
                 else
                 {
-                    MessageBox.Show("No puedes jugar esa carta. Debe coincidir en color o valor con la carta en mesa.");
+                    MessageBox.Show("No puedes jugar esta carta brochaho, debe coincidir el color o el valor!");
                 }
             }
+
         }
 
 
@@ -165,13 +217,47 @@ namespace UNO_Game
 
             if(nuevaCarta != null)
             {
-                mazoP1.Add(nuevaCarta);
-                MostrarMazoJugador(mazoP1, PanelMazoP1);
+                if(turnoActual == 1)
+                {
+                    mazoP1.Add(nuevaCarta);
+                    MostrarMazoJugador(mazoP1, PanelMazoP1);
+                }
+                else
+                {
+                    mazoP2.Add(nuevaCarta);
+                    MostrarMazoJugador(mazoP2, PanelMazoP2);
+                }
             }
             else
             {
                 MessageBox.Show("No hay más cartas en el mazo para robar.");
             }
         }
+
+        private void CastigarJugador(int Jugador, int cantidad)
+        {
+            for (int i = 0; i < cantidad; i++)
+            {
+                Carta castigo = mazoJuego.RobarCarta();
+                if (castigo != null)
+                {
+                    if (Jugador == 1)
+                        mazoP1.Add(castigo);
+                    else mazoP2.Add(castigo);
+
+                }
+                /*else
+                {
+                    MessageBox.Show("No hay más cartas en el mazo para robar.");
+                    break;
+                }*/
+            }
+            if (Jugador == 1)
+                MostrarMazoJugador(mazoP1, PanelMazoP1);
+            else
+                MostrarMazoJugador(mazoP2, PanelMazoP2);
+        }
+
     }
+
 }

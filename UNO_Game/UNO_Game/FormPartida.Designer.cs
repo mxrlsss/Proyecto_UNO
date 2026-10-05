@@ -54,18 +54,22 @@
             // 
             // PanelMazoP1
             // 
+            this.PanelMazoP1.AutoScroll = true;
             this.PanelMazoP1.Location = new System.Drawing.Point(41, 24);
             this.PanelMazoP1.Name = "PanelMazoP1";
             this.PanelMazoP1.Size = new System.Drawing.Size(874, 174);
             this.PanelMazoP1.TabIndex = 6;
+            this.PanelMazoP1.WrapContents = false;
             this.PanelMazoP1.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP1_Paint);
             // 
             // PanelMazoP2
             // 
+            this.PanelMazoP2.AutoScroll = true;
             this.PanelMazoP2.Location = new System.Drawing.Point(41, 470);
             this.PanelMazoP2.Name = "PanelMazoP2";
             this.PanelMazoP2.Size = new System.Drawing.Size(874, 163);
             this.PanelMazoP2.TabIndex = 7;
+            this.PanelMazoP2.WrapContents = false;
             this.PanelMazoP2.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP2_Paint);
             // 
             // label1

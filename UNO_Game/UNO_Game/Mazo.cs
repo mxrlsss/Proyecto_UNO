@@ -24,8 +24,8 @@ namespace UNO_Game
 
                 for (int i = 1; i <= 9; i++) // cartas del 1 al 9 de cada color (*2)
                 {
-                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}"));
-                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}"));
+                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}")); //Rojo1
+                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}")); 
                 }
 
                 for (int i = 0; i < 2; i++) //cartas accion de cada color
@@ -52,7 +52,7 @@ namespace UNO_Game
             {
                 n--;
                 int k = rand.Next(n + 1);
-                Carta value = Cartas[k];
+                Carta value = Cartas[k];    //cambia el orden en la lista aleatoriamente
                 Cartas[k] = Cartas[n];
                 Cartas[n] = value;
             }
