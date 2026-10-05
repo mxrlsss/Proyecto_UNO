@@ -52,8 +52,11 @@ namespace UNO_Game
         private void FormPartida_Load(object sender, EventArgs e)
         {
             mazoJuego = new Mazo();
+            mazoJuego.Barajar();
+
             mazoP1 = mazoJuego.RepartirMazo(7); 
             mazoP2 = mazoJuego.RepartirMazo(7);
+
 
             CartaEnMesa = mazoJuego.RobarCarta();
 
@@ -72,7 +75,6 @@ namespace UNO_Game
             foreach(var carta in mazo)
             {
                 PictureBox pic = new PictureBox();
-              
                 pic.SizeMode = PictureBoxSizeMode.Zoom;
                 pic.Width = 70;
                 pic.Height = 100;
@@ -80,11 +82,29 @@ namespace UNO_Game
 
                 string nombreImg = $"{carta.Color}{carta.Valor.ToString()}";
                 pic.Image = (Image)Properties.Resources.ResourceManager.GetObject(nombreImg);
-                pic.Click += (sender, e) => { MessageBox.Show("Esto es la logica de click a la carta Clickeaste la carta"); };
+
+                pic.Tag = carta; // Almacena la carta en la propiedad Tag del PictureBox
+
+                
+                pic.Click += CartaJugador_Click; // Asigna el evento Click al PictureBox 
+
                 panel.Controls.Add(pic);
             }
         }
-        
+
+        private void CartaJugador_Click(object sender, EventArgs e)
+        {
+            PictureBox PicClickeado = sender as PictureBox;
+
+            Carta cartaElegida = PicClickeado.Tag as Carta; // Recupera la carta del PictureBox clickeado
+
+            if (cartaElegida != null)
+            {
+                // Aquí puedes manejar la lógica de lo que sucede cuando se hace clic en una carta
+                MessageBox.Show($"Carta elegida: {cartaElegida.Color} {cartaElegida.Valor}");
+            }
+        }
+
 
 
         private void Pozo_Click(object sender, EventArgs e)
