@@ -23,8 +23,6 @@ namespace UNO_Game
             InitializeComponent();
         }
 
-        
-
         private void Start_Button_Click(object sender, EventArgs e)
         {
             FormPartida formPartida = new FormPartida(this);
@@ -39,14 +37,23 @@ namespace UNO_Game
             this.Hide();
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
+        private void Mazo_P1_Click(object sender, EventArgs e)
+        {
 
+        }
 
-       
+        private void Mazo_P2_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void Pozo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
