@@ -129,7 +129,7 @@ namespace UNO_Game
 
             if(cartaElegida != null)
             {
-                if(cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor)
+                if(cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor || cartaElegida.Color == "Comodin")
                 {
                     CartaEnMesa = cartaElegida;
 
@@ -177,7 +177,11 @@ namespace UNO_Game
                             MessageBox.Show($"Toma 4, Jugador {oponente}");
                         }
 
-                        CartaEnMesa.Color = "Rojo"; // por ahora. 
+                        FormEligeColor selector = new FormEligeColor();
+                        selector.ShowDialog();
+                        
+                        CartaEnMesa.Color = selector.ColorElegido; 
+                        MessageBox.Show($"Cambio a {CartaEnMesa.Color}");
                     }
 
                     //cierran cartas especiales
