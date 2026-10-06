@@ -91,8 +91,8 @@ namespace UNO_Game
             {
                 PictureBox pic = new PictureBox();
                 pic.SizeMode = PictureBoxSizeMode.Zoom;
-                pic.Width = 70;
-                pic.Height = 100;
+                pic.Width = 100;
+                pic.Height = 130;
                 pic.Margin = new Padding(5);
 
 

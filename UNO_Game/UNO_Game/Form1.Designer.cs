@@ -35,10 +35,13 @@
             // 
             // Start_Button
             // 
-            this.Start_Button.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.Start_Button.Location = new System.Drawing.Point(302, 161);
+            this.Start_Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Start_Button.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Start_Button.Font = new System.Drawing.Font("Google Sans Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Start_Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Start_Button.Location = new System.Drawing.Point(392, 434);
             this.Start_Button.Name = "Start_Button";
-            this.Start_Button.Size = new System.Drawing.Size(198, 45);
+            this.Start_Button.Size = new System.Drawing.Size(269, 67);
             this.Start_Button.TabIndex = 0;
             this.Start_Button.Text = "Iniciar Partida";
             this.Start_Button.UseVisualStyleBackColor = false;
@@ -46,10 +49,13 @@
             // 
             // btnHistorial
             // 
-            this.btnHistorial.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.btnHistorial.Location = new System.Drawing.Point(302, 240);
+            this.btnHistorial.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnHistorial.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnHistorial.Font = new System.Drawing.Font("Google Sans Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistorial.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnHistorial.Location = new System.Drawing.Point(392, 528);
             this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(198, 46);
+            this.btnHistorial.Size = new System.Drawing.Size(269, 61);
             this.btnHistorial.TabIndex = 1;
             this.btnHistorial.Text = "Ver Historial";
             this.btnHistorial.UseVisualStyleBackColor = false;
@@ -59,11 +65,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::UNO_Game.Properties.Resources.Background_Main;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1091, 647);
             this.Controls.Add(this.btnHistorial);
             this.Controls.Add(this.Start_Button);
+            this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
