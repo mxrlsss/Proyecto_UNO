@@ -1,10 +1,14 @@
-﻿namespace UNO_Game
+﻿using System;
+using System.Net.Http;
+
+namespace UNO_Game
 {
     partial class FormPartida
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
+        
         private System.ComponentModel.IContainer components = null;
        
         /// <summary>

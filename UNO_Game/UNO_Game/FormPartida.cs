@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,8 +12,14 @@ using System.Windows.Forms;
 namespace UNO_Game
 {
     //Aquí se carga el juego, barajean cartas, etc. Se puede acceder al menú principal desde aquí.
+
+    
     public partial class FormPartida : Form
     {
+        //Crea la conexión entre la URL y la base de datos
+        private static readonly HttpClient http =
+         new HttpClient { BaseAddress = new Uri("http://localhost:8000/") };
+
         private Form1 menuPrincipal; //Guarda una referencia al menú
         private Mazo mazoJuego;
         private List<Carta> mazoP1;
@@ -63,7 +70,7 @@ namespace UNO_Game
                
         }
 
-        private void FormPartida_Load(object sender, EventArgs e)
+        private async void FormPartida_Load(object sender, EventArgs e)
         {
             mazoJuego = new Mazo();
             mazoJuego.Barajar();
@@ -81,6 +88,8 @@ namespace UNO_Game
             MostrarMazoJugador(mazoP1, PanelMazoP1);
             MostrarMazoJugador(mazoP2, PanelMazoP2);
             ActualizarInterfazVisual();
+
+            await CrearPartidaApi();
         }
 
         private void MostrarMazoJugador(List<Carta> mazo, FlowLayoutPanel panel)
@@ -109,7 +118,7 @@ namespace UNO_Game
             }
         }
 
-        private void CartaJugador_Click(object sender, EventArgs e)
+        private async void CartaJugador_Click(object sender, EventArgs e) //Agregar base de datos para guardar la partida, y que se pueda continuar desde donde se dejó.
         {
             PictureBox PicClickeado = sender as PictureBox;
             FlowLayoutPanel PanelPadre = PicClickeado.Parent as FlowLayoutPanel;
@@ -132,6 +141,9 @@ namespace UNO_Game
                 if(cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor || cartaElegida.Color == "Comodin")
                 {
                     CartaEnMesa = cartaElegida;
+
+                    int jugadorQueTiro = turnoActual;                                  
+                    string desc = $"{cartaElegida.Color} {cartaElegida.Valor}";
 
                     string imgPozo = cartaElegida.NombreRecurso;
                     Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
@@ -188,6 +200,18 @@ namespace UNO_Game
 
                     if(!pierdeTurno)
                         turnoActual = (turnoActual == 1) ? 2 : 1; // Cambia el turno al otro jugador
+
+                    await RegistrarMovimientoApi(jugadorQueTiro, "jugar_carta", desc);
+
+                    List<Carta> manoDelQueTiro = (jugadorQueTiro == 1) ? mazoP1 : mazoP2;
+                    if (manoDelQueTiro.Count == 0)
+                    {
+                        await FinalizarPartidaApi(jugadorQueTiro);
+                        PanelMazoP1.Enabled = false;
+                        PanelMazoP2.Enabled = false;
+                        MazoRobar.Enabled = false;
+                        MessageBox.Show($"¡Ganó el jugador {jugadorQueTiro}!");
+                    }
                 }
                 else
                 {
@@ -215,13 +239,14 @@ namespace UNO_Game
         }
 
 
-        private void MazoRobar_Click(object sender, EventArgs e)
+        private async void MazoRobar_Click(object sender, EventArgs e)
         {
             Carta nuevaCarta = mazoJuego.RobarCarta();
 
             if(nuevaCarta != null)
             {
-                if(turnoActual == 1)
+                int jugador = turnoActual;
+                if (turnoActual == 1)
                 {
                     mazoP1.Add(nuevaCarta);
                     MostrarMazoJugador(mazoP1, PanelMazoP1);
@@ -231,6 +256,9 @@ namespace UNO_Game
                     mazoP2.Add(nuevaCarta);
                     MostrarMazoJugador(mazoP2, PanelMazoP2);
                 }
+
+                await RegistrarMovimientoApi(jugador, "robar_carta",
+                    $"{nuevaCarta.Color} {nuevaCarta.Valor}");
             }
             else
             {
