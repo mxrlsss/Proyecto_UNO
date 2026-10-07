@@ -136,6 +136,7 @@
             this.Name = "FormPartida";
             this.Text = "UNO";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+
             this.Load += new System.EventHandler(this.FormPartida_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MazoRobar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pozo)).EndInit();

@@ -1,10 +1,11 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,92 +14,51 @@ namespace UNO_Game
 {
     public partial class FormHistorial : Form
     {
+        private static readonly HttpClient http =
+            new HttpClient { BaseAddress = new Uri("http://localhost:8000/") };
         private Form1 menuPrincipal; //Guarda una referencia al menú
         public FormHistorial(Form1 menu)
         {
             InitializeComponent();
             this.menuPrincipal = menu; //Guarda la referencia al menú principal
             this.FormClosed += FormPartida_VentanaCerrada;
+
+            // Antes: Load += async (s, e) => await CargarPartidas();
+            VisibleChanged += async (s, e) =>
+            {
+                if (Visible) await CargarPartidas();
+            };
+            dataGridViewPartida.SelectionChanged += async (s, e) => await CargarMovimientos();
         }
         public FormHistorial()
         {
             InitializeComponent();
+            Load += async (s, e) => await CargarPartidas();
+            dataGridViewPartida.SelectionChanged += async (s, e) => await CargarMovimientos();
 
         }
 
+        private async Task CargarPartidas()
+        {
+            string json = await http.GetStringAsync("partidas");
+            var partidas = JsonConvert.DeserializeObject<List<PartidaDto>>(json);
+            dataGridViewPartida.DataSource = partidas;
+        }
+
+        private async Task CargarMovimientos()
+        {
+            var partida = dataGridViewPartida.CurrentRow?.DataBoundItem as PartidaDto;
+            if (partida == null) return;
+
+            string json = await http.GetStringAsync($"partidas/{partida.IdPartida}/movimientos");
+            var movs = JsonConvert.DeserializeObject<List<MovimientoDto>>(json);
+            dataGridViewMovimiento.DataSource = movs;
+        }
         private void FormHistorial_Load(object sender, EventArgs e)
         {
             
         }
 
-        private void CargarHistorialPartidas()
-        {
-            string query = @"Select 
-                        p.idPartida as 'ID',
-                        p.fecha_inicio as 'Fecha Inicio',
-                        p.fecha_fin as 'Fecha Fin',
-                        j.nombre as 'Ganador'
-                        from Partida p
-                        left join Jugador j on p.id_ganador = j.idJugador
-                        order by p.idPartida DESC;";
-            using(MySqlConnection conn = ConexionBD.ObtenerConexion())
-            {
-                try
-                {
-                    conn.Open();
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    //Le da los datos al DataGridView de partida
-                    dataGridViewPartida.DataSource = dt;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar el historial de partidas: " + ex.Message);
-                }
-            }
-        }
-
-        private void CargarMovimientosPartida(int idPartida)
-        {
-            string query = @"Select 
-                        m.num_turno as 'Turno',
-                        j.nombre as 'Jugador',
-                        m.accion as 'Acción',
-                        m.descripcion as 'Descripción',
-                        m.timestamp as  'Tiempo'
-                        from log_movimientos m
-                        inner join Jugador j on m.id_Jugador = j-idJugador
-                        where m.id_Partida = @idPartida
-                        order by m.num_turno ASC;";
-            using (MySqlConnection conn = ConexionBD.ObtenerConexion())
-            {
-                try
-                {
-                    conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@idPartida", idPartida);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    //Le da los datos al DataGridView de movimientos
-                    dataGridViewMovimiento.DataSource = dt;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar los movimientos de la partida: " + ex.Message);
-                }
-            }
-        }
-
-        private void dataGridViewPartida_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex >= 0) //Verifica que no sea un encabezado
-            {
-                int idPartida = Convert.ToInt32(dataGridViewPartida.Rows[e.RowIndex].Cells["ID"].Value);
-                CargarMovimientosPartida(idPartida);
-            }
-        }
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
             this.Close();

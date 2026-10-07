@@ -57,7 +57,7 @@
             this.dataGridViewPartida.RowTemplate.Height = 28;
             this.dataGridViewPartida.Size = new System.Drawing.Size(240, 150);
             this.dataGridViewPartida.TabIndex = 2;
-            this.dataGridViewPartida.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPartida_CellContentClick);
+            //this.dataGridViewPartida.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPartida_CellContentClick);
             // 
             // dataGridViewMovimiento
             // 
