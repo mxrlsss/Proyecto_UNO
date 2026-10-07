@@ -109,6 +109,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEligeColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEligeColor.Designer.cs">
+      <DependentUpon>FormEligeColor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mazo.cs" />
     <Compile Include="FormPartida.cs">
       <SubType>Form</SubType>
@@ -126,6 +132,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEligeColor.resx">
+      <DependentUpon>FormEligeColor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPartida.resx">
       <DependentUpon>FormPartida.cs</DependentUpon>

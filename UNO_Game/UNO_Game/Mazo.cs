@@ -24,22 +24,23 @@ namespace UNO_Game
 
                 for (int i = 1; i <= 9; i++) // cartas del 1 al 9 de cada color (*2)
                 {
-                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}"));
-                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}"));
+                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}")); //Rojo1
+                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}")); 
                 }
 
                 for (int i = 0; i < 2; i++) //cartas accion de cada color
                 {
-                    Cartas.Add(new Carta(color, "MasDos", $"{color}_mas2"));
-                    Cartas.Add(new Carta(color, "Salto", $"{color}_salto"));
-                    Cartas.Add(new Carta(color, "Reversa", $"{color}_reversa"));
+                    Cartas.Add(new Carta(color, "MasDos", $"{color}MasDos"));
+                    Cartas.Add(new Carta(color, "Salto", $"{color}Salto"));
+                    Cartas.Add(new Carta(color, "Reversa", $"{color}Reversa"));
                 }
 
-                for (int i = 0; i < 4; i++)  //comodines
-                {
-                    Cartas.Add(new Carta("Comodin", "CambioColor", "Comodin_colores"));
-                    Cartas.Add(new Carta("Comodin", "MasCuatro", "Comodin_mas4"));
-                }
+            }
+
+            for (int i = 0; i < 4; i++)  //comodines
+            {
+                Cartas.Add(new Carta("Comodin", "CambioColor", "ComodinCambioColor"));
+                Cartas.Add(new Carta("Comodin", "MasCuatro", "ComodinMasCuatro"));
             }
         }
 
@@ -51,7 +52,7 @@ namespace UNO_Game
             {
                 n--;
                 int k = rand.Next(n + 1);
-                Carta value = Cartas[k];
+                Carta value = Cartas[k];    //cambia el orden en la lista aleatoriamente
                 Cartas[k] = Cartas[n];
                 Cartas[n] = value;
             }
