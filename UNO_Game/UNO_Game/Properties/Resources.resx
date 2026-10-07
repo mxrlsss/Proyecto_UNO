@@ -157,6 +157,9 @@
   <data name="AmarilloSalto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AmarilloSalto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Azul0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Azul0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Azul1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Azul1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -198,6 +201,12 @@
   </data>
   <data name="Background_partida" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Background_partida.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CambioColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CambioColor.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CartaNoValida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CartaNoValida.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ComodinCambioColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ComodinCambioColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -246,6 +255,12 @@
   </data>
   <data name="RojoSalto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RojoSalto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TomaCartasMas2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TomaCartasMas2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TomaCartasMas4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TomaCartasMas4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Verde0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Verde0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

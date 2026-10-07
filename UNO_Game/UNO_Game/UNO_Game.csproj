@@ -102,6 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Carta.cs" />
+    <Compile Include="PartidaAPI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dato.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -193,6 +193,16 @@ namespace UNO_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Azul0 {
+            get {
+                object obj = ResourceManager.GetObject("Azul0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Azul1 {
             get {
                 object obj = ResourceManager.GetObject("Azul1", resourceCulture);
@@ -327,6 +337,24 @@ namespace UNO_Game.Properties {
             get {
                 object obj = ResourceManager.GetObject("Background_partida", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream CambioColor {
+            get {
+                return ResourceManager.GetStream("CambioColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream CartaNoValida {
+            get {
+                return ResourceManager.GetStream("CartaNoValida", resourceCulture);
             }
         }
         
@@ -487,6 +515,24 @@ namespace UNO_Game.Properties {
             get {
                 object obj = ResourceManager.GetObject("RojoSalto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream TomaCartasMas2 {
+            get {
+                return ResourceManager.GetStream("TomaCartasMas2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream TomaCartasMas4 {
+            get {
+                return ResourceManager.GetStream("TomaCartasMas4", resourceCulture);
             }
         }
         

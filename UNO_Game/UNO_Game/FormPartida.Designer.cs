@@ -1,10 +1,14 @@
-﻿namespace UNO_Game
+﻿using System;
+using System.Net.Http;
+
+namespace UNO_Game
 {
     partial class FormPartida
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
+        
         private System.ComponentModel.IContainer components = null;
        
         /// <summary>
@@ -30,11 +34,11 @@
         {
             this.PanelMazoP1 = new System.Windows.Forms.FlowLayoutPanel();
             this.PanelMazoP2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.MazoRobar = new System.Windows.Forms.PictureBox();
             this.Pozo = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MazoRobar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pozo)).BeginInit();
             this.SuspendLayout();
@@ -43,7 +47,8 @@
             // 
             this.PanelMazoP1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.PanelMazoP1.AutoScroll = true;
-            this.PanelMazoP1.Location = new System.Drawing.Point(2, 12);
+            this.PanelMazoP1.BackColor = System.Drawing.Color.Transparent;
+            this.PanelMazoP1.Location = new System.Drawing.Point(329, 12);
             this.PanelMazoP1.Name = "PanelMazoP1";
             this.PanelMazoP1.Size = new System.Drawing.Size(1438, 250);
             this.PanelMazoP1.TabIndex = 6;
@@ -54,31 +59,25 @@
             // 
             this.PanelMazoP2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.PanelMazoP2.AutoScroll = true;
-            this.PanelMazoP2.Location = new System.Drawing.Point(2, 429);
+            this.PanelMazoP2.BackColor = System.Drawing.Color.Transparent;
+            this.PanelMazoP2.Location = new System.Drawing.Point(329, 892);
             this.PanelMazoP2.Name = "PanelMazoP2";
             this.PanelMazoP2.Size = new System.Drawing.Size(1438, 250);
             this.PanelMazoP2.TabIndex = 7;
             this.PanelMazoP2.WrapContents = false;
             this.PanelMazoP2.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMazoP2_Paint);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1632, 108);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 20);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "P1";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Cursor = System.Windows.Forms.Cursors.PanNE;
-            this.label2.Location = new System.Drawing.Point(1754, 982);
+            this.label2.Font = new System.Drawing.Font("Google Sans", 14F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 20);
+            this.label2.Size = new System.Drawing.Size(165, 67);
             this.label2.TabIndex = 9;
-            this.label2.Text = "P2";
+            this.label2.Text = "Jugador 2";
             // 
             // btnVolverMenu
             // 
@@ -96,8 +95,9 @@
             // MazoRobar
             // 
             this.MazoRobar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.MazoRobar.BackColor = System.Drawing.Color.Transparent;
             this.MazoRobar.Image = global::UNO_Game.Properties.Resources.Reverso;
-            this.MazoRobar.Location = new System.Drawing.Point(926, 175);
+            this.MazoRobar.Location = new System.Drawing.Point(1581, 407);
             this.MazoRobar.Name = "MazoRobar";
             this.MazoRobar.Size = new System.Drawing.Size(204, 295);
             this.MazoRobar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -108,13 +108,26 @@
             // Pozo
             // 
             this.Pozo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Pozo.BackColor = System.Drawing.Color.Transparent;
             this.Pozo.Image = global::UNO_Game.Properties.Resources.Rojo1;
-            this.Pozo.Location = new System.Drawing.Point(218, 196);
+            this.Pozo.Location = new System.Drawing.Point(766, 385);
             this.Pozo.Name = "Pozo";
             this.Pozo.Size = new System.Drawing.Size(291, 343);
             this.Pozo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Pozo.TabIndex = 5;
             this.Pozo.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Cursor = System.Windows.Forms.Cursors.PanNE;
+            this.label1.Font = new System.Drawing.Font("Google Sans", 14F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(835, 292);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(162, 67);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Jugador 1";
             // 
             // FormPartida
             // 
@@ -122,10 +135,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::UNO_Game.Properties.Resources.Background_partida;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1194, 707);
+            this.ClientSize = new System.Drawing.Size(1849, 1170);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.MazoRobar);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.PanelMazoP2);
             this.Controls.Add(this.PanelMazoP1);
             this.Controls.Add(this.Pozo);
@@ -136,7 +149,6 @@
             this.Name = "FormPartida";
             this.Text = "UNO";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-
             this.Load += new System.EventHandler(this.FormPartida_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MazoRobar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pozo)).EndInit();
@@ -149,9 +161,9 @@
         private System.Windows.Forms.PictureBox Pozo;
         private System.Windows.Forms.FlowLayoutPanel PanelMazoP1;
         private System.Windows.Forms.FlowLayoutPanel PanelMazoP2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox MazoRobar;
         private System.Windows.Forms.Button btnVolverMenu;
+        private System.Windows.Forms.Label label1;
     }
 }
