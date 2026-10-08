@@ -73,7 +73,7 @@ namespace UNO_Game
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Cursor = System.Windows.Forms.Cursors.PanNE;
             this.label2.Font = new System.Drawing.Font("Google Sans", 14F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(832, 822);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(165, 67);
             this.label2.TabIndex = 9;

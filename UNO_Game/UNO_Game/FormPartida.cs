@@ -223,11 +223,13 @@ namespace UNO_Game
                         PanelMazoP1.Enabled = false;
                         PanelMazoP2.Enabled = false;
                         MazoRobar.Enabled = false;
+                        sonido("Ganar");
                         MessageBox.Show($"¡Ganó el jugador {jugadorQueTiro}!");
                     }
                 }
                 else
                 {
+                    sonido("CartaNoValida"); 
                     MessageBox.Show("No puedes jugar esta carta brochaho, debe coincidir el color o el valor!");
                 }
             }
