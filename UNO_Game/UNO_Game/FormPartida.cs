@@ -13,7 +13,6 @@ using System.Media;
 namespace UNO_Game
 {
     //Aquí se carga el juego, barajean cartas, etc. Se puede acceder al menú principal desde aquí.
-
     
     public partial class FormPartida : Form
     {
@@ -26,6 +25,8 @@ namespace UNO_Game
         private List<Carta> mazoP1;
         private List<Carta> mazoP2;
         private Carta CartaEnMesa;
+        string P1 = "Alexis";
+        string P2 = "Ivan";
 
         private int turnoActual = 1; //1 para P1 y 2 para P2
 
@@ -49,7 +50,17 @@ namespace UNO_Game
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         { 
-             this.Close();
+            if(btnVolver.Visible == false)
+            {
+                btnVolver.Visible = true;
+                btnSonido.Visible = true;
+            }
+            else
+            {
+                btnVolver.Visible = false;
+                btnSonido.Visible = false;
+            }
+
         }
 
         private void FormPartida_FormClosing(object sender, FormClosingEventArgs e)
@@ -137,13 +148,13 @@ namespace UNO_Game
             if(PanelPadre == PanelMazoP1 && turnoActual != 1)
             {
                 sonido("CartaNoValida");
-                MessageBox.Show("Esperad Brochaho!, aun no es tu turno");
+                MessageBox.Show($"Esperad Brochaho!, aun no es tu turno, es turno de {P2}");
                 return;
             }
             if(PanelPadre == PanelMazoP2 && turnoActual != 2)
             {
                 sonido("CartaNoValida");
-                MessageBox.Show("Esperad Brochaho!, aun no es tu turno");
+                MessageBox.Show($"Esperad Brochaho!, aun no es tu turno, es turno de {P1}");
                 return;
             }
 
@@ -177,7 +188,7 @@ namespace UNO_Game
                     //cartas especiales 
 
                     bool pierdeTurno = false;
-                    int oponente = (turnoActual == 1) ? 2 : 1; // Determina el oponente
+                    int oponente = (turnoActual == 1) ? 2 : 1; 
                     string valorSTR = cartaElegida.Valor.ToString();
 
                     //+2
@@ -185,13 +196,19 @@ namespace UNO_Game
                     {
                         CastigarJugador(oponente, 2);
                         pierdeTurno = true;
-                        MessageBox.Show($"Toma 2, Jugador {oponente}");
+                        if(oponente == 1)
+                            MessageBox.Show($"Toma 2 {P1}");
+                        else
+                            MessageBox.Show($"Toma 2 {P2}");
                     }
                     //Saltos (para 1 a 1 funciona, si es de mas jugadores debe cambiarse (proximosmparciales)
                     if (valorSTR == "Salto" || valorSTR == "Reversa")
                     {
                         pierdeTurno = true;
-                        MessageBox.Show("Vuelves a tirar");
+                        if(oponente == 1)
+                            MessageBox.Show($"Vuelves a tirar {P2}");
+                        else
+                            MessageBox.Show($"Vuelves a tirar {P1}");
                     }
                     //mas 4 y cambio de clor
                     if (cartaElegida.Color == "Comodin")
@@ -200,7 +217,10 @@ namespace UNO_Game
                         {
                             CastigarJugador(oponente, 4);
                             pierdeTurno = true;
-                            MessageBox.Show($"Toma 4, Jugador {oponente}");
+                            if (oponente == 1)
+                                MessageBox.Show($"Toma 4, {P1}");
+                            else
+                                MessageBox.Show($"Toma 4, {P2}");
                         }
 
                         FormEligeColor selector = new FormEligeColor();
@@ -224,7 +244,10 @@ namespace UNO_Game
                         PanelMazoP2.Enabled = false;
                         MazoRobar.Enabled = false;
                         sonido("Ganar");
-                        MessageBox.Show($"¡Ganó el jugador {jugadorQueTiro}!");
+                        if(jugadorQueTiro == 1)
+                            MessageBox.Show($"¡Felixidades {P1}, has ganado brochacho!");
+                        else
+                            MessageBox.Show($"¡Felixidades {P2}, has ganado brochacho!");
                     }
                 }
                 else
@@ -323,7 +346,16 @@ namespace UNO_Game
                 MessageBox.Show("No se pudo reproducir el sonido de castigo: " + ex.Message);
             }
         }
-         
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSonido_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

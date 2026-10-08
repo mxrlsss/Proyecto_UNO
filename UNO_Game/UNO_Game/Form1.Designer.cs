@@ -37,7 +37,8 @@
             // 
             this.Start_Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Start_Button.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Start_Button.Font = new System.Drawing.Font("Google Sans Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Start_Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Start_Button.Font = new System.Drawing.Font("Bubblegum Sans", 12F, System.Drawing.FontStyle.Bold);
             this.Start_Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Start_Button.Location = new System.Drawing.Point(392, 434);
             this.Start_Button.Name = "Start_Button";
@@ -51,7 +52,8 @@
             // 
             this.btnHistorial.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnHistorial.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnHistorial.Font = new System.Drawing.Font("Google Sans Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHistorial.Font = new System.Drawing.Font("Bubblegum Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistorial.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnHistorial.Location = new System.Drawing.Point(392, 528);
             this.btnHistorial.Name = "btnHistorial";
