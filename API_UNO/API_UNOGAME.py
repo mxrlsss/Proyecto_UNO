@@ -32,18 +32,24 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 """Clases para crear jugadores, partidas y movimientos"""
+
+""""
 class JugadorCrear(BaseModel):
     nombre: str
-
+"""
 class IniciarPartida(BaseModel):
     id_jugador1: int
     id_jugador2: int
 
+"""""
 class PartidaCrear(BaseModel):
     fecha_inicio: str   
+"""
 
+"""""
 class JugadorPartidaCrear(BaseModel):
     id_jugador: int
+"""
 
 class Movimiento(BaseModel):
     id_jugador: int
@@ -53,6 +59,7 @@ class Movimiento(BaseModel):
 
 class PartidaFinalizar(BaseModel):
     id_ganador: int
+
 """"
 def get_conexion():
     return pymysql.connect(
@@ -79,6 +86,21 @@ async def listar_partidas():
     finally:
         con.close()
 
+@app.get("/partidas/{idPartida}/jugadores")
+async def listar_jugadores_partida(idPartida: int):
+    con = get_conexion()
+    try:
+        with con.cursor() as cur:
+            cur.execute("""
+                SELECT j.idJugador, j.nombre, jp.resultado
+                FROM Jugador_Partida jp
+                JOIN jugador j ON jp.idJugador = j.idJugador
+                WHERE jp.idPartida = %s
+            """, (idPartida,))
+            return cur.fetchall()
+    finally:
+        con.close()
+
 @app.get("/partidas/{idPartida}/movimientos")
 async def listar_movimientos(idPartida: int):
     con = get_conexion()
@@ -101,9 +123,6 @@ async def listar_movimientos(idPartida: int):
 """Iniciar una partida, insertando los jugadores y la fecha de inicio en la base de datos"""
 @app.post("/partidas")
 async def iniciar_partida(datos: IniciarPartida):
-    if datos.id_jugador1 == datos.id_jugador2:
-        raise HTTPException(status_code=400, detail="Los jugadores deben ser distintos")
-
     con = get_conexion()
     try:
         with con.cursor() as cur:

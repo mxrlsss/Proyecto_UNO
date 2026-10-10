@@ -38,12 +38,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHistorial));
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.dataGridViewPartida = new System.Windows.Forms.DataGridView();
             this.dataGridViewMovimiento = new System.Windows.Forms.DataGridView();
+            this.dataGridViewJugadorPartida = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPartida)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimiento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJugadorPartida)).BeginInit();
             this.SuspendLayout();
             // 
             // btnVolverMenu
@@ -100,6 +107,7 @@
             this.dataGridViewPartida.RowTemplate.Height = 28;
             this.dataGridViewPartida.Size = new System.Drawing.Size(696, 492);
             this.dataGridViewPartida.TabIndex = 2;
+            this.dataGridViewPartida.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPartida_CellContentClick);
             // 
             // dataGridViewMovimiento
             // 
@@ -147,12 +155,54 @@
             this.dataGridViewMovimiento.TabStop = false;
             this.dataGridViewMovimiento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMovimiento_CellContentClick);
             // 
+            // dataGridViewJugadorPartida
+            // 
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridViewJugadorPartida.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewJugadorPartida.BackgroundColor = System.Drawing.Color.Brown;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Salmon;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewJugadorPartida.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewJugadorPartida.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Salmon;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewJugadorPartida.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewJugadorPartida.EnableHeadersVisualStyles = false;
+            this.dataGridViewJugadorPartida.Location = new System.Drawing.Point(118, 676);
+            this.dataGridViewJugadorPartida.Name = "dataGridViewJugadorPartida";
+            this.dataGridViewJugadorPartida.ReadOnly = true;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.RosyBrown;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewJugadorPartida.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewJugadorPartida.RowHeadersWidth = 62;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.LightSalmon;
+            this.dataGridViewJugadorPartida.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewJugadorPartida.RowTemplate.Height = 28;
+            this.dataGridViewJugadorPartida.Size = new System.Drawing.Size(546, 185);
+            this.dataGridViewJugadorPartida.TabIndex = 4;
+            // 
             // FormHistorial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1924, 1050);
+            this.Controls.Add(this.dataGridViewJugadorPartida);
             this.Controls.Add(this.dataGridViewMovimiento);
             this.Controls.Add(this.dataGridViewPartida);
             this.Controls.Add(this.btnVolverMenu);
@@ -162,6 +212,7 @@
             this.Load += new System.EventHandler(this.FormHistorial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPartida)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimiento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJugadorPartida)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -171,5 +222,6 @@
         private System.Windows.Forms.Button btnVolverMenu;
         private System.Windows.Forms.DataGridView dataGridViewPartida;
         private System.Windows.Forms.DataGridView dataGridViewMovimiento;
+        private System.Windows.Forms.DataGridView dataGridViewJugadorPartida;
     }
 }

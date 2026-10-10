@@ -14,6 +14,13 @@ namespace UNO_Game
         [JsonProperty("ganador")] public string Ganador { get; set; }
     }
 
+    public class JugadorPartidaDto
+    {
+        public int IdJugador { get; set; }
+        public string Nombre { get; set; }
+        public string Resultado { get; set; }
+    }
+
     public class MovimientoDto
     {
         [JsonProperty("numero_turno")] public int NumTurno { get; set; }
