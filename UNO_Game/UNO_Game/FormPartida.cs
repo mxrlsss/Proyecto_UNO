@@ -27,8 +27,8 @@ namespace UNO_Game
         private Carta CartaEnMesa;
         string P1 = "Alexis";
         string P2 = "Iván";
+        int turnoActual; //1 para P1 y 2 para P2
 
-        private int turnoActual = 1; //1 para P1 y 2 para P2
 
         public FormPartida(Form1 menu)
         {
@@ -84,9 +84,11 @@ namespace UNO_Game
 
         private async void FormPartida_Load(object sender, EventArgs e)
         {
+            Random rand_turno = new Random();
+            turnoActual = rand_turno.Next(1, 3); //1 para P1 y 2 para P2
+            indicadorTurno();
             mazoJuego = new Mazo();
             mazoJuego.Barajar();
-
             mazoP1 = mazoJuego.RepartirMazo(7); 
             mazoP2 = mazoJuego.RepartirMazo(7);
 
@@ -231,8 +233,11 @@ namespace UNO_Game
 
                     //cierran cartas especiales
 
-                    if(!pierdeTurno)
+                    if (!pierdeTurno)
+                    {
                         turnoActual = (turnoActual == 1) ? 2 : 1; // Cambia el turno al otro jugador
+                        indicadorTurno();
+                    }
 
                     await RegistrarMovimientoApi(jugadorQueTiro, "jugar_carta", desc);
 
@@ -344,6 +349,24 @@ namespace UNO_Game
             catch (Exception ex)
             {
                 MessageBox.Show("No se pudo reproducir el sonido de castigo: " + ex.Message);
+            }
+        }
+
+        private void indicadorTurno()
+        {
+            if(turnoActual == 1)
+            {
+                P1_Nick.Image = Properties.Resources.Alexis_ON;
+                P1_avatar.Image = Properties.Resources.Alexis_Profile;
+                P2_Nick.Image = Properties.Resources.Iván_OFF;
+                P2_avatar.Image = Properties.Resources.Ivan_Profile_OFF;
+            }
+            else
+            {
+                P2_Nick.Image = Properties.Resources.Iván_ON;
+                P2_avatar.Image = Properties.Resources.Ivan_Profile;
+                P1_Nick.Image = Properties.Resources.Alexis_OFF;
+                P1_avatar.Image = Properties.Resources.Alexis_Profile_OFF;
             }
         }
 
