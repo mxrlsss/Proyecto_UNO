@@ -13,6 +13,7 @@ namespace UNO_Game
     public partial class FormEligeColor : Form
     {
         public string ColorElegido { get; private set; }
+        public string ColorElegidoTranslate;
 
         public FormEligeColor()
         {
@@ -24,6 +25,7 @@ namespace UNO_Game
             ColorElegido = "Rojo";
             FormPartida formPartida = new FormPartida();
             formPartida.sonido("CambioColor");
+            ColorElegidoTranslate = "Red";
             this.Close();
         }
 
@@ -32,6 +34,7 @@ namespace UNO_Game
             ColorElegido = "Azul";
             FormPartida formPartida = new FormPartida();
             formPartida.sonido("CambioColor");
+            ColorElegidoTranslate = "Blue";
             this.Close();
         }
 
@@ -40,6 +43,7 @@ namespace UNO_Game
             ColorElegido = "Verde";
             FormPartida formPartida = new FormPartida();
             formPartida.sonido("CambioColor");
+            ColorElegidoTranslate = "Green";
             this.Close();
         }
 
@@ -48,6 +52,7 @@ namespace UNO_Game
             FormPartida formPartida = new FormPartida();
             formPartida.sonido("CambioColor");
             ColorElegido = "Amarillo";
+            ColorElegidoTranslate = "Yellow";
             this.Close();
         }
 

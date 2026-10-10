@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Org.BouncyCastle.Utilities.Collections;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Media;
 
 namespace UNO_Game
 {
@@ -27,7 +28,7 @@ namespace UNO_Game
         private Carta CartaEnMesa;
         string P1 = "Alexis";
         string P2 = "Iván";
-        int turnoActual; //1 para P1 y 2 para P2
+        public int turnoActual; //1 para P1 y 2 para P2
 
 
         public FormPartida(Form1 menu)
@@ -91,6 +92,8 @@ namespace UNO_Game
             mazoJuego.Barajar();
             mazoP1 = mazoJuego.RepartirMazo(7); 
             mazoP2 = mazoJuego.RepartirMazo(7);
+            ColorCambioP1.Visible = false;
+            ColorCambioP2.Visible = false;
 
             CartaEnMesa = mazoJuego.RobarCarta();
             string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
@@ -144,10 +147,14 @@ namespace UNO_Game
 
         private async void CartaJugador_Click(object sender, EventArgs e) //Agregar base de datos para guardar la partida, y que se pueda continuar desde donde se dejó.
         {
+            bool CambioColor = false;
+            var color= "";
             PictureBox PicClickeado = sender as PictureBox;
             FlowLayoutPanel PanelPadre = PicClickeado.Parent as FlowLayoutPanel;
+            ColorCambioP1.Visible = false;
+            ColorCambioP2.Visible = false;
 
-            if(PanelPadre == PanelMazoP1 && turnoActual != 1)
+            if (PanelPadre == PanelMazoP1 && turnoActual != 1)
             {
                 sonido("CartaNoValida");
                 MessageBox.Show($"Esperad Brochaho!, aun no es tu turno, es turno de {P2}");
@@ -227,6 +234,9 @@ namespace UNO_Game
 
                         FormEligeColor selector = new FormEligeColor();
                         selector.ShowDialog();
+                        CambioColor = true;
+                        color = selector.ColorElegidoTranslate;
+
                         CartaEnMesa.Color = selector.ColorElegido; 
                         MessageBox.Show($"Cambio a {CartaEnMesa.Color}");
                     }
@@ -237,6 +247,17 @@ namespace UNO_Game
                     {
                         turnoActual = (turnoActual == 1) ? 2 : 1; // Cambia el turno al otro jugador
                         indicadorTurno();
+                    }
+                     
+                    if (turnoActual == 1 && CambioColor == true)
+                    {
+                        ColorCambioP1.Visible = true;
+                        ColorCambioP1.BackColor = Color.FromName(color);
+                    }
+                    else if (turnoActual == 2 && CambioColor == true)
+                    {
+                        ColorCambioP2.Visible = true;
+                        ColorCambioP2.BackColor = Color.FromName(color);
                     }
 
                     await RegistrarMovimientoApi(jugadorQueTiro, "jugar_carta", desc);
@@ -261,7 +282,8 @@ namespace UNO_Game
                     MessageBox.Show("No puedes jugar esta carta brochaho, debe coincidir el color o el valor!");
                 }
             }
-
+            
+           
         }
 
 
@@ -368,6 +390,7 @@ namespace UNO_Game
                 P1_Nick.Image = Properties.Resources.Alexis_OFF;
                 P1_avatar.Image = Properties.Resources.Alexis_Profile_OFF;
             }
+
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -376,6 +399,11 @@ namespace UNO_Game
         }
 
         private void btnSonido_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

@@ -48,11 +48,11 @@
             // 
             // btnVolverMenu
             // 
-            this.btnVolverMenu.BackColor = System.Drawing.Color.Firebrick;
+            this.btnVolverMenu.BackColor = System.Drawing.Color.Black;
             this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolverMenu.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVolverMenu.Location = new System.Drawing.Point(1729, 0);
+            this.btnVolverMenu.Font = new System.Drawing.Font("Bubblegum Sans", 10F, System.Drawing.FontStyle.Bold);
+            this.btnVolverMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnVolverMenu.Location = new System.Drawing.Point(1956, 12);
             this.btnVolverMenu.Name = "btnVolverMenu";
             this.btnVolverMenu.Size = new System.Drawing.Size(196, 54);
             this.btnVolverMenu.TabIndex = 1;
@@ -151,9 +151,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1436, 953);
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1924, 1050);
+            this.ClientSize = new System.Drawing.Size(2164, 1163);
             this.Controls.Add(this.dataGridViewMovimiento);
             this.Controls.Add(this.dataGridViewPartida);
             this.Controls.Add(this.btnVolverMenu);

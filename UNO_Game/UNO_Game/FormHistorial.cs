@@ -41,9 +41,16 @@ namespace UNO_Game
 
         private async Task CargarPartidas()
         {
-            string json = await http.GetStringAsync("partidas");
-            var partidas = JsonConvert.DeserializeObject<List<PartidaDto>>(json);
-            dataGridViewPartida.DataSource = partidas;
+            try
+            {
+                string json = await http.GetStringAsync("partidas");
+                var partidas = JsonConvert.DeserializeObject<List<PartidaDto>>(json);
+                dataGridViewPartida.DataSource = partidas;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar partidas: {ex.Message}");
+            }
         }
 
         private async Task CargarMovimientos()

@@ -43,6 +43,8 @@ namespace UNO_Game
             this.btnSonido = new System.Windows.Forms.Button();
             this.P1_Nick = new System.Windows.Forms.PictureBox();
             this.P2_Nick = new System.Windows.Forms.PictureBox();
+            this.ColorCambioP2 = new System.Windows.Forms.Label();
+            this.ColorCambioP1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MazoRobar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pozo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.P1_avatar)).BeginInit();
@@ -190,6 +192,29 @@ namespace UNO_Game
             this.P2_Nick.TabIndex = 17;
             this.P2_Nick.TabStop = false;
             // 
+            // ColorCambioP2
+            // 
+            this.ColorCambioP2.Font = new System.Drawing.Font("Bubblegum Sans", 14F, System.Drawing.FontStyle.Bold);
+            this.ColorCambioP2.ForeColor = System.Drawing.Color.White;
+            this.ColorCambioP2.Location = new System.Drawing.Point(838, 1045);
+            this.ColorCambioP2.Name = "ColorCambioP2";
+            this.ColorCambioP2.Size = new System.Drawing.Size(425, 49);
+            this.ColorCambioP2.TabIndex = 18;
+            this.ColorCambioP2.Text = "Color a tirar";
+            this.ColorCambioP2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ColorCambioP2.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // ColorCambioP1
+            // 
+            this.ColorCambioP1.Font = new System.Drawing.Font("Bubblegum Sans", 14F, System.Drawing.FontStyle.Bold);
+            this.ColorCambioP1.ForeColor = System.Drawing.Color.White;
+            this.ColorCambioP1.Location = new System.Drawing.Point(838, 291);
+            this.ColorCambioP1.Name = "ColorCambioP1";
+            this.ColorCambioP1.Size = new System.Drawing.Size(425, 49);
+            this.ColorCambioP1.TabIndex = 19;
+            this.ColorCambioP1.Text = "Color a tirar";
+            this.ColorCambioP1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormPartida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -197,6 +222,8 @@ namespace UNO_Game
             this.BackgroundImage = global::UNO_Game.Properties.Resources.Background_partida;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(2164, 1410);
+            this.Controls.Add(this.ColorCambioP1);
+            this.Controls.Add(this.ColorCambioP2);
             this.Controls.Add(this.P2_Nick);
             this.Controls.Add(this.P1_Nick);
             this.Controls.Add(this.btnSonido);
@@ -238,5 +265,7 @@ namespace UNO_Game
         private System.Windows.Forms.Button btnSonido;
         private System.Windows.Forms.PictureBox P1_Nick;
         private System.Windows.Forms.PictureBox P2_Nick;
+        private System.Windows.Forms.Label ColorCambioP2;
+        private System.Windows.Forms.Label ColorCambioP1;
     }
 }
