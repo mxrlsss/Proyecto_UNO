@@ -151,8 +151,7 @@ namespace UNO_Game
             var color= "";
             PictureBox PicClickeado = sender as PictureBox;
             FlowLayoutPanel PanelPadre = PicClickeado.Parent as FlowLayoutPanel;
-            ColorCambioP1.Visible = false;
-            ColorCambioP2.Visible = false;
+           
 
             if (PanelPadre == PanelMazoP1 && turnoActual != 1)
             {
@@ -167,6 +166,7 @@ namespace UNO_Game
                 return;
             }
 
+           
             Carta cartaElegida = PicClickeado.Tag as Carta;
 
             if(cartaElegida != null)
@@ -174,15 +174,17 @@ namespace UNO_Game
                 //MessageBox.Show($"Carta elegida: {cartaElegida.Color} {cartaElegida.Valor}");
                 if (cartaElegida.Color == CartaEnMesa.Color || cartaElegida.Valor == CartaEnMesa.Valor || cartaElegida.Color == "Comodin")
                 {
+                    ColorCambioP1.Visible = false;
+                    ColorCambioP2.Visible = false;
                     CartaEnMesa = cartaElegida;
 
-                    int jugadorQueTiro = turnoActual;                                  
+                    int jugadorQueTiro = turnoActual;
                     string desc = $"{cartaElegida.Color} {cartaElegida.Valor}";
 
                     string imgPozo = cartaElegida.NombreRecurso;
                     Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
 
-                    if(PanelPadre == PanelMazoP1)
+                    if (PanelPadre == PanelMazoP1)
                     {
                         mazoP1.Remove(cartaElegida);
                     }
@@ -197,15 +199,15 @@ namespace UNO_Game
                     //cartas especiales 
 
                     bool pierdeTurno = false;
-                    int oponente = (turnoActual == 1) ? 2 : 1; 
+                    int oponente = (turnoActual == 1) ? 2 : 1;
                     string valorSTR = cartaElegida.Valor.ToString();
 
                     //+2
-                    if(valorSTR == "MasDos")
+                    if (valorSTR == "MasDos")
                     {
                         CastigarJugador(oponente, 2);
                         pierdeTurno = true;
-                        if(oponente == 1)
+                        if (oponente == 1)
                             MessageBox.Show($"Toma 2 {P1}");
                         else
                             MessageBox.Show($"Toma 2 {P2}");
@@ -214,7 +216,7 @@ namespace UNO_Game
                     if (valorSTR == "Salto" || valorSTR == "Reversa")
                     {
                         pierdeTurno = true;
-                        if(oponente == 1)
+                        if (oponente == 1)
                             MessageBox.Show($"Vuelves a tirar {P2}");
                         else
                             MessageBox.Show($"Vuelves a tirar {P1}");
@@ -222,7 +224,7 @@ namespace UNO_Game
                     //mas 4 y cambio de clor
                     if (cartaElegida.Color == "Comodin")
                     {
-                        if(valorSTR == "MasCuatro")
+                        if (valorSTR == "MasCuatro")
                         {
                             CastigarJugador(oponente, 4);
                             pierdeTurno = true;
@@ -237,7 +239,7 @@ namespace UNO_Game
                         CambioColor = true;
                         color = selector.ColorElegidoTranslate;
 
-                        CartaEnMesa.Color = selector.ColorElegido; 
+                        CartaEnMesa.Color = selector.ColorElegido;
                         MessageBox.Show($"Cambio a {CartaEnMesa.Color}");
                     }
 
@@ -248,7 +250,7 @@ namespace UNO_Game
                         turnoActual = (turnoActual == 1) ? 2 : 1; // Cambia el turno al otro jugador
                         indicadorTurno();
                     }
-                     
+
                     if (turnoActual == 1 && CambioColor == true)
                     {
                         ColorCambioP1.Visible = true;
@@ -270,7 +272,7 @@ namespace UNO_Game
                         PanelMazoP2.Enabled = false;
                         MazoRobar.Enabled = false;
                         sonido("Ganar");
-                        if(jugadorQueTiro == 1)
+                        if (jugadorQueTiro == 1)
                             MessageBox.Show($"¡Felixidades {P1}, has ganado brochacho!");
                         else
                             MessageBox.Show($"¡Felixidades {P2}, has ganado brochacho!");
@@ -278,7 +280,7 @@ namespace UNO_Game
                 }
                 else
                 {
-                    sonido("CartaNoValida"); 
+                    sonido("CartaNoValida");
                     MessageBox.Show("No puedes jugar esta carta brochaho, debe coincidir el color o el valor!");
                 }
             }

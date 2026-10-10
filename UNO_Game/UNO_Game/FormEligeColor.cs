@@ -34,7 +34,7 @@ namespace UNO_Game
             ColorElegido = "Azul";
             FormPartida formPartida = new FormPartida();
             formPartida.sonido("CambioColor");
-            ColorElegidoTranslate = "Blue";
+            ColorElegidoTranslate = "DodgerBlue";
             this.Close();
         }
 

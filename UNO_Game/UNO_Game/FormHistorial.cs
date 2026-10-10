@@ -24,18 +24,28 @@ namespace UNO_Game
             this.FormClosed += FormPartida_VentanaCerrada;
 
             dataGridViewPartida.CellFormatting += dataGridViewPartida_CellFormatting;
+            dataGridViewJugadorPartida.CellFormatting += dataGridViewJugadorPartida_CellFormatting;
+
             // Antes: Load += async (s, e) => await CargarPartidas();
             VisibleChanged += async (s, e) =>
             {
                 if (Visible) await CargarPartidas();
             };
-            dataGridViewPartida.SelectionChanged += async (s, e) => await CargarMovimientos();
+            dataGridViewPartida.SelectionChanged += async (s, e) =>
+            {
+                await CargarMovimientos();
+                await CargarJugadoresPartida();
+            };
         }
         public FormHistorial()
         {
             InitializeComponent();
             Load += async (s, e) => await CargarPartidas();
-            dataGridViewPartida.SelectionChanged += async (s, e) => await CargarMovimientos();
+            dataGridViewPartida.SelectionChanged += async (s, e) =>
+            {
+                await CargarMovimientos();
+                await CargarJugadoresPartida();
+            };
 
         }
 
@@ -56,11 +66,30 @@ namespace UNO_Game
         private async Task CargarMovimientos()
         {
             var partida = dataGridViewPartida.CurrentRow?.DataBoundItem as PartidaDto;
-            if (partida == null) return;
+            if (partida == null)
+            {
+                dataGridViewMovimiento.DataSource = null; //ojo agregué
+                return;
+            }
+             
 
             string json = await http.GetStringAsync($"partidas/{partida.IdPartida}/movimientos");
             var movs = JsonConvert.DeserializeObject<List<MovimientoDto>>(json);
             dataGridViewMovimiento.DataSource = movs;
+        }
+
+        private async Task CargarJugadoresPartida()
+        {
+            var partida = dataGridViewPartida.CurrentRow?.DataBoundItem as PartidaDto;
+            if (partida == null)
+            {
+                dataGridViewJugadorPartida.DataSource = null;
+                return;
+            }
+
+            string json = await http.GetStringAsync($"partidas/{partida.IdPartida}/jugadores");
+            var jugadores = JsonConvert.DeserializeObject<List<JugadorPartidaDto>>(json);
+            dataGridViewJugadorPartida.DataSource = jugadores;
         }
 
         private void dataGridViewPartida_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -77,6 +106,27 @@ namespace UNO_Game
             else if (col == "FechaFin" && e.Value == null)
             {
                 e.Value = "Partida interrumpida";
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void dataGridViewJugadorPartida_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            string col = dataGridViewJugadorPartida.Columns[e.ColumnIndex].DataPropertyName;
+
+            if (col == "Resultado")
+            {
+                string resultado = e.Value as string;
+
+                if (resultado == "ganador")
+                    e.Value = "Ganador";
+                else if (resultado == "perdedor")
+                    e.Value = "Perdedor";
+                else
+                    e.Value = "Cancelada";   // en_curso, vacío o null
+
                 e.FormattingApplied = true;
             }
         }
@@ -98,6 +148,11 @@ namespace UNO_Game
         }
 
         private void dataGridViewMovimiento_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewPartida_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
