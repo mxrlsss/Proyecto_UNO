@@ -26,7 +26,7 @@ namespace UNO_Game
         private List<Carta> mazoP2;
         private Carta CartaEnMesa;
         string P1 = "Alexis";
-        string P2 = "Ivan";
+        string P2 = "Iván";
 
         private int turnoActual = 1; //1 para P1 y 2 para P2
 

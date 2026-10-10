@@ -17,7 +17,7 @@ def crear_jugadores_base():
     con = get_conexion()
     try:
         with con.cursor() as cur:
-            for nombre in ("Iván", "Alexis"):
+            for nombre in ("Alexis", "Iván"):
                 cur.execute("INSERT IGNORE INTO jugador (nombre) VALUES (%s)", (nombre,))
         con.commit()
     finally:
@@ -53,16 +53,15 @@ class Movimiento(BaseModel):
 
 class PartidaFinalizar(BaseModel):
     id_ganador: int
-
-<<<<<<< HEAD
+""""
 def get_conexion():
     return pymysql.connect(
         host="127.0.0.1", port=3306, user="root", password="Morales07",
         database="bebesote", cursorclass=pymysql.cursors.DictCursor
     )
-=======
+"""
+
 """Mostrar Partidas y Movimientos, obteniendo el JSON de la base de datos"""
->>>>>>> 533cef6d9d4c12c3db91b101b9824b5d3e0dc9df
 
 @app.get("/partidas")
 async def listar_partidas():
