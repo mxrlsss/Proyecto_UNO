@@ -82,9 +82,9 @@ namespace UNO_Game
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(221, 1049);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 37);
+            this.label2.Size = new System.Drawing.Size(119, 37);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Player 2";
+            this.label2.Text = "Player2";
             // 
             // btnVolverMenu
             // 
@@ -94,7 +94,7 @@ namespace UNO_Game
             this.btnVolverMenu.BackgroundImage = global::UNO_Game.Properties.Resources.Menu;
             this.btnVolverMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnVolverMenu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolverMenu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnVolverMenu.Location = new System.Drawing.Point(2076, 12);
@@ -138,9 +138,9 @@ namespace UNO_Game
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(208, 288);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 37);
+            this.label1.Size = new System.Drawing.Size(120, 37);
             this.label1.TabIndex = 11;
-            this.label1.Text = "player 1";
+            this.label1.Text = "Player 1";
             // 
             // pictureBox1
             // 
@@ -175,8 +175,8 @@ namespace UNO_Game
             this.btnVolver.Size = new System.Drawing.Size(82, 59);
             this.btnVolver.TabIndex = 14;
             this.btnVolver.UseVisualStyleBackColor = false;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             this.btnVolver.Visible = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // btnSonido
             // 
@@ -189,8 +189,8 @@ namespace UNO_Game
             this.btnSonido.Size = new System.Drawing.Size(82, 59);
             this.btnSonido.TabIndex = 15;
             this.btnSonido.UseVisualStyleBackColor = false;
-            this.btnSonido.Click += new System.EventHandler(this.btnSonido_Click);
             this.btnSonido.Visible = false;
+            this.btnSonido.Click += new System.EventHandler(this.btnSonido_Click);
             // 
             // FormPartida
             // 

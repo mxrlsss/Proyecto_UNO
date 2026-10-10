@@ -57,7 +57,6 @@
             this.dataGridViewPartida.RowTemplate.Height = 28;
             this.dataGridViewPartida.Size = new System.Drawing.Size(240, 150);
             this.dataGridViewPartida.TabIndex = 2;
-            //this.dataGridViewPartida.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPartida_CellContentClick);
             // 
             // dataGridViewMovimiento
             // 
@@ -73,12 +72,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1436, 953);
             this.Controls.Add(this.dataGridViewMovimiento);
             this.Controls.Add(this.dataGridViewPartida);
             this.Controls.Add(this.btnVolverMenu);
             this.Name = "FormHistorial";
             this.Text = "Historial";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormHistorial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPartida)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimiento)).EndInit();
