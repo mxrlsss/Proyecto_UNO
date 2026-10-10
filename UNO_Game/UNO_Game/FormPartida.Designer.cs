@@ -54,7 +54,7 @@ namespace UNO_Game
             this.PanelMazoP1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.PanelMazoP1.AutoScroll = true;
             this.PanelMazoP1.BackColor = System.Drawing.Color.Transparent;
-            this.PanelMazoP1.Location = new System.Drawing.Point(487, 12);
+            this.PanelMazoP1.Location = new System.Drawing.Point(367, 12);
             this.PanelMazoP1.Name = "PanelMazoP1";
             this.PanelMazoP1.Size = new System.Drawing.Size(1438, 250);
             this.PanelMazoP1.TabIndex = 6;
@@ -66,7 +66,7 @@ namespace UNO_Game
             this.PanelMazoP2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.PanelMazoP2.AutoScroll = true;
             this.PanelMazoP2.BackColor = System.Drawing.Color.Transparent;
-            this.PanelMazoP2.Location = new System.Drawing.Point(487, 1122);
+            this.PanelMazoP2.Location = new System.Drawing.Point(367, 772);
             this.PanelMazoP2.Name = "PanelMazoP2";
             this.PanelMazoP2.Size = new System.Drawing.Size(1438, 250);
             this.PanelMazoP2.TabIndex = 7;
@@ -78,11 +78,12 @@ namespace UNO_Game
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Cursor = System.Windows.Forms.Cursors.PanNE;
-            this.label2.Font = new System.Drawing.Font("Bubblegum Sans", 16F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(221, 1049);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 37);
+            this.label2.Size = new System.Drawing.Size(141, 37);
             this.label2.TabIndex = 9;
             this.label2.Text = "Player2";
             // 
@@ -97,7 +98,7 @@ namespace UNO_Game
             this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolverMenu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnVolverMenu.Location = new System.Drawing.Point(2076, 12);
+            this.btnVolverMenu.Location = new System.Drawing.Point(1836, 12);
             this.btnVolverMenu.Name = "btnVolverMenu";
             this.btnVolverMenu.Size = new System.Drawing.Size(79, 69);
             this.btnVolverMenu.TabIndex = 0;
@@ -109,7 +110,7 @@ namespace UNO_Game
             this.MazoRobar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.MazoRobar.BackColor = System.Drawing.Color.Transparent;
             this.MazoRobar.Image = global::UNO_Game.Properties.Resources.Reverso;
-            this.MazoRobar.Location = new System.Drawing.Point(1896, 522);
+            this.MazoRobar.Location = new System.Drawing.Point(1656, 347);
             this.MazoRobar.Name = "MazoRobar";
             this.MazoRobar.Size = new System.Drawing.Size(204, 295);
             this.MazoRobar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -122,7 +123,7 @@ namespace UNO_Game
             this.Pozo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Pozo.BackColor = System.Drawing.Color.Transparent;
             this.Pozo.Image = global::UNO_Game.Properties.Resources.Rojo1;
-            this.Pozo.Location = new System.Drawing.Point(924, 500);
+            this.Pozo.Location = new System.Drawing.Point(804, 325);
             this.Pozo.Name = "Pozo";
             this.Pozo.Size = new System.Drawing.Size(291, 343);
             this.Pozo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -134,11 +135,12 @@ namespace UNO_Game
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Cursor = System.Windows.Forms.Cursors.PanNE;
-            this.label1.Font = new System.Drawing.Font("Bubblegum Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(208, 288);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 37);
+            this.label1.Size = new System.Drawing.Size(136, 37);
             this.label1.TabIndex = 11;
             this.label1.Text = "Player 1";
             // 
@@ -198,7 +200,7 @@ namespace UNO_Game
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::UNO_Game.Properties.Resources.Background_partida;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(2164, 1400);
+            this.ClientSize = new System.Drawing.Size(1924, 1050);
             this.Controls.Add(this.btnSonido);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.pictureBox2);

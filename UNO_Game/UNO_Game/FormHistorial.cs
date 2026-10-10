@@ -23,6 +23,7 @@ namespace UNO_Game
             this.menuPrincipal = menu; //Guarda la referencia al menú principal
             this.FormClosed += FormPartida_VentanaCerrada;
 
+            dataGridViewPartida.CellFormatting += dataGridViewPartida_CellFormatting;
             // Antes: Load += async (s, e) => await CargarPartidas();
             VisibleChanged += async (s, e) =>
             {
@@ -54,6 +55,25 @@ namespace UNO_Game
             var movs = JsonConvert.DeserializeObject<List<MovimientoDto>>(json);
             dataGridViewMovimiento.DataSource = movs;
         }
+
+        private void dataGridViewPartida_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            string col = dataGridViewPartida.Columns[e.ColumnIndex].DataPropertyName;
+
+            if (col == "Ganador" && string.IsNullOrEmpty(e.Value as string))
+            {
+                e.Value = "Sin ganador";
+                e.FormattingApplied = true;
+            }
+            else if (col == "FechaFin" && e.Value == null)
+            {
+                e.Value = "Partida interrumpida";
+                e.FormattingApplied = true;
+            }
+        }
+
         private void FormHistorial_Load(object sender, EventArgs e)
         {
             
@@ -70,5 +90,9 @@ namespace UNO_Game
 
         }
 
+        private void dataGridViewMovimiento_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

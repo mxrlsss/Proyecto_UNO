@@ -26,7 +26,7 @@ namespace UNO_Game
         private List<Carta> mazoP2;
         private Carta CartaEnMesa;
         string P1 = "Alexis";
-        string P2 = "Ivan";
+        string P2 = "Iván";
 
         private int turnoActual = 1; //1 para P1 y 2 para P2
 
@@ -67,7 +67,7 @@ namespace UNO_Game
         {
             var respuesta = MessageBox.Show(
                 "¿Seguro que quieres salir de la partida?",
-                "Salir",
+                "Volver al menu de inicio",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
@@ -286,12 +286,12 @@ namespace UNO_Game
                 int jugador = turnoActual;
                 if (turnoActual == 1)
                 {
-                    mazoP1.Add(nuevaCarta);
+                    mazoP1.Insert(0, nuevaCarta);
                     MostrarMazoJugador(mazoP1, PanelMazoP1);
                 }
                 else
                 {
-                    mazoP2.Add(nuevaCarta);
+                    mazoP2.Insert(0, nuevaCarta);
                     MostrarMazoJugador(mazoP2, PanelMazoP2);
                 }
 
