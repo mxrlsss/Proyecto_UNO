@@ -32,6 +32,8 @@ namespace UNO_Game
         string P2 = "Iván";
         public int turnoActual; //1 para P1 y 2 para P2
         private System.Media.SoundPlayer SoundFondo;
+        System.Media.SoundPlayer efecto;
+        bool HayGanador = false;
 
 
         public FormPartida(Form1 menu)
@@ -69,14 +71,18 @@ namespace UNO_Game
 
         private void FormPartida_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var respuesta = MessageBox.Show(
-                "¿Seguro que quieres salir de la partida?",
-                "Volver al menu de inicio",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+            if(!HayGanador)
+            {
+                var respuesta = MessageBox.Show(
+               "¿Seguro que quieres salir de la partida?",
+               "Volver al menu de inicio",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question);
 
-            if (respuesta == DialogResult.No)
-                e.Cancel = true;
+                if (respuesta == DialogResult.No)
+                    e.Cancel = true;
+            }
+           
         }
 
         private void FormPartida_VentanaCerrada(object sender, FormClosedEventArgs e)
@@ -278,13 +284,18 @@ namespace UNO_Game
                         PanelMazoP1.Enabled = false;
                         PanelMazoP2.Enabled = false;
                         MazoRobar.Enabled = false;
-                        sonido("Ganar");
+                        sonido("Ganar2");
                         if (jugadorQueTiro == 1)
                             MessageBox.Show($"¡Felixidades {P1}, has ganado brochacho!");
                         else
                             MessageBox.Show($"¡Felixidades {P2}, has ganado brochacho!");
+                        HayGanador = true;
                         if (menuPrincipal != null)
-                            menuPrincipal.Show();
+                        {
+                            this.Close();
+                            efecto.Stop();
+                        }
+
                     }
                 }
                 else
@@ -374,7 +385,7 @@ namespace UNO_Game
             {
                 var stream = Properties.Resources.ResourceManager.GetStream(sonido);
 
-                System.Media.SoundPlayer efecto = new System.Media.SoundPlayer(stream);
+                efecto = new System.Media.SoundPlayer(stream);
                 efecto.Play();
             }
             catch (Exception ex)
@@ -383,6 +394,7 @@ namespace UNO_Game
             }
         }
 
+        //No utilzado por problemas con los canales de audio de windows
         public void sonidoFondo(string sonido) //se pasan versatilemnte 
         {
 

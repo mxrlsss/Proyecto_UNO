@@ -201,12 +201,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(2164, 1163);
             this.ClientSize = new System.Drawing.Size(1924, 1050);
             this.Controls.Add(this.dataGridViewJugadorPartida);
             this.Controls.Add(this.dataGridViewMovimiento);
             this.Controls.Add(this.dataGridViewPartida);
             this.Controls.Add(this.btnVolverMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormHistorial";
             this.Text = "Historial";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

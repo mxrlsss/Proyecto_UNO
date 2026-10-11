@@ -32,6 +32,7 @@ namespace UNO_Game
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPartida));
             this.PanelMazoP1 = new System.Windows.Forms.FlowLayoutPanel();
             this.PanelMazoP2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnVolverMenu = new System.Windows.Forms.Button();
@@ -124,7 +125,7 @@ namespace UNO_Game
             // 
             this.P1_avatar.BackColor = System.Drawing.Color.Transparent;
             this.P1_avatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.P1_avatar.Location = new System.Drawing.Point(186, -14);
+            this.P1_avatar.Location = new System.Drawing.Point(186, 12);
             this.P1_avatar.Name = "P1_avatar";
             this.P1_avatar.Size = new System.Drawing.Size(182, 299);
             this.P1_avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -169,13 +170,12 @@ namespace UNO_Game
             this.btnSonido.TabIndex = 15;
             this.btnSonido.UseVisualStyleBackColor = false;
             this.btnSonido.Visible = false;
-           // this.btnSonido.Click += new System.EventHandler(this.btnSonido_Click);
             // 
             // P1_Nick
             // 
             this.P1_Nick.BackColor = System.Drawing.Color.Transparent;
             this.P1_Nick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.P1_Nick.Location = new System.Drawing.Point(206, 291);
+            this.P1_Nick.Location = new System.Drawing.Point(206, 317);
             this.P1_Nick.Name = "P1_Nick";
             this.P1_Nick.Size = new System.Drawing.Size(146, 49);
             this.P1_Nick.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -238,6 +238,7 @@ namespace UNO_Game
             this.Controls.Add(this.btnVolverMenu);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormPartida";
             this.Text = "UNO";
