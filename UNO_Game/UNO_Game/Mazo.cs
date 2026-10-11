@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace UNO_Game
 {
@@ -58,10 +59,21 @@ namespace UNO_Game
             }
         }
 
-        public Carta RobarCarta()
+        public Carta RobarCarta(List<Carta> pozoDescarte = null)
         {
-            if (Cartas.Count == 0) 
-                return null;
+            if (Cartas.Count == 0)
+            {
+                if (pozoDescarte.Count > 0 && pozoDescarte != null)
+                {
+                    Cartas.AddRange(pozoDescarte);
+                    pozoDescarte.Clear();
+                    Barajar();
+                    MessageBox.Show("Se terminaron las cartaxs brochacho!! El pozo se barajeo para tener nuevo mazo.",
+                        "Mazo reciclado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                   return null;
+            }
 
             Carta cartaTomada = Cartas[0];
             Cartas.RemoveAt(0);

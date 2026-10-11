@@ -158,9 +158,10 @@ namespace UNO_Game
             // 
             // btnSonido
             // 
+            this.btnSonido.AutoSize = true;
             this.btnSonido.BackColor = System.Drawing.Color.Transparent;
-            this.btnSonido.BackgroundImage = global::UNO_Game.Properties.Resources.Sonido;
             this.btnSonido.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSonido.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.btnSonido.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSonido.Location = new System.Drawing.Point(2070, 169);
             this.btnSonido.Name = "btnSonido";
@@ -168,7 +169,7 @@ namespace UNO_Game
             this.btnSonido.TabIndex = 15;
             this.btnSonido.UseVisualStyleBackColor = false;
             this.btnSonido.Visible = false;
-            this.btnSonido.Click += new System.EventHandler(this.btnSonido_Click);
+           // this.btnSonido.Click += new System.EventHandler(this.btnSonido_Click);
             // 
             // P1_Nick
             // 

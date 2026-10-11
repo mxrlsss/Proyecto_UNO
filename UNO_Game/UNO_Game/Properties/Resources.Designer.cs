@@ -431,6 +431,15 @@ namespace UNO_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream FondoPartida {
+            get {
+                return ResourceManager.GetStream("FondoPartida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Ganar {
             get {
                 return ResourceManager.GetStream("Ganar", resourceCulture);
@@ -643,6 +652,16 @@ namespace UNO_Game.Properties {
         internal static System.Drawing.Bitmap Sonido {
             get {
                 object obj = ResourceManager.GetObject("Sonido", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sonido_Playing {
+            get {
+                object obj = ResourceManager.GetObject("Sonido_Playing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

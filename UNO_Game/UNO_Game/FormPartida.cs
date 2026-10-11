@@ -25,10 +25,13 @@ namespace UNO_Game
         private Mazo mazoJuego;
         private List<Carta> mazoP1;
         private List<Carta> mazoP2;
+        private List<Carta> pozoDescarte = new List<Carta>();
         private Carta CartaEnMesa;
+        private bool MusicaSilencio = false;
         string P1 = "Alexis";
         string P2 = "Iván";
         public int turnoActual; //1 para P1 y 2 para P2
+        private System.Media.SoundPlayer SoundFondo;
 
 
         public FormPartida(Form1 menu)
@@ -54,12 +57,12 @@ namespace UNO_Game
             if(btnVolver.Visible == false)
             {
                 btnVolver.Visible = true;
-                btnSonido.Visible = true;
+                //btnSonido.Visible = true;
             }
             else
             {
                 btnVolver.Visible = false;
-                btnSonido.Visible = false;
+                //btnSonido.Visible = false;
             }
 
         }
@@ -94,6 +97,9 @@ namespace UNO_Game
             mazoP2 = mazoJuego.RepartirMazo(7);
             ColorCambioP1.Visible = false;
             ColorCambioP2.Visible = false;
+
+            //sonidoFondo("FondoPartida");      inhablilitados porm problemas con los canalaes de audio de windows
+            //btnSonido.Image = Properties.Resources.Sonido_Playing;
 
             CartaEnMesa = mazoJuego.RobarCarta();
             string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
@@ -176,6 +182,7 @@ namespace UNO_Game
                 {
                     ColorCambioP1.Visible = false;
                     ColorCambioP2.Visible = false;
+                    pozoDescarte.Add(CartaEnMesa);
                     CartaEnMesa = cartaElegida;
 
                     int jugadorQueTiro = turnoActual;
@@ -276,6 +283,8 @@ namespace UNO_Game
                             MessageBox.Show($"¡Felixidades {P1}, has ganado brochacho!");
                         else
                             MessageBox.Show($"¡Felixidades {P2}, has ganado brochacho!");
+                        if (menuPrincipal != null)
+                            menuPrincipal.Show();
                     }
                 }
                 else
@@ -308,7 +317,7 @@ namespace UNO_Game
 
         private async void MazoRobar_Click(object sender, EventArgs e)
         {
-            Carta nuevaCarta = mazoJuego.RobarCarta();
+            Carta nuevaCarta = mazoJuego.RobarCarta(pozoDescarte);
 
             if(nuevaCarta != null)
             {
@@ -339,7 +348,7 @@ namespace UNO_Game
             for (int i = 0; i < cantidad; i++)
             {
                 sonido($"TomaCartasMas{cantidad}");
-                Carta castigo = mazoJuego.RobarCarta();
+                Carta castigo = mazoJuego.RobarCarta(pozoDescarte);
                 if (castigo != null)
                 {
                     if (Jugador == 1)
@@ -363,16 +372,30 @@ namespace UNO_Game
         {
             try
             {
-                var stream = Properties.Resources.ResourceManager.GetStream(sonido); 
+                var stream = Properties.Resources.ResourceManager.GetStream(sonido);
 
-                using (System.Media.SoundPlayer reproducir = new System.Media.SoundPlayer(stream))
-                {
-                    reproducir.Play();
-                }
+                System.Media.SoundPlayer efecto = new System.Media.SoundPlayer(stream);
+                efecto.Play();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("No se pudo reproducir el sonido de castigo: " + ex.Message);
+            }
+        }
+
+        public void sonidoFondo(string sonido) //se pasan versatilemnte 
+        {
+
+            try
+            {
+                var stream = Properties.Resources.ResourceManager.GetStream(sonido);
+
+                SoundFondo = new System.Media.SoundPlayer(stream);
+                SoundFondo.PlayLooping();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo reproducir el sonido de fondo: " + ex.Message);
             }
         }
 
@@ -399,12 +422,30 @@ namespace UNO_Game
         {
             this.Close();
         }
-
+        /*
         private void btnSonido_Click(object sender, EventArgs e)
         {
+            if(!MusicaSilencio)
+            {
+                if(SoundFondo != null)
+                {
+                    SoundFondo.Stop();
+                }
+                MusicaSilencio = true;
 
+                btnSonido.Image = Properties.Resources.Sonido;
+            }
+            else
+            {
+                if (SoundFondo != null)
+                {
+                    SoundFondo.PlayLooping();
+                }
+                MusicaSilencio = false;
+                btnSonido.Image = Properties.Resources.Sonido_Playing;
+            }
         }
-
+        */
         private void label1_Click(object sender, EventArgs e)
         {
 

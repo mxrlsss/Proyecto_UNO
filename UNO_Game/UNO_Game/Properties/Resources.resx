@@ -229,6 +229,9 @@
   <data name="ElegirColorBck" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ElegirColorBck.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FondoPartida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FondoPartida.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Ganar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ganar.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -294,6 +297,9 @@
   </data>
   <data name="Sonido" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sonido.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sonido_Playing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sonido_Playing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TomaCartasMas2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TomaCartasMas2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
