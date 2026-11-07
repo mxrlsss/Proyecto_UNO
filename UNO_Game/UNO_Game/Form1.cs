@@ -25,16 +25,14 @@ namespace UNO_Game
 
         private void Start_Button_Click(object sender, EventArgs e)
         {
-            FormPartida formPartida = new FormPartida(this);
-            formPartida.Show();
+            FormSala formSala = new FormSala();
+            formSala.Show();
             this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormHistorial formHistorial = new FormHistorial(this);
-            formHistorial.Show();
-            this.Hide();
+            //YA NO SE USA AQUÍ
         }
 
         private void Form1_Load(object sender, EventArgs e)
