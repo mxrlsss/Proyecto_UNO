@@ -26,9 +26,8 @@ namespace UNO_Game
 
         private void CreatePartida_Click(object sender, EventArgs e)
         {
-            FormPartida formPartida = new FormPartida();
-            formPartida.Show();
-            this.Hide();
+            FormRegistro formRegistro = new FormRegistro();
+            formRegistro.Show();
         }
     }
 }

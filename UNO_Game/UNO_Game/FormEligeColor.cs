@@ -23,8 +23,6 @@ namespace UNO_Game
         private void btnRojo_Click(object sender, EventArgs e)
         {
             ColorElegido = "Rojo";
-            FormPartida formPartida = new FormPartida();
-            formPartida.sonido("CambioColor");
             ColorElegidoTranslate = "Red";
             this.Close();
         }
@@ -32,8 +30,6 @@ namespace UNO_Game
         private void btnAzul_Click(object sender, EventArgs e)
         {
             ColorElegido = "Azul";
-            FormPartida formPartida = new FormPartida();
-            formPartida.sonido("CambioColor");
             ColorElegidoTranslate = "DodgerBlue";
             this.Close();
         }
@@ -41,16 +37,12 @@ namespace UNO_Game
         private void btnVerde_Click(object sender, EventArgs e)
         {
             ColorElegido = "Verde";
-            FormPartida formPartida = new FormPartida();
-            formPartida.sonido("CambioColor");
             ColorElegidoTranslate = "Green";
             this.Close();
         }
 
         private void btnAmarillo_Click(object sender, EventArgs e)
         {
-            FormPartida formPartida = new FormPartida();
-            formPartida.sonido("CambioColor");
             ColorElegido = "Amarillo";
             ColorElegidoTranslate = "Yellow";
             this.Close();

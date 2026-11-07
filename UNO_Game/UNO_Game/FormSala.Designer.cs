@@ -53,6 +53,7 @@
             // 
             this.CreatePartida.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CreatePartida.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.CreatePartida.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.CreatePartida.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.CreatePartida.Font = new System.Drawing.Font("Bubblegum Sans", 12F, System.Drawing.FontStyle.Bold);
             this.CreatePartida.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -91,7 +92,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSala";
-            this.Text = "FormSala";
+            this.Text = "Sala ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 

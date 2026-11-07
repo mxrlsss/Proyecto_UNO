@@ -25,23 +25,28 @@ namespace UNO_Game
         private Mazo mazoJuego;
         private List<Carta> mazoP1;
         private List<Carta> mazoP2;
+        private List<Carta> mazoP3;
         private List<Carta> pozoDescarte = new List<Carta>();
         private Carta CartaEnMesa;
         private bool MusicaSilencio = false;
-        string P1 = "Alexis";
-        string P2 = "Iván";
-        public int turnoActual; //1 para P1 y 2 para P2
+        string P1 = "";
+        string P2 = "";
+        string P3 = "";
+        public int turnoActual; //1 para P1 y 2 para P2 y 3 para P3
         private System.Media.SoundPlayer SoundFondo;
         System.Media.SoundPlayer efecto;
         bool HayGanador = false;
+        private bool esHost;
 
 
-        public FormPartida(Form1 menu)
+
+        public FormPartida(Form1 menu, bool host)
         {
             InitializeComponent();
             this.menuPrincipal = menu; //Guarda la referencia al menú principal
             this.FormClosed += FormPartida_VentanaCerrada;
             this.FormClosing += FormPartida_FormClosing;
+            esHost = host;
         }
         public FormPartida()
         {
@@ -94,39 +99,51 @@ namespace UNO_Game
 
         private async void FormPartida_Load(object sender, EventArgs e)
         {
-            Random rand_turno = new Random();
-            turnoActual = rand_turno.Next(1, 3); //1 para P1 y 2 para P2
-            indicadorTurno();
-            mazoJuego = new Mazo();
-            mazoJuego.Barajar();
-            mazoP1 = mazoJuego.RepartirMazo(7); 
-            mazoP2 = mazoJuego.RepartirMazo(7);
-            ColorCambioP1.Visible = false;
-            ColorCambioP2.Visible = false;
 
-            //sonidoFondo("FondoPartida");      inhablilitados porm problemas con los canalaes de audio de windows
-            //btnSonido.Image = Properties.Resources.Sonido_Playing;
-
-            CartaEnMesa = mazoJuego.RobarCarta();
-            string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
-            //MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
-            Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
-
-            if (CartaEnMesa.Color == "Comodin" || CartaEnMesa.Valor.ToString() == "Salto" || CartaEnMesa.Valor.ToString() == "Reversa" || CartaEnMesa.Valor.ToString() == "MasDos")
+            if (esHost)
             {
-                do
-                {
-                    CartaEnMesa = mazoJuego.RobarCarta();
-                }
-                while (CartaEnMesa.Color == "Comodin" || CartaEnMesa.Valor.ToString() == "Salto" || CartaEnMesa.Valor.ToString() == "Reversa" || CartaEnMesa.Valor.ToString() == "MasDos");
-            }
-            string imgPozo_correcta = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}"; 
-            //MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
-            Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo_correcta);
 
-            MostrarMazoJugador(mazoP1, PanelMazoP1);
-            MostrarMazoJugador(mazoP2, PanelMazoP2);
-            ActualizarInterfazVisual();
+                Random rand_turno = new Random();
+                turnoActual = rand_turno.Next(1, 4); //1 para P1 y 2 para P2 y 3 para P3 
+                indicadorTurno();
+                mazoJuego = new Mazo();
+                mazoJuego.Barajar();
+                mazoP1 = mazoJuego.RepartirMazo(7);
+                mazoP2 = mazoJuego.RepartirMazo(7);
+                mazoP3 = mazoJuego.RepartirMazo(7);
+                ColorCambioP1.Visible = false;
+                //ColorCambioP2.Visible = false;
+
+
+                //sonidoFondo("FondoPartida");      inhablilitados porm problemas con los canalaes de audio de windows
+                //btnSonido.Image = Properties.Resources.Sonido_Playing;
+
+                CartaEnMesa = mazoJuego.RobarCarta();
+                string imgPozo = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
+                //MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
+                Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
+
+                if (CartaEnMesa.Color == "Comodin" || CartaEnMesa.Valor.ToString() == "Salto" || CartaEnMesa.Valor.ToString() == "Reversa" || CartaEnMesa.Valor.ToString() == "MasDos")
+                {
+                    do
+                    {
+                        CartaEnMesa = mazoJuego.RobarCarta();
+                    }
+                    while (CartaEnMesa.Color == "Comodin" || CartaEnMesa.Valor.ToString() == "Salto" || CartaEnMesa.Valor.ToString() == "Reversa" || CartaEnMesa.Valor.ToString() == "MasDos");
+                }
+                string imgPozo_correcta = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
+                //MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
+                Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo_correcta);
+            }
+
+            if (!esHost)
+            {
+                MostrarMazoJugador(mazoP1, PanelMazoP1);
+                ActualizarInterfazVisual();
+
+            }
+
+            
 
             await CrearPartidaApi();
         }
