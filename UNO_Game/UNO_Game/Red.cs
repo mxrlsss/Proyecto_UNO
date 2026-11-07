@@ -65,7 +65,7 @@ namespace UNO_Game.Red
     }
 
     /*
-        CONEXION: envuelve un Socket ya conectado. La usan el servidor y el cliente.
+        Conexion: envuelve un Socket ya conectado. La usan el servidor y el cliente.
    
         TCP es un flujo de bytes sin "mensajes": una lectura puede traer medio mensaje,
         un mensaje completo o varios pegados. Por eso cada mensaje termina con <|EOM|>
@@ -83,7 +83,7 @@ namespace UNO_Game.Red
         private readonly Decoder _decodificador = new UTF8Encoding(false).GetDecoder();
         private readonly StringBuilder _texto = new StringBuilder();
 
-        private readonly SemaphoreSlim _bloqueoEscritura = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _bloqueoEscritura = new SemaphoreSlim(1, 1); //Evita que dos hilos manden el mismo mensaje a la vez
 
         public int Id { get; set; }
 
