@@ -46,6 +46,7 @@ namespace UNO_Game
         public FormPartida()
         {
             InitializeComponent();
+
         }
 
 

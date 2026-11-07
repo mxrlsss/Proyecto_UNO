@@ -51,6 +51,12 @@ namespace UNO_Game
 
         private async Task CargarPartidas()
         {
+            var partida = dataGridViewPartida.CurrentRow?.DataBoundItem as PartidaDto;
+            if (partida == null)
+            {
+                dataGridViewMovimiento.DataSource = null;
+                return;
+            }
             try
             {
                 string json = await http.GetStringAsync("partidas");
@@ -68,14 +74,19 @@ namespace UNO_Game
             var partida = dataGridViewPartida.CurrentRow?.DataBoundItem as PartidaDto;
             if (partida == null)
             {
-                dataGridViewMovimiento.DataSource = null; //ojo agregué
+                dataGridViewMovimiento.DataSource = null;
                 return;
             }
-             
 
-            string json = await http.GetStringAsync($"partidas/{partida.IdPartida}/movimientos");
-            var movs = JsonConvert.DeserializeObject<List<MovimientoDto>>(json);
-            dataGridViewMovimiento.DataSource = movs;
+            try
+            {
+                string json = await http.GetStringAsync($"partidas/{partida.IdPartida}/movimientos");
+                dataGridViewMovimiento.DataSource = JsonConvert.DeserializeObject<List<MovimientoDto>>(json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar movimientos: {ex.Message}");
+            }
         }
 
         private async Task CargarJugadoresPartida()

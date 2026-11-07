@@ -1,24 +1,29 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace UNO_Game
 {
     public partial class FormPartida
     {
         //Porque son dos jugadores, necesitazn coincidir con lo que ya está establecido en la API
-        private const int ID_JUGADOR1 = 1;
-        private const int ID_JUGADOR2 = 2;
+        private const int MIN_JUGADORES = 2;
+        private const int MAX_JUGADORES = 4;
+
 
         private int idPartida = 0;
         private int numeroTurno = 0;
         private bool apiAvisada = false;
 
-        private int IdJugador(int jugador) => jugador == 1 ? ID_JUGADOR1 : ID_JUGADOR2;
+        private readonly List<int> idsJugadores = new List<int>();
+
+        private int IdJugador(int jugador) => idsJugadores[jugador - 1];
 
         private StringContent Json(object datos)
         {
@@ -35,22 +40,60 @@ namespace UNO_Game
             MessageBox.Show("No se pudo guardar en la base de datos: " + ex.Message);
         }
 
-        private async Task CrearPartidaApi()
+        private async Task<int> CrearJugadorApi(string nombre)
         {
+            var resp = await http.PostAsync("jugadores", Json(new { nombre = nombre }));
+            resp.EnsureSuccessStatusCode();
+
+            string json = await resp.Content.ReadAsStringAsync();
+            return JObject.Parse(json)["idJugador"].Value<int>();
+        }
+
+        private async Task CrearPartidaApi(List<string> nombres)
+        {
+            // Reinicia el estado por si se juega otra partida con el mismo formulario
+            idPartida = 0;
+            numeroTurno = 0;
+            apiAvisada = false;
+            idsJugadores.Clear();
+
+            nombres = nombres.Select(n => (n ?? "").Trim()).ToList();
+
+            if (nombres.Count < MIN_JUGADORES || nombres.Count > MAX_JUGADORES)
+            {
+                MessageBox.Show($"Una partida necesita entre {MIN_JUGADORES} y {MAX_JUGADORES} jugadores.");
+                return;
+            }
+            if (nombres.Any(string.IsNullOrEmpty))
+            {
+                MessageBox.Show("Todos los jugadores deben tener nombre.");
+                return;
+            }
+            if (nombres.Distinct(StringComparer.OrdinalIgnoreCase).Count() != nombres.Count)
+            {
+                MessageBox.Show("Hay jugadores con el mismo nombre. Cada uno debe llamarse distinto.");
+                return;
+            }
+
             try
             {
-                //Espera la respuesta de la API
+                // 1) Crear (u obtener) cada jugador y guardar su ID
+                foreach (string nombre in nombres)
+                    idsJugadores.Add(await (CrearJugadorApi(nombre)));
                 var resp = await http.PostAsync("partidas",
-                    Json(new { id_jugador1 = ID_JUGADOR1, id_jugador2 = ID_JUGADOR2 }));
-                //Lee el error en caso de haberlo y lo manda a catch
+                    Json(new { ids_jugadores = idsJugadores }));
                 resp.EnsureSuccessStatusCode();
 
                 string json = await resp.Content.ReadAsStringAsync();
-                //Busca en el diccionario al usuario con idPartida; .Value lo convierte a entero
                 idPartida = JObject.Parse(json)["idPartida"].Value<int>();
             }
-            catch (Exception ex) { AvisarErrorApi(ex); }
+            catch (Exception ex)
+            {
+                idsJugadores.Clear();   // si algo falló, no dejamos una lista a medias
+                AvisarErrorApi(ex);
+            }
         }
+
 
         private async Task RegistrarMovimientoApi(int jugador, string accion, string descripcion)
         {
@@ -83,5 +126,23 @@ namespace UNO_Game
             }
             catch (Exception ex) { AvisarErrorApi(ex); }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormPartida
+            // 
+            this.ClientSize = new System.Drawing.Size(278, 244);
+            this.Name = "FormPartida";
+            this.Load += new System.EventHandler(this.FormPartida_Load);
+            this.ResumeLayout(false);
+
+        }
+        /*
+        private void FormPartida_Load(object sender, EventArgs e)
+        {
+
+        }*/
     }
 }
