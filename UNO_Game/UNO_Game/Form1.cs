@@ -28,7 +28,9 @@ namespace UNO_Game
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //YA NO SE USA AQUÍ
+            FormHistorial formhistorial = new FormHistorial();
+            formhistorial.Show();
+            this.Hide();
         }
 
         private void Form1_Load(object sender, EventArgs e)

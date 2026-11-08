@@ -102,6 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Carta.cs" />
+    <Compile Include="FormPartida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPartida.Designer.cs">
+      <DependentUpon>FormPartida.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,9 +124,6 @@
     <Compile Include="Formpruebared.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartidaAPI.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ApiHistorial.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -135,12 +138,6 @@
       <DependentUpon>FormEligeColor.cs</DependentUpon>
     </Compile>
     <Compile Include="Mazo.cs" />
-    <Compile Include="FormPartida.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPartida.Designer.cs">
-      <DependentUpon>FormPartida.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormHistorial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,11 +152,11 @@
     <EmbeddedResource Include="FormEligeColor.resx">
       <DependentUpon>FormEligeColor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPartida.resx">
-      <DependentUpon>FormPartida.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormHistorial.resx">
       <DependentUpon>FormHistorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPartida.resx">
+      <DependentUpon>FormPartida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistro.resx">
       <DependentUpon>FormRegistro.cs</DependentUpon>

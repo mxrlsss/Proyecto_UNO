@@ -127,6 +127,24 @@ namespace UNO_Game
             catch (Exception ex) { AvisarErrorApi(ex); }
         }
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormPartida
+            // 
+            this.ClientSize = new System.Drawing.Size(278, 244);
+            this.Name = "FormPartida";
+            this.Load += new System.EventHandler(this.FormPartida_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void FormPartida_Load(object sender, EventArgs e)
+        {
+
+        }
+
         /*
         private void FormPartida_Load(object sender, EventArgs e)
         {

@@ -9,12 +9,14 @@ namespace UNO_Game
 {
     public class Mazo
     {
-        private List<Carta> Cartas; 
+        private List<Carta> Cartas;
+
         public Mazo()
         {
             Cartas = new List<Carta>();
             InicializarMazo();
         }
+
         private void InicializarMazo()
         {
             string[] colores = { "Rojo", "Verde", "Azul", "Amarillo" };
@@ -25,8 +27,8 @@ namespace UNO_Game
 
                 for (int i = 1; i <= 9; i++) // cartas del 1 al 9 de cada color (*2)
                 {
-                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}")); //Rojo1
-                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}")); 
+                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}"));
+                    Cartas.Add(new Carta(color, i.ToString(), $"{color}{i}"));
                 }
 
                 for (int i = 0; i < 2; i++) //cartas accion de cada color
@@ -35,7 +37,6 @@ namespace UNO_Game
                     Cartas.Add(new Carta(color, "Salto", $"{color}Salto"));
                     Cartas.Add(new Carta(color, "Reversa", $"{color}Reversa"));
                 }
-
             }
 
             for (int i = 0; i < 4; i++)  //comodines
@@ -49,7 +50,7 @@ namespace UNO_Game
         {
             Random rand = new Random();
             int n = Cartas.Count;
-            while(n > 1)
+            while (n > 1)
             {
                 n--;
                 int k = rand.Next(n + 1);
@@ -63,7 +64,7 @@ namespace UNO_Game
         {
             if (Cartas.Count == 0)
             {
-                if (pozoDescarte.Count > 0 && pozoDescarte != null)
+                if (pozoDescarte != null && pozoDescarte.Count > 0)
                 {
                     Cartas.AddRange(pozoDescarte);
                     pozoDescarte.Clear();
@@ -72,7 +73,7 @@ namespace UNO_Game
                         "Mazo reciclado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                   return null;
+                    return null;
             }
 
             Carta cartaTomada = Cartas[0];
@@ -91,6 +92,5 @@ namespace UNO_Game
             }
             return mazo;
         }
-
     }
 }

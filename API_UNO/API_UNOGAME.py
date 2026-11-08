@@ -5,8 +5,8 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-MIN_JUGADORES = 2
-MAX_JUGADORES = 4
+MIN_JUGADORES = 3
+MAX_JUGADORES = 3
 
 
 def get_conexion():
