@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json; // --- RED: Agregado para leer los mensajes ---
+using Newtonsoft.Json;
 
 namespace UNO_Game
 {
@@ -36,7 +36,6 @@ namespace UNO_Game
         System.Media.SoundPlayer efecto;
         bool HayGanador = false;
 
-        // --- RED: Variables de conexión ---
         private bool esHost;
         private System.Net.Sockets.TcpListener servidor;
         private System.Net.Sockets.TcpClient cliente;
@@ -55,7 +54,6 @@ namespace UNO_Game
             InitializeComponent();
         }
 
-        // --- RED: Constructor modificado ---
         public FormPartida(Form1 menu, bool esHost)
         {
             InitializeComponent();
@@ -86,7 +84,6 @@ namespace UNO_Game
 
         private void FormPartida_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // --- RED: Cerramos los puertos al salir ---
             try
             {
                 if (stream != null) stream.Close();
@@ -118,7 +115,6 @@ namespace UNO_Game
 
         private async void FormPartida_Load(object sender, EventArgs e)
         {
-            // --- RED: Bloqueamos y esperamos conexión ---
             PanelMazoP1.Enabled = false;
             PanelMazoP2.Enabled = false;
             MazoRobar.Enabled = false;
@@ -129,7 +125,6 @@ namespace UNO_Game
             else ConectarAlHost();
         }
 
-        // --- RED: Repartición de cartas (lo que antes estaba en Load) ---
         private async void IniciarJuegoReal()
         {
             JuegoIniciado = true;
@@ -169,7 +164,6 @@ namespace UNO_Game
             if (esHost) await CrearPartidaApi(); // Solo el host crea la partida
         }
 
-        // --- RED: Métodos de conexión ---
         private async void IniciarServidor()
         {
             try
@@ -281,7 +275,6 @@ namespace UNO_Game
             }
         }
 
-        // --- TU CÓDIGO ORIGINAL DE AQUÍ EN ADELANTE ---
 
         private void MostrarMazoJugador(List<Carta> mazo, FlowLayoutPanel panel)
         {
