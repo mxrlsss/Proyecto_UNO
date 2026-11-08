@@ -126,15 +126,15 @@ namespace UNO_Game
                 servidorListener = new TcpListener(IPAddress.Any, 11000);
                 servidorListener.Start();
 
-                this.Text = "UNO - Esperando al Jugador 2...";
+                this.Invoke((MethodInvoker)delegate { this.Text = "UNO - Esperando al Jugador 2..."; });
                 TcpClient invitado1 = await servidorListener.AcceptTcpClientAsync();
                 streamP2 = invitado1.GetStream();
 
-                this.Text = "UNO - Esperando al Jugador 3...";
+                this.Invoke((MethodInvoker)delegate { this.Text = "UNO - Esperando al Jugador 3..."; });
                 TcpClient invitado2 = await servidorListener.AcceptTcpClientAsync();
                 streamP3 = invitado2.GetStream();
 
-                this.Text = "UNO - ¡Todos conectados! Iniciando...";
+                this.Invoke((MethodInvoker)delegate { this.Text = "UNO - ¡Todos conectados! Iniciando..."; });
                 await Task.Delay(1000);
 
                 IniciarJuegoReal();
@@ -145,6 +145,8 @@ namespace UNO_Game
             }
         }
 
+
+
         // LÓGICA DE CONEXIÓN CLIENTE
         private async Task ConectarAlHost()
         {
@@ -154,7 +156,7 @@ namespace UNO_Game
                 await clienteSocket.ConnectAsync(IP_ESTATICA_HOST, 11000);
                 streamRed = clienteSocket.GetStream();
 
-                this.Text = "UNO - ¡Conectado! Esperando a que el Host inicie...";
+                this.Invoke((MethodInvoker)delegate { this.Text = "UNO - ¡Conectado! Esperando a que el Host inicie..."; });
                 _ = EscucharMensajesDeRed(streamRed);
             }
             catch
@@ -167,11 +169,15 @@ namespace UNO_Game
         // ARRANQUE REAL DE LA PARTIDA (Sólo el Host genera las cartas)
         private async void IniciarJuegoReal()
         {
-            JuegoIniciado = true;
-            this.Text = "UNO - En Partida";
-            Pozo.Enabled = true;
-            PanelMazoP2.Enabled = true;
-            MazoRobar.Enabled = true;
+            // 1. Asegurar que habilitar la interfaz ocurra en el hilo visual
+            this.Invoke((MethodInvoker)delegate
+            {
+                JuegoIniciado = true;
+                this.Text = "UNO - En Partida";
+                Pozo.Enabled = true;
+                PanelMazoP2.Enabled = true;
+                MazoRobar.Enabled = true;
+            });
 
             if (esHost)
             {
@@ -191,10 +197,16 @@ namespace UNO_Game
                     while (CartaEnMesa.Color == "Comodin" || CartaEnMesa.Valor.ToString() == "Salto" || CartaEnMesa.Valor.ToString() == "Reversa" || CartaEnMesa.Valor.ToString() == "MasDos");
                 }
 
-                string imgPozo_correcta = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
-                Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo_correcta);
+                // 2. CRÍTICO: Todo lo que dibuja cartas o imágenes DEBE ir dentro de Invoke
+                this.Invoke((MethodInvoker)delegate
+                {
+                    string imgPozo_correcta = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
+                    Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo_correcta);
 
-                // Enviar manos iniciales
+                    MostrarMazoJugador(mazoP1, PanelMazoP2); // ¡Aquí se dibujan las cartas del Host!
+                });
+
+                // Enviar manos iniciales a los clientes
                 string mensajeCartasP2 = "MANO:2|" + string.Join(",", mazoP2.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
                 byte[] datosP2 = Encoding.UTF8.GetBytes(mensajeCartasP2);
                 await streamP2.WriteAsync(datosP2, 0, datosP2.Length);
@@ -206,8 +218,6 @@ namespace UNO_Game
                 // Escuchar a los invitados
                 _ = EscucharMensajesDeRed(streamP2);
                 _ = EscucharMensajesDeRed(streamP3);
-
-                MostrarMazoJugador(mazoP1, PanelMazoP2); // Se dibuja la mano del Host en su panel local
 
                 List<string> jugadoresPartida = new List<string> { P1, P2, P3 };
                 // await CrearPartidaApi(jugadoresPartida); // Descomentar cuando la API esté enlazada
