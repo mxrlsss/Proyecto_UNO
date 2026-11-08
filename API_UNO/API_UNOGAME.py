@@ -1,33 +1,23 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
 from typing import List
-from fastapi import HTTPException
-from contextlib import asynccontextmanager
-
 import pymysql
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
-def get_conexion():
-    return pymysql.connect(
-        host="127.0.0.1", port=3306, user="root", password="M4ng0ph*nk", #Morales07 contraseña base datos Alexis's PC, M4ng0ph*nk Ivan's PC
-        database="bebesote", cursorclass=pymysql.cursors.DictCursor
-    )
+app = FastAPI()
 
 MIN_JUGADORES = 2
 MAX_JUGADORES = 4
 
-app = FastAPI()
 
-class JugadorCrear(BaseModel):
-    nombre: str
+def get_conexion():
+    return pymysql.connect(
+        host="127.0.0.1", port=3306, user="root", password="M4ng0ph*nk",  # Morales07 -> Alexis, M4ng0ph*nk -> Iván
+        database="bebesote", cursorclass=pymysql.cursors.DictCursor
+    )
 
-class IniciarPartida(BaseModel):
-    ids_jugadores: List[int] 
-
-class PartidaCrear(BaseModel):
-    fecha_inicio: str   
-
-class JugadorPartidaCrear(BaseModel):
-    id_jugador: int
+#Clases pydantic
+class CrearPartida(BaseModel):
+    jugadores: List[str]          # nombres de los jugadores (de 2 a 4)
 
 class Movimiento(BaseModel):
     id_jugador: int
@@ -39,8 +29,7 @@ class PartidaFinalizar(BaseModel):
     id_ganador: int
 
 
-"""Mostrar Partidas y Movimientos, obteniendo el JSON de la base de datos"""
-
+#gettser
 @app.get("/partidas")
 async def listar_partidas():
     con = get_conexion()
@@ -48,24 +37,19 @@ async def listar_partidas():
         with con.cursor() as cur:
             cur.execute("""
                 SELECT p.idPartida, p.fecha_inicio, p.fecha_fin,
-                       j.nombre AS ganador
-                FROM partida p
-                LEFT JOIN jugador j ON p.id_ganador = j.idJugador
-                ORDER BY p.fecha_inicio DESC
+                       g.nombre AS ganador,
+                       GROUP_CONCAT(j.nombre ORDER BY j.nombre SEPARATOR ', ') AS jugadores,
+                       COUNT(jp.idJugador) AS num_jugadores
+                FROM Partida p
+                LEFT JOIN Jugador g          ON p.id_ganador = g.idJugador
+                LEFT JOIN Jugador_Partida jp ON jp.idPartida = p.idPartida
+                LEFT JOIN Jugador j          ON j.idJugador  = jp.idJugador
+                GROUP BY p.idPartida, p.fecha_inicio, p.fecha_fin, g.nombre
+                ORDER BY p.fecha_inicio DESC, p.idPartida DESC
             """)
-            partidas = cur.fetchall()
-            for partida in partidas:
-                cur.execute("""
-                    SELECT j.idJugador, j.nombre, jp.resultado
-                    FROM Jugador_Partida jp
-                    JOIN jugador j ON jp.idJugador = j.idJugador
-                    WHERE jp.idPartida = %s
-                """, (partida['idPartida'],))
-                partida['jugadores'] = cur.fetchall()
-            return partidas
+            return cur.fetchall()
     finally:
         con.close()
-
 
 @app.get("/partidas/{idPartida}/jugadores")
 async def listar_jugadores_partida(idPartida: int):
@@ -75,8 +59,9 @@ async def listar_jugadores_partida(idPartida: int):
             cur.execute("""
                 SELECT j.idJugador, j.nombre, jp.resultado
                 FROM Jugador_Partida jp
-                JOIN jugador j ON jp.idJugador = j.idJugador
+                JOIN Jugador j ON jp.idJugador = j.idJugador
                 WHERE jp.idPartida = %s
+                ORDER BY j.nombre
             """, (idPartida,))
             return cur.fetchall()
     finally:
@@ -89,120 +74,54 @@ async def listar_movimientos(idPartida: int):
         with con.cursor() as cur:
             cur.execute("""
                 SELECT m.numero_turno, j.nombre AS jugador, m.accion,
-                       m.descripcion, m.`timestamp` as tiempo_jugada
-                FROM log_movimiento m
-                JOIN jugador j ON m.id_Jugador = j.idJugador
+                       m.descripcion, m.`timestamp` AS tiempo_jugada
+                FROM Log_Movimiento m
+                JOIN Jugador j ON m.id_Jugador = j.idJugador
                 WHERE m.id_Partida = %s
-                ORDER BY m.numero_turno
+                ORDER BY m.numero_turno, m.`timestamp`
             """, (idPartida,))
             return cur.fetchall()
     finally:
         con.close()
 
-@app.get("/jugadores")
-async def listar_jugadores():
-    con = get_conexion()
-    try:
-        with con.cursor() as cur:
-            cur.execute("SELECT idJugador, nombre FROM jugador ORDER BY nombre")
-            return cur.fetchall()
-    finally: 
-        con.close()
 
-@app.get("/partidas/{idPartida}")
-async def detalle_partida(idPartida: int):
-    con = get_conexion()
-    try: 
-        with con.cursor() as cur:
-            cur.execute("""
-                SELECT p.idPartida, p.fecha_inicio, p.fecha_fin,
-                       p.id_ganador, j.nombre as ganador
-                       FROM partida p
-                       LEFT JOIN jugador j ON p.id_ganador = j.idJugador
-                       WHERE p.idPartida = %s)
-                       """, (idPartida,))
-            partida = cur.fetchone()
-            if partida is None:
-                raise HTTPException(status_code=404, detail="Partida no encontrada")
-
-            cur.execute("""
-                SELECT j.idJugador, j.nombre, jp.resultado
-                FROM Jugador_partida jp
-                JOIN jugador j ON jp.idJugador = j.idJugador
-                WHERE jp.idPartida = %s
-            """, (idPartida,))
-            partida["jugadores"] = cur.fetchall()
-
-            cur.execute("""
-                SELECT m.idMovimiento, m.numero_turno, m.id_Jugador,
-                       j.nombre AS jugador, m.accion, m.'timestamp' AS tiempo_jugada
-                       FROM log_movimiento
-                       JOIN jugador j ON m.id_Jugador = j.idJugador
-                       WHERE m.id_Partida = %s
-                       ORDER BY m.numero_turno
-                       """, (idPartida,))
-            partida["movimientos"] = cur.fetchall()
-
-            return partida
-    finally:
-        con.close()
-            
-
-"""Actualizar Partidas"""
-
-"""Iniciar una partida, insertando los jugadores y la fecha de inicio en la base de datos"""
-
-@app.post("/jugadores")
-async def crear_jugador(datos:JugadorCrear):
-    nombre = datos.nombre.strip()
-    if not nombre:
-        raise HTTPException(status_code=400, detail="El nombre del jugador no puede estar vacío")
-    con = get_conexion()
-    try:
-        with con.cursor() as cur:
-            cur.execute("INSERT INTO jugador (nombre) VALUES (%s)", (nombre,))
-            id_jugador = cur.lastrowid
-        con.commit()
-        return {"idJugador": id_jugador, "nombre": nombre}
-    finally:
-        con.close()
+#post o updates
 
 @app.post("/partidas")
-async def iniciar_partida(datos: IniciarPartida):
-    """Crea la partida e inscribe de 2 a 4 jugadores."""
-    ids = datos.ids_jugadores
- 
-    if len(ids) != len(set(ids)):
-        raise HTTPException(status_code=400, detail="Hay jugadores repetidos")
-    if not (MIN_JUGADORES <= len(ids) <= MAX_JUGADORES):
+async def crear_partida(datos: CrearPartida):
+    """Registra una partida nueva con sus jugadores. Los jugadores que no existan se crean por nombre."""
+    nombres = [n.strip() for n in datos.jugadores]
+
+    if any(not n for n in nombres):
+        raise HTTPException(status_code=400, detail="Todos los jugadores deben tener nombre")
+    if not (MIN_JUGADORES <= len(nombres) <= MAX_JUGADORES):
         raise HTTPException(
             status_code=400,
-            detail=f"Una partida necesita entre {MIN_JUGADORES} y {MAX_JUGADORES} jugadores"
-        )
- 
+            detail=f"Una partida necesita entre {MIN_JUGADORES} y {MAX_JUGADORES} jugadores")
+    if len({n.lower() for n in nombres}) != len(nombres):
+        raise HTTPException(status_code=400, detail="Hay jugadores con el mismo nombre")
+
     con = get_conexion()
     try:
         with con.cursor() as cur:
-            # Verificar que todos los jugadores existan
-            formato = ",".join(["%s"] * len(ids))
-            cur.execute(f"SELECT idJugador FROM jugador WHERE idJugador IN ({formato})", ids)
-            if len(cur.fetchall()) != len(ids):
-                raise HTTPException(status_code=400, detail="Alguno de los jugadores no existe")
- 
+            jugadores = []
+            for nombre in nombres:
+                cur.execute("SELECT idJugador, nombre FROM Jugador WHERE nombre = %s", (nombre,))
+                fila = cur.fetchone()
+                if fila is None:
+                    cur.execute("INSERT INTO Jugador (nombre) VALUES (%s)", (nombre,))
+                    fila = {"idJugador": cur.lastrowid, "nombre": nombre}
+                jugadores.append(fila)
+
             cur.execute("INSERT INTO Partida (fecha_inicio) VALUES (NOW())")
             id_partida = cur.lastrowid
- 
-            for id_jugador in ids:
+
+            for j in jugadores:
                 cur.execute(
-                    "INSERT INTO Jugador_Partida (idJugador, idPartida, resultado) "
-                    "VALUES (%s, %s, %s)",
-                    (id_jugador, id_partida, "en_curso")
-                )
+                    "INSERT INTO Jugador_Partida (idJugador, idPartida, resultado) VALUES (%s, %s, %s)",
+                    (j["idJugador"], id_partida, "en_curso"))
         con.commit()
-        return {"idPartida": id_partida, "jugadores": ids}
-    except pymysql.err.IntegrityError:
-        con.rollback()
-        raise HTTPException(status_code=400, detail="No se pudo inscribir a los jugadores")
+        return {"idPartida": id_partida, "jugadores": jugadores}
     finally:
         con.close()
 
@@ -212,52 +131,44 @@ async def registrar_movimiento(idPartida: int, movimiento: Movimiento):
     try:
         with con.cursor() as cur:
             cur.execute("""
-                INSERT INTO log_movimiento (id_Partida, id_Jugador, numero_turno, accion, descripcion)
+                INSERT INTO Log_Movimiento (id_Partida, id_Jugador, numero_turno, accion, descripcion)
                 VALUES (%s, %s, %s, %s, %s)
             """, (idPartida, movimiento.id_jugador, movimiento.numero_turno,
                   movimiento.accion, movimiento.descripcion))
-            id_now = cur.lastrowid
+            id_mov = cur.lastrowid
         con.commit()
-        return {"idMovimiento": id_now}
+        return {"idMovimiento": id_mov}
     except pymysql.err.IntegrityError:
         con.rollback()
-        raise HTTPException(
-            status_code=400,
-            detail="El jugador no está inscrito en esa partida"
-        )
+        raise HTTPException(status_code=400, detail="El jugador no está inscrito en esa partida")
     finally:
         con.close()
 
-"""Finalizar la partida"""
-@app.put("/partidas/{id_partida}/finalizar")
-async def finalizar_partida(id_partida: int, datos: PartidaFinalizar):
+@app.put("/partidas/{idPartida}/finalizar")
+async def finalizar_partida(idPartida: int, datos: PartidaFinalizar):
     con = get_conexion()
     try:
         with con.cursor() as cur:
             cur.execute(
-                "UPDATE Partida SET id_ganador = %s, fecha_fin = NOW() "
-                "WHERE idPartida = %s",
-                (datos.id_ganador, id_partida)
-            )
-
+                "SELECT 1 FROM Jugador_Partida WHERE idPartida = %s AND idJugador = %s",
+                (idPartida, datos.id_ganador))
             if cur.fetchone() is None:
-                raise HTTPException(
-                    status_code=400,
-                    detail="El ganador no está inscrito en esa partida"
-                )
-            
+                raise HTTPException(status_code=400, detail="El ganador no está inscrito en esa partida")
+
             cur.execute(
-                "UPDATE Partida SET id_ganador = %s, fecha_fin = NOW() "
-                "WHERE idPartida = %s",
-                (datos.id_ganador, id_partida)
-            )
+                "UPDATE Partida SET id_ganador = %s, fecha_fin = NOW() WHERE idPartida = %s",
+                (datos.id_ganador, idPartida))
             cur.execute(
                 "UPDATE Jugador_Partida "
                 "SET resultado = IF(idJugador = %s, 'ganador', 'perdedor') "
                 "WHERE idPartida = %s",
-                (datos.id_ganador, id_partida)
-            )
+                (datos.id_ganador, idPartida))
         con.commit()
         return {"ok": True}
     finally:
         con.close()
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

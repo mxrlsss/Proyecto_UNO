@@ -161,7 +161,7 @@ namespace UNO_Game.Red
     //  SERVIDOR: corre solo en la compu Mía (Iván).
     public class ServidorJuego
     {
-        public const int MAX_CLIENTES = 4;
+        public const int MAX_CLIENTES = 3;
 
         private Socket _listener;
         private readonly Dictionary<int, Conexion> _clientes = new Dictionary<int, Conexion>();
