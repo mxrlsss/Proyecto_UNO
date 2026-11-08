@@ -39,13 +39,18 @@ namespace UNO_Game
         private System.Media.SoundPlayer SoundFondo;
         System.Media.SoundPlayer efecto;
         bool HayGanador = false;
-        private bool esHost;
+        private bool esHost = true;
 
         private NetworkStream streamRed; 
         private TcpClient clienteSocket;
         private TcpListener servidorListener;
+        public int IdLocal;
+        private NetworkStream streamP2;
+        private NetworkStream streamP3;
 
         private bool sentidoHorario = true; // Variable para controlar el sentido del juego
+
+        private bool dijoUNO = false;
 
 
 
@@ -111,6 +116,7 @@ namespace UNO_Game
 
             if (esHost)
             {
+                IdLocal = 1;
                 Random rand_turno = new Random();
                 turnoActual = rand_turno.Next(1, 4); //1 para P1 y 2 para P2 y 3 para P3 
                 //indicadorTurno();
@@ -148,11 +154,11 @@ namespace UNO_Game
                 servidorListener = new TcpListener(IPAddress.Any, 11000);
                 servidorListener.Start();
 
-                //jugador 3
+                //jugador 2
                 TcpClient invitado1 = await servidorListener.AcceptTcpClientAsync();
-                NetworkStream streamP2 = invitado1.GetStream();
+                streamP2 = invitado1.GetStream();
 
-                string mensajeCartasP2 = "MANO:" + string.Join(",", mazoP2.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
+                string mensajeCartasP2 = "MANO:2|" + string.Join(",", mazoP2.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
                 byte[] datosP2 = Encoding.UTF8.GetBytes(mensajeCartasP2);
                 await streamP2.WriteAsync(datosP2, 0, datosP2.Length);
                 _ = EscucharMensajesDeRed(streamP2);
@@ -160,9 +166,9 @@ namespace UNO_Game
 
                 //jugador 3
                 TcpClient invitado2 = await servidorListener.AcceptTcpClientAsync();
-                NetworkStream streamP3 = invitado2.GetStream();
+                streamP3 = invitado2.GetStream();
 
-                string mensajeCartasP3 = "MANO:" + string.Join(",", mazoP3.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
+                string mensajeCartasP3 = "MANO:3|" + string.Join(",", mazoP3.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
                 byte[] datosP3 = Encoding.UTF8.GetBytes(mensajeCartasP3);
                 await streamP3.WriteAsync(datosP3, 0, datosP3.Length);
                 _ = EscucharMensajesDeRed(streamP3);
@@ -199,6 +205,21 @@ namespace UNO_Game
             }
         }
 
+        private int CalcularSiguienteTurno()
+        {
+            int siguiente = turnoActual;
+            if (sentidoHorario)
+            {
+                siguiente++;
+                if (siguiente > 3) siguiente = 1;
+            }
+            else
+            {
+                siguiente--;
+                if (siguiente < 1) siguiente = 3;
+            }
+            return siguiente;
+        }
 
         private void MostrarMazoJugador(List<Carta> mazo, FlowLayoutPanel panel)
         {
@@ -232,22 +253,15 @@ namespace UNO_Game
             var color= "";
             PictureBox PicClickeado = sender as PictureBox;
             FlowLayoutPanel PanelPadre = PicClickeado.Parent as FlowLayoutPanel;
-           
 
-            if (PanelPadre == PanelMazoP2 && turnoActual != 1)
+            if (turnoActual != IdLocal)
             {
                 sonido("CartaNoValida");
-                MessageBox.Show($"Esperad Brochaho!, aun no es tu turno, es turno de {P2}");
-                return;
-            }
-            if(PanelPadre == PanelMazoP2 && turnoActual != 2)
-            {
-                sonido("CartaNoValida");
-                MessageBox.Show($"Esperad Brochaho!, aun no es tu turno, es turno de {P1}");
+                MessageBox.Show("¡Esperad Brochaho! Aún no es tu turno.");
                 return;
             }
 
-           
+
             Carta cartaElegida = PicClickeado.Tag as Carta;
 
             if(cartaElegida != null)
@@ -266,35 +280,32 @@ namespace UNO_Game
                     string imgPozo = cartaElegida.NombreRecurso;
                     Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo);
 
-                    if (PanelPadre == PanelMazoP1)
-                    {
-                        mazoP1.Remove(cartaElegida);
-                    }
-                    else if (PanelPadre == PanelMazoP2)
-                    {
-                        mazoP2.Remove(cartaElegida);
-                    }
-
+                    if (IdLocal == 1) mazoP1.Remove(cartaElegida);
+                    else if (IdLocal == 2) mazoP2.Remove(cartaElegida);
+                    else if (IdLocal == 3) mazoP3.Remove(cartaElegida); 
 
                     PicClickeado.Dispose();
 
                     //cartas especiales 
 
                     bool pierdeTurno = false;
-                    int oponente = (turnoActual == 1) ? 2 : 1;
+                    int oponente = CalcularSiguienteTurno();
                     string valorSTR = cartaElegida.Valor.ToString();
 
                     //+2
                     if (valorSTR == "MasDos")
                     {
-                        CastigarJugador(oponente, 2);
+                        _ = AplicarCastigo(oponente, 2);
                         pierdeTurno = true;
                         if (oponente == 1)
                             MessageBox.Show($"Toma 2 {P1}");
-                        else
+                        if(oponente == 2)
                             MessageBox.Show($"Toma 2 {P2}");
+                        if(oponente == 3)
+                            MessageBox.Show($"Toma 2 {P3}");
                     }
-                    //Saltos (para 1 a 1 funciona, si es de mas jugadores debe cambiarse (proximosmparciales)
+
+                    /*Saltos (para 1 a 1 funciona, si es de mas jugadores debe cambiarse (proximosmparciales)
                     if (valorSTR == "Salto" || valorSTR == "Reversa")
                     {
                         pierdeTurno = true;
@@ -303,17 +314,30 @@ namespace UNO_Game
                         else
                             MessageBox.Show($"Vuelves a tirar {P1}");
                     }
+                    */
+
+                    if(valorSTR == "Reversa")
+                    {
+                        pierdeTurno = true;
+                        sentidoHorario = !sentidoHorario; // Cambia el sentido del juego
+                        AvanzarTurno();
+                        MessageBox.Show($"¡Salto! Turno de P{turnoActual}");
+                    }
+
+
                     //mas 4 y cambio de clor
                     if (cartaElegida.Color == "Comodin")
                     {
                         if (valorSTR == "MasCuatro")
                         {
-                            CastigarJugador(oponente, 4);
+                            _ = AplicarCastigo(oponente, 4);
                             pierdeTurno = true;
                             if (oponente == 1)
                                 MessageBox.Show($"Toma 4, {P1}");
-                            else
+                            if (oponente == 2)
                                 MessageBox.Show($"Toma 4, {P2}");
+                            if(oponente == 3)
+                                MessageBox.Show($"Toma 4, {P3}");
                         }
 
                         FormEligeColor selector = new FormEligeColor();
@@ -329,24 +353,19 @@ namespace UNO_Game
 
                     if (!pierdeTurno)
                     {
-                        turnoActual = (turnoActual == 1) ? 2 : 1; // Cambia el turno al otro jugador
-                        indicadorTurno();
-                    }
-
-                    if (turnoActual == 1 && CambioColor == true)
-                    {
-                        ColorCambioP1.Visible = true;
-                        ColorCambioP1.BackColor = Color.FromName(color);
-                    }
-                    else if (turnoActual == 2 && CambioColor == true)
-                    {
-                        ColorCambioP2.Visible = true;
-                        ColorCambioP2.BackColor = Color.FromName(color);
+                        AvanzarTurno();
                     }
 
                     try
                     {
-                        string mensajeAccion = $"JUGAR:{cartaElegida.Color},{cartaElegida.Valor}";
+                        string mensajeAccion = $"JUGAR:{cartaElegida.Color},{cartaElegida.Valor},TURNO,{turnoActual}";
+
+                        // Si fue un comodín, le pegamos el nuevo color al final del mensaje
+                        if (CambioColor)
+                        {
+                            mensajeAccion += $",COLOR,{color}";
+                        }
+
                         byte[] datosAccion = Encoding.UTF8.GetBytes(mensajeAccion);
                         await streamRed.WriteAsync(datosAccion, 0, datosAccion.Length);
                     }
@@ -357,7 +376,24 @@ namespace UNO_Game
 
                     await RegistrarMovimientoApi(jugadorQueTiro, "jugar_carta", desc);
 
-                    List<Carta> manoDelQueTiro = (jugadorQueTiro == 1) ? mazoP1 : mazoP2;
+                    List<Carta> manoDelQueTiro = mazoP1;
+                    if (IdLocal == 2) manoDelQueTiro = mazoP2;
+                    else if (IdLocal == 3) manoDelQueTiro = mazoP3;
+
+                    if (manoDelQueTiro.Count == 1)
+                    {
+                        if (dijoUNO)
+                        {
+                            dijoUNO = false; // Se salvó. Reseteamos la variable para el futuro.
+                        }
+                        else
+                        {
+                            // ¡No gritó UNO! Castigo automático de 2 cartas.
+                            MessageBox.Show("¡Se te olvidó gritar UNO! Tomas 2 cartas de castigo brochacho.");
+                            _ = AplicarCastigo(IdLocal, 2);
+                        }
+                    }
+
                     if (manoDelQueTiro.Count == 0)
                     {
                         await FinalizarPartidaApi(jugadorQueTiro);
@@ -408,56 +444,81 @@ namespace UNO_Game
 
         private async void MazoRobar_Click(object sender, EventArgs e)
         {
-            Carta nuevaCarta = mazoJuego.RobarCarta(pozoDescarte);
-
-            if(nuevaCarta != null)
+            if (esHost)
             {
-                int jugador = turnoActual;
-                if (turnoActual == 1)
+
+
+                Carta nuevaCarta = mazoJuego.RobarCarta(pozoDescarte);
+
+                if (nuevaCarta != null)
                 {
-                    mazoP1.Insert(0, nuevaCarta);
-                    MostrarMazoJugador(mazoP1, PanelMazoP1);
+
+                    mazoP1.Add(nuevaCarta);
+                    MostrarMazoJugador(mazoP1, PanelMazoP2);
+                    await RegistrarMovimientoApi(turnoActual, "robar_carta", $"{nuevaCarta.Color} {nuevaCarta.Valor}");
+
                 }
                 else
                 {
-                    mazoP2.Insert(0, nuevaCarta);
-                    MostrarMazoJugador(mazoP2, PanelMazoP2);
+                    MessageBox.Show("No hay más cartas en el mazo para robar.");
                 }
-
-                await RegistrarMovimientoApi(jugador, "robar_carta",
-                    $"{nuevaCarta.Color} {nuevaCarta.Valor}");
             }
             else
             {
-                MessageBox.Show("No hay más cartas en el mazo para robar.");
+                try
+                {
+                    string msjPeticion = "PETICION:ROBAR";
+                    byte[] datos = Encoding.UTF8.GetBytes(msjPeticion);
+                    await streamRed.WriteAsync(datos, 0, datos.Length);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al pedir carta al host: " + ex.Message);
+                }
             }
         }
 
-        private void CastigarJugador(int Jugador, int cantidad)
+        private async Task AplicarCastigo(int victima, int cantidad)
         {
+            if (!esHost)
+            {
+                // El invitado no tiene la baraja, así que le "exige" al Host por red que castigue al oponente
+                string msj = $"CASTIGAR:{victima},{cantidad}";
+                byte[] datos = Encoding.UTF8.GetBytes(msj);
+                await streamRed.WriteAsync(datos, 0, datos.Length);
+                return;
+            }
 
+            // SI ERES EL HOST: Tú repartes la justicia y sacas las cartas
             for (int i = 0; i < cantidad; i++)
             {
-                sonido($"TomaCartasMas{cantidad}");
                 Carta castigo = mazoJuego.RobarCarta(pozoDescarte);
                 if (castigo != null)
                 {
-                    if (Jugador == 1)
-                        mazoP1.Add(castigo);
-                    else mazoP2.Add(castigo);
+                    if (victima == 1) // El Host se castiga a sí mismo localmente
+                    {
+                        this.Invoke((MethodInvoker)delegate { mazoP1.Add(castigo); });
+                    }
+                    else // Le avienta la carta por red a la víctima usando el "TOMA:"
+                    {
+                        string msj = $"TOMA:{castigo.Color},{castigo.Valor},{castigo.NombreRecurso}";
+                        byte[] datos = Encoding.UTF8.GetBytes(msj);
 
+                        if (victima == 2 && streamP2 != null)
+                            await streamP2.WriteAsync(datos, 0, datos.Length);
+                        else if (victima == 3 && streamP3 != null)
+                            await streamP3.WriteAsync(datos, 0, datos.Length);
+                    }
                 }
-                /*else
-                {
-                    MessageBox.Show("No hay más cartas en el mazo para robar.");
-                    break;
-                }*/
             }
-            if (Jugador == 1)
-                MostrarMazoJugador(mazoP1, PanelMazoP1);
-            else
-                MostrarMazoJugador(mazoP2, PanelMazoP2);
+
+            // Si la víctima fue el Host, actualizamos su pantalla al terminar de recibir todas
+            if (victima == 1)
+            {
+                this.Invoke((MethodInvoker)delegate { MostrarMazoJugador(mazoP1, PanelMazoP2); });
+            }
         }
+
 
         public void sonido(string sonido) //se pasan versatilemnte 
         {
@@ -563,7 +624,12 @@ namespace UNO_Game
                     // 1. CASO: RECIBIR LA MANO INICIAL (Solo para el Invitado al arrancar)
                     if (mensajeRecibido.StartsWith("MANO:"))
                     {
-                        string cartasStr = mensajeRecibido.Substring(5);
+                        string contenido = mensajeRecibido.Substring(5);
+                        string[] partesSeparadas = contenido.Split('|');
+
+                        IdLocal = int.Parse(partesSeparadas[0]); // ¡Atrapas tu ID de jugador (2 o 3)!
+                        string cartasStr = partesSeparadas[1];     // Te quedas solo con la cadena de cartas
+
                         List<Carta> miManoRecibida = new List<Carta>();
                         string[] items = cartasStr.Split(',');
 
@@ -581,10 +647,18 @@ namespace UNO_Game
                         }
 
                         // Actualizamos la UI de forma segura con Invoke
-                        this.Invoke((MethodInvoker)delegate {
-                            // Asignamos la mano al panel del invitado. Si eres el invitado 1, usas mazoP2.
-                            mazoP2 = miManoRecibida;
-                            MostrarMazoJugador(mazoP2, PanelMazoP2);
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            if (IdLocal == 2)
+                            {
+                                mazoP2 = miManoRecibida;
+                                MostrarMazoJugador(mazoP2, PanelMazoP2); // O el panel visual que le corresponda en tu diseño
+                            }
+                            else if (IdLocal == 3)
+                            {
+                                mazoP3 = miManoRecibida;
+                                MostrarMazoJugador(mazoP3, PanelMazoP2); // Asegúrate de tener un panel para el jugador 3
+                            }
                         });
                     }
                     // 2. CASO: ALGUIEN TIRA UNA CARTA (Actualiza el Pozo y Turno para todos)
@@ -604,14 +678,99 @@ namespace UNO_Game
                         }
 
                         // Actualizamos la pantalla de todos en la LAN de forma segura
-                        this.Invoke((MethodInvoker)delegate {
-                            // Actualizar la imagen del pozo con la carta que tiró el rival
+                        this.Invoke((MethodInvoker)delegate
+                        {
                             string imgPozoRival = $"{colorRival}{valorRival}";
                             Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozoRival);
 
-                            // Actualizar el turno en curso y mover los avatares visuales
+                            // 2. CRÍTICO: Actualizamos la variable local de la carta en mesa para que las reglas funcionen
+                            CartaEnMesa = new Carta(colorRival, valorRival, imgPozoRival);
+
+                            // 3. Revisamos si el mensaje traía el pasajero extra "COLOR"
+                            if (partes.Length >= 6 && partes[4] == "COLOR")
+                            {
+                                string nuevoColorElegido = partes[5];
+
+                                // ¡Magia! Le inyectamos el nuevo color a la carta en mesa
+                                CartaEnMesa.Color = nuevoColorElegido;
+
+                                // Opcional: Aquí puedes prender tu cuadrito de color para que el jugador lo vea
+                                ColorCambioP2.Visible = true;
+                                ColorCambioP2.BackColor = Color.FromName(nuevoColorElegido);
+                            }
+
+                            // 4. Actualizar el turno en curso y mover los avatares visuales
                             turnoActual = turnoRecibido;
-                            indicadorTurno();
+                            //indicadorTurno();
+                        });
+                    }
+                    else if (mensajeRecibido.StartsWith("PETICION:ROBAR"))
+                    {
+                        if (esHost)
+                        {
+                            // El Host saca la carta física de su baraja
+                            Carta cartaRobada = mazoJuego.RobarCarta(pozoDescarte);
+
+                            if (cartaRobada != null)
+                            {
+                                // Se la avienta de regreso por el MISMO "tubo" al invitado que la pidió
+                                string msjToma = $"TOMA:{cartaRobada.Color},{cartaRobada.Valor},{cartaRobada.NombreRecurso}";
+                                byte[] datosToma = Encoding.UTF8.GetBytes(msjToma);
+                                await streamActivo.WriteAsync(datosToma, 0, datosToma.Length);
+
+                                // Registramos en la BD que alguien robó (puedes pasarle el turnoActual)
+                                await RegistrarMovimientoApi(turnoActual, "robar_carta", $"{cartaRobada.Color} {cartaRobada.Valor}");
+                            }
+                        }
+                    }
+
+                    // 4. CASO: EL HOST NOS MANDA LA CARTA QUE ROBAMOS (Solo lo ejecuta el Invitado)
+                    else if (mensajeRecibido.StartsWith("TOMA:"))
+                    {
+                        // Parseamos la carta que nos acaba de llegar
+                        string[] datosCarta = mensajeRecibido.Substring(5).Split(',');
+                        string color = datosCarta[0];
+                        string valor = datosCarta[1];
+                        string recurso = datosCarta[2];
+
+                        Carta nuevaCarta = new Carta(color, valor, recurso);
+
+                        // La dibujamos de forma segura en nuestra pantalla
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            if (IdLocal == 2)
+                            {
+                                mazoP2.Add(nuevaCarta); // Agregamos al final de nuestra mano
+                                MostrarMazoJugador(mazoP2, PanelMazoP2);
+                            }
+                            else if (IdLocal == 3)
+                            {
+                                mazoP3.Add(nuevaCarta); // Agregamos al final de nuestra mano
+                                MostrarMazoJugador(mazoP3, PanelMazoP2);
+                            }
+                        });
+                    }
+                    else if (mensajeRecibido.StartsWith("CASTIGAR:"))
+                    {
+                        if (esHost)
+                        {
+                            string[] partes = mensajeRecibido.Substring(9).Split(',');
+                            int idVictima = int.Parse(partes[0]);
+                            int cartasCastigo = int.Parse(partes[1]);
+
+                            // Disparamos el método que reparte la justicia por red
+                            _ = AplicarCastigo(idVictima, cartasCastigo);
+                        }
+                    }
+                    else if (mensajeRecibido.StartsWith("GRITO_UNO:"))
+                    {
+                        string idGriton = mensajeRecibido.Substring(10);
+
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            // Opcional: sonido("GritoUNO"); 
+                            string nombreGriton = (idGriton == "1") ? P1 : (idGriton == "2") ? P2 : P3;
+                            MessageBox.Show($"¡{nombreGriton} gritó UNO!");
                         });
                     }
                 }
@@ -619,7 +778,37 @@ namespace UNO_Game
             catch (Exception ex)
             {
                 // Si la conexión se cierra de golpe
-                // MessageBox.Show("Conexión de red finalizada: " + ex.Message);
+                MessageBox.Show("Conexión de red finalizada: " + ex.Message);
+            }
+        }
+
+        private async void btnUNO_Click(object sender, EventArgs e)
+        {
+            if (turnoActual == IdLocal)
+            {
+                List<Carta> miMano = mazoP1;
+                if (IdLocal == 2) miMano = mazoP2;
+                else if (IdLocal == 3) miMano = mazoP3;
+
+                // Solo es válido si tienes exactamente 2 cartas (a punto de tirar y quedarte con 1)
+                if (miMano.Count == 2)
+                {
+                    dijoUNO = true;
+                    MessageBox.Show("¡Gritaste UNO! Estás a salvo.");
+
+                    // Le avisamos a los demás por red para meter presión psicológica
+                    try
+                    {
+                        string msj = $"GRITO_UNO:{IdLocal}";
+                        byte[] datos = Encoding.UTF8.GetBytes(msj);
+                        await streamRed.WriteAsync(datos, 0, datos.Length);
+                    }
+                    catch { }
+                }
+                else
+                {
+                    MessageBox.Show("Solo puedes gritar UNO cuando te queden 2 cartas antes de tirar.");
+                }
             }
         }
     }

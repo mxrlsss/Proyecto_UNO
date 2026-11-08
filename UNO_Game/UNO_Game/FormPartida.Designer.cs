@@ -42,6 +42,8 @@ namespace UNO_Game
             this.btnSonido = new System.Windows.Forms.Button();
             this.P2_Nick = new System.Windows.Forms.PictureBox();
             this.ColorCambioP2 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnUNO = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MazoRobar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pozo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.P2_avatar)).BeginInit();
@@ -165,6 +167,20 @@ namespace UNO_Game
             this.ColorCambioP2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ColorCambioP2.Click += new System.EventHandler(this.label1_Click);
             // 
+            // btnUNO
+            // 
+            this.btnUNO.BackColor = System.Drawing.Color.Firebrick;
+            this.btnUNO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUNO.Font = new System.Drawing.Font("Bubblegum Sans", 14F, System.Drawing.FontStyle.Bold);
+            this.btnUNO.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnUNO.Location = new System.Drawing.Point(2023, 1203);
+            this.btnUNO.Name = "btnUNO";
+            this.btnUNO.Size = new System.Drawing.Size(112, 72);
+            this.btnUNO.TabIndex = 19;
+            this.btnUNO.Text = "UNO";
+            this.btnUNO.UseVisualStyleBackColor = false;
+            this.btnUNO.Click += new System.EventHandler(this.btnUNO_Click);
+            // 
             // FormPartida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -172,6 +188,7 @@ namespace UNO_Game
             this.BackgroundImage = global::UNO_Game.Properties.Resources.Background_partida;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(2164, 1410);
+            this.Controls.Add(this.btnUNO);
             this.Controls.Add(this.ColorCambioP2);
             this.Controls.Add(this.P2_Nick);
             this.Controls.Add(this.btnSonido);
@@ -208,5 +225,7 @@ namespace UNO_Game
         private System.Windows.Forms.Button btnSonido;
         private System.Windows.Forms.PictureBox P2_Nick;
         private System.Windows.Forms.Label ColorCambioP2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnUNO;
     }
 }
