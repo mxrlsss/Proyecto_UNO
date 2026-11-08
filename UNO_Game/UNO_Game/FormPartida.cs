@@ -330,7 +330,6 @@ namespace UNO_Game
                     int jugadorQueTiro = turnoActual;
                     string desc = $"{cartaElegida.Color} {cartaElegida.Valor}";
 
-                    // --- RED: Avisamos que tiramos carta ---
                     EnviarMensajeRed(new { Accion = "JUGAR", Carta = cartaElegida.NombreRecurso, Jugador = jugadorQueTiro });
 
                     string imgPozo = cartaElegida.NombreRecurso;
@@ -381,7 +380,6 @@ namespace UNO_Game
                         indicadorTurno();
                     }
 
-                    // --- RED: Avisamos el cambio de turno ---
                     EnviarMensajeRed(new { Accion = "CAMBIO_TURNO", Turno = turnoActual });
 
                     if (turnoActual == 1 && CambioColor == true)
@@ -439,7 +437,6 @@ namespace UNO_Game
                 if (turnoActual == 1) { mazoP1.Insert(0, nuevaCarta); MostrarMazoJugador(mazoP1, PanelMazoP1); }
                 else { mazoP2.Insert(0, nuevaCarta); MostrarMazoJugador(mazoP2, PanelMazoP2); }
 
-                // --- RED: Avisamos que robamos carta ---
                 EnviarMensajeRed(new { Accion = "ROBAR", Jugador = jugador });
 
                 if (esHost) await RegistrarMovimientoApi(jugador, "robar_carta", $"{nuevaCarta.Color} {nuevaCarta.Valor}"); // Solo Host guarda en BD
