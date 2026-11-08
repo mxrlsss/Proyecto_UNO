@@ -121,6 +121,7 @@
     <Compile Include="PartidaAPI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ApiHistorial.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
