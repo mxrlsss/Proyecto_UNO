@@ -55,7 +55,7 @@ namespace UNO_Game
             this.PanelMazoP2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.PanelMazoP2.AutoScroll = true;
             this.PanelMazoP2.BackColor = System.Drawing.Color.Transparent;
-            this.PanelMazoP2.Location = new System.Drawing.Point(487, 1132);
+            this.PanelMazoP2.Location = new System.Drawing.Point(367, 772);
             this.PanelMazoP2.Name = "PanelMazoP2";
             this.PanelMazoP2.Size = new System.Drawing.Size(1438, 250);
             this.PanelMazoP2.TabIndex = 7;
@@ -73,7 +73,7 @@ namespace UNO_Game
             this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolverMenu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnVolverMenu.Location = new System.Drawing.Point(2076, 12);
+            this.btnVolverMenu.Location = new System.Drawing.Point(1836, 12);
             this.btnVolverMenu.Name = "btnVolverMenu";
             this.btnVolverMenu.Size = new System.Drawing.Size(79, 69);
             this.btnVolverMenu.TabIndex = 0;
@@ -85,7 +85,7 @@ namespace UNO_Game
             this.MazoRobar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.MazoRobar.BackColor = System.Drawing.Color.Transparent;
             this.MazoRobar.Image = global::UNO_Game.Properties.Resources.Reverso;
-            this.MazoRobar.Location = new System.Drawing.Point(1896, 527);
+            this.MazoRobar.Location = new System.Drawing.Point(1656, 347);
             this.MazoRobar.Name = "MazoRobar";
             this.MazoRobar.Size = new System.Drawing.Size(204, 295);
             this.MazoRobar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -98,23 +98,13 @@ namespace UNO_Game
             this.Pozo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Pozo.BackColor = System.Drawing.Color.Transparent;
             this.Pozo.Image = global::UNO_Game.Properties.Resources.Rojo1;
-            this.Pozo.Location = new System.Drawing.Point(924, 505);
+            this.Pozo.Location = new System.Drawing.Point(804, 325);
             this.Pozo.Name = "Pozo";
             this.Pozo.Size = new System.Drawing.Size(291, 343);
             this.Pozo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Pozo.TabIndex = 5;
             this.Pozo.TabStop = false;
-            // 
-            // P2_avatar
-            // 
-            this.P2_avatar.BackColor = System.Drawing.Color.Transparent;
-            this.P2_avatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.P2_avatar.Location = new System.Drawing.Point(186, 1100);
-            this.P2_avatar.Name = "P2_avatar";
-            this.P2_avatar.Size = new System.Drawing.Size(182, 299);
-            this.P2_avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.P2_avatar.TabIndex = 13;
-            this.P2_avatar.TabStop = false;
+           
             // 
             // btnVolver
             // 
@@ -189,6 +179,7 @@ namespace UNO_Game
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(2164, 1410);
             this.Controls.Add(this.btnUNO);
+            this.ClientSize = new System.Drawing.Size(1924, 1050);
             this.Controls.Add(this.ColorCambioP2);
             this.Controls.Add(this.P2_Nick);
             this.Controls.Add(this.btnSonido);

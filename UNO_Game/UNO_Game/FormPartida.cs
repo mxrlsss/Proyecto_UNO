@@ -39,7 +39,7 @@ namespace UNO_Game
         private System.Media.SoundPlayer SoundFondo;
         System.Media.SoundPlayer efecto;
         bool HayGanador = false;
-        private bool esHost = true;
+        private bool esHost;
 
         private NetworkStream streamRed; 
         private TcpClient clienteSocket;
@@ -56,12 +56,13 @@ namespace UNO_Game
 
         public FormPartida(Form1 menu, bool host)
         {
-            InitializeComponent();
+            InitializeComponent(); 
             this.menuPrincipal = menu; //Guarda la referencia al menú principal
             this.FormClosed += FormPartida_VentanaCerrada;
             this.FormClosing += FormPartida_FormClosing;
             esHost = host;
         }
+
         public FormPartida()
         {
             InitializeComponent();
@@ -188,7 +189,8 @@ namespace UNO_Game
 
             }
 
-            await CrearPartidaApi();
+            List<string> jugadoresPartida = new List<string> {P1, P2, P3 };
+            await CrearPartidaApi(jugadoresPartida);
         }
 
         private void AvanzarTurno()

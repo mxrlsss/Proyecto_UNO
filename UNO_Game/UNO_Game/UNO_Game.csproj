@@ -114,10 +114,13 @@
     <Compile Include="FormSala.Designer.cs">
       <DependentUpon>FormSala.cs</DependentUpon>
     </Compile>
+    <Compile Include="Red.cs" />
+    <Compile Include="Formpruebared.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PartidaAPI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dato.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
