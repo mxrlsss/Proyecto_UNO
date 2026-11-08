@@ -45,6 +45,8 @@ namespace UNO_Game
         private TcpClient clienteSocket;
         private TcpListener servidorListener;
 
+        private bool sentidoHorario = true; // Variable para controlar el sentido del juego
+
 
 
         public FormPartida(Form1 menu, bool host)
@@ -109,15 +111,10 @@ namespace UNO_Game
 
             if (esHost)
             {
-                servidorListener = new TcpListener(IPAddress.Any, 11000);
-                servidorListener.Start();
-                TcpClient invitado = await servidorListener.AcceptTcpClientAsync();
-                streamRed = invitado.GetStream();
-                _ = EscucharMensajesDeRed();
-
                 Random rand_turno = new Random();
                 turnoActual = rand_turno.Next(1, 4); //1 para P1 y 2 para P2 y 3 para P3 
                 //indicadorTurno();
+
                 mazoJuego = new Mazo();
                 mazoJuego.Barajar();
                 mazoP1 = mazoJuego.RepartirMazo(7);
@@ -126,9 +123,6 @@ namespace UNO_Game
                 //ColorCambioP1.Visible = false;
                 //ColorCambioP2.Visible = false;
 
-                string mensajeCartas = "MANO:" + string.Join(",", mazoP2.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
-                byte[] datos = Encoding.UTF8.GetBytes(mensajeCartas);
-                await streamRed.WriteAsync(datos, 0, datos.Length);
 
 
                 //sonidoFondo("FondoPartida");      inhablilitados porm problemas con los canalaes de audio de windows
@@ -150,23 +144,61 @@ namespace UNO_Game
                 string imgPozo_correcta = $"{CartaEnMesa.Color}{CartaEnMesa.Valor.ToString()}";
                 //MessageBox.Show($"Carta en mesa: {CartaEnMesa.Color} {CartaEnMesa.Valor}");
                 Pozo.Image = (Image)Properties.Resources.ResourceManager.GetObject(imgPozo_correcta);
+
+                servidorListener = new TcpListener(IPAddress.Any, 11000);
+                servidorListener.Start();
+
+                //jugador 3
+                TcpClient invitado1 = await servidorListener.AcceptTcpClientAsync();
+                NetworkStream streamP2 = invitado1.GetStream();
+
+                string mensajeCartasP2 = "MANO:" + string.Join(",", mazoP2.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
+                byte[] datosP2 = Encoding.UTF8.GetBytes(mensajeCartasP2);
+                await streamP2.WriteAsync(datosP2, 0, datosP2.Length);
+                _ = EscucharMensajesDeRed(streamP2);
+
+
+                //jugador 3
+                TcpClient invitado2 = await servidorListener.AcceptTcpClientAsync();
+                NetworkStream streamP3 = invitado2.GetStream();
+
+                string mensajeCartasP3 = "MANO:" + string.Join(",", mazoP3.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
+                byte[] datosP3 = Encoding.UTF8.GetBytes(mensajeCartasP3);
+                await streamP3.WriteAsync(datosP3, 0, datosP3.Length);
+                _ = EscucharMensajesDeRed(streamP3);
+
+
+                MostrarMazoJugador(mazoP1, PanelMazoP2); //se muestran en el dos porque es el de abajo 
+
             }
 
             if (!esHost)
             {
-                MostrarMazoJugador(mazoP1, PanelMazoP2);
-                ActualizarInterfazVisual();
+                //MostrarMazoJugador(mazoP1, PanelMazoP2);
                 clienteSocket = new TcpClient();
-                await clienteSocket.ConnectAsync(IP_ESTATICA_HOST, 11000); //
+                await clienteSocket.ConnectAsync(IP_ESTATICA_HOST, 11000);
                 streamRed = clienteSocket.GetStream();
-                _ = EscucharMensajesDeRed();
+                _ = EscucharMensajesDeRed(streamRed);
 
             }
 
-            
-
             await CrearPartidaApi();
         }
+
+        private void AvanzarTurno()
+        {
+            if (sentidoHorario)
+            {
+                turnoActual++;
+                if (turnoActual > 3) turnoActual = 1; // 1 -> 2 -> 3 -> 1
+            }
+            else
+            {
+                turnoActual--;
+                if (turnoActual < 1) turnoActual = 3; // 1 -> 3 -> 2 -> 1
+            }
+        }
+
 
         private void MostrarMazoJugador(List<Carta> mazo, FlowLayoutPanel panel)
         {
@@ -512,25 +544,23 @@ namespace UNO_Game
         }
 
 
-        // ==========================================
-        // BUCLE Y GESTOR DE ESCUCHA DE RED (SOCKETS)
-        // ==========================================
 
-        private async Task EscucharMensajesDeRed()
+        //bucle de escucha de mensajes de red (sockets)
+        private async Task EscucharMensajesDeRed(NetworkStream streamActivo)
         {
             byte[] buffer = new byte[4096];
 
             try
             {
-                // El bucle se queda escuchando de forma continua mientras la conexión esté viva
-                while (streamRed != null)
+                // El bucle se queda escuchando continuamente ese "tubo" específico
+                while (streamActivo != null)
                 {
-                    int bytesLeidos = await streamRed.ReadAsync(buffer, 0, buffer.Length);
-                    if (bytesLeidos == 0) break;
+                    int bytesLeidos = await streamActivo.ReadAsync(buffer, 0, buffer.Length);
+                    if (bytesLeidos == 0) break; // Se cortó la conexión
 
                     string mensajeRecibido = Encoding.UTF8.GetString(buffer, 0, bytesLeidos);
 
-                    // 1. CASO: RECIBIR LA MANO INICIAL (Único para cada usuario al arrancar)
+                    // 1. CASO: RECIBIR LA MANO INICIAL (Solo para el Invitado al arrancar)
                     if (mensajeRecibido.StartsWith("MANO:"))
                     {
                         string cartasStr = mensajeRecibido.Substring(5);
@@ -550,13 +580,14 @@ namespace UNO_Game
                             }
                         }
 
-                        // Actualizamos la UI de forma segura con Invoke (Pintamos las cartas del invitado)
+                        // Actualizamos la UI de forma segura con Invoke
                         this.Invoke((MethodInvoker)delegate {
-                            mazoP2 = miManoRecibida; // O la variable de tu mazo local correspondiente
+                            // Asignamos la mano al panel del invitado. Si eres el invitado 1, usas mazoP2.
+                            mazoP2 = miManoRecibida;
                             MostrarMazoJugador(mazoP2, PanelMazoP2);
                         });
                     }
-                    // 2. CASO: OTRO JUGADOR TIRA UNA CARTA (Actualiza el Pozo y el Turno)
+                    // 2. CASO: ALGUIEN TIRA UNA CARTA (Actualiza el Pozo y Turno para todos)
                     else if (mensajeRecibido.StartsWith("JUGAR:"))
                     {
                         // Formato esperado enviado por red: JUGAR:Color,Valor,TURNO:NumeroDeTurno
@@ -580,14 +611,14 @@ namespace UNO_Game
 
                             // Actualizar el turno en curso y mover los avatares visuales
                             turnoActual = turnoRecibido;
-                            //indicadorTurno();
+                            indicadorTurno();
                         });
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Si la conexión se cierra o hay un corte de red
+                // Si la conexión se cierra de golpe
                 // MessageBox.Show("Conexión de red finalizada: " + ex.Message);
             }
         }
