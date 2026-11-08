@@ -102,10 +102,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Carta.cs" />
+    <Compile Include="Red.cs" />
+    <Compile Include="Formpruebared.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PartidaAPI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dato.cs" />
+    <Compile Include="ApiHistorial.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistorial.resx">
       <DependentUpon>FormHistorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartidaAPI.resx">
+      <DependentUpon>PartidaAPI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
