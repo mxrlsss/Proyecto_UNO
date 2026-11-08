@@ -30,7 +30,7 @@ namespace UNO_Game
         private List<Carta> mazoP3;
         private List<Carta> pozoDescarte = new List<Carta>();
         private Carta CartaEnMesa;
-        private const string IP_ESTATICA_HOST = "192.168.1.19"; //cambiar por la IP del host en la red local
+        private const string IP_ESTATICA_HOST = "192.168.100.8";  //cambiar por la IP del host en la red local
         private bool MusicaSilencio = false;
         string P1 = "";
         string P2 = "";
