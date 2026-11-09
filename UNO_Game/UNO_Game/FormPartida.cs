@@ -29,7 +29,6 @@ namespace UNO_Game
         private Carta CartaEnMesa;
         private string ColorActivo = "";   // Color vigente en la mesa (cambia con los comodines sin tocar la carta)
 
-        // IP de conexión adaptada del código del compañero
         private const string IP_ESTATICA_HOST = "10.156.21.169";
 
         private bool MusicaSilencio = false;
@@ -45,7 +44,7 @@ namespace UNO_Game
         private bool esHost;
         public int IdLocal;
 
-        // Variables de Red (Sockets Puros)
+        
         private TcpListener servidorListener;
         private TcpClient clienteSocket;
         private NetworkStream streamRed;
@@ -58,19 +57,17 @@ namespace UNO_Game
         private bool sentidoHorario = true;
         private bool JuegoIniciado = false;
 
-        // ---- Conteo de cartas y regla del UNO (el host es quien manda; los clientes solo reciben el conteo) ----
-        private int[] conteoCartas = new int[4];     // índices 1..3
-        private bool[] unoPendiente = new bool[4];   // el jugador se quedó con 1 carta y aún no pasa la "ventana" de UNO
-        private bool[] unoGritado = new bool[4];     // el jugador ya presionó UNO
+        
+        private int[] conteoCartas = new int[4];    
+        private bool[] unoPendiente = new bool[4];   // el jugador se quedó con 1 carta y aub no pasa el de UNO
+        private bool[] unoGritado = new bool[4];     // el jugador ya presiono UNO
 
-        // ---- API (solo la usa el host) ----
-        private PartidaCreadaDto partidaApi;                       // null si la API no está disponible
+        private PartidaCreadaDto partidaApi;                       //null si la API no esta disponible
         private Task _tareaCrearPartida = Task.CompletedTask;
         private int numeroTurnoApi = 0;
         private bool apiAvisada = false;
         private readonly SemaphoreSlim _bloqueoApi = new SemaphoreSlim(1, 1);
 
-        // ---- Controles creados por código (no hay que tocar el diseñador) ----
         private Label lblConteo;
         private Label lblAviso;
         private Label lblColor;
@@ -92,7 +89,7 @@ namespace UNO_Game
             this.WindowState = FormWindowState.Maximized;
         }
 
-        // ====================== UTILIDADES ======================
+      
 
         private void ActualizarInterfazVisual()
         {
@@ -126,7 +123,7 @@ namespace UNO_Game
             this.Controls.Add(lblAviso);
             lblAviso.BringToFront();
 
-            // Indicador del color elegido con un comodín (oculto hasta que se juegue uno)
+            // Indicador del color elegido de comodines
             lblColor = new Label();
             lblColor.AutoSize = false;
             lblColor.TextAlign = ContentAlignment.MiddleCenter;
@@ -142,7 +139,7 @@ namespace UNO_Game
             timerAviso.Tick += (s, e) => { lblAviso.Visible = false; timerAviso.Stop(); };
         }
 
-        // Mensaje que se ve unos segundos y NO bloquea (a diferencia de un MessageBox)
+        //alertas
         private void Aviso(string texto)
         {
             EnUI(() =>
@@ -156,7 +153,7 @@ namespace UNO_Game
             });
         }
 
-        // Barra de arriba: cuántas cartas tiene cada jugador y de quién es el turno
+        // Barra de estado
         private void RefrescarEtiquetas()
         {
             if (lblConteo == null) return;
@@ -181,7 +178,7 @@ namespace UNO_Game
             lblConteo.BringToFront();
         }
 
-        // Muestra "Color a tirar" solo cuando la carta en mesa es un comodín
+        
         private void ActualizarIndicadorColor()
         {
             if (lblColor == null) return;
@@ -209,7 +206,7 @@ namespace UNO_Game
             lblColor.BringToFront();
         }
 
-        // Mantiene todo visible: panel de cartas, botón UNO y barras de arriba, según el tamaño real de la ventana
+        //dinujado de acuerdo a las coordenadas
         private void AcomodarPanelMano()
         {
             int margen = 10;
@@ -228,7 +225,7 @@ namespace UNO_Game
                 lblColor.Top = Pozo.Bottom + 8;
             }
 
-            // Botón UNO: encima del panel, a la derecha
+       
             if (btnUNO != null)
             {
                 if (btnUNO.Width < 80 || btnUNO.Height < 40) btnUNO.Size = new Size(140, 60);
@@ -253,7 +250,7 @@ namespace UNO_Game
             }
         }
 
-        // Ejecuta algo en el hilo de la interfaz, sin importar desde dónde se llame
+        //Ejecuta algo en el hilo de la interfaz, sin importar desde dónde se llame
         private void EnUI(Action accion)
         {
             if (this.IsDisposed) return;
@@ -283,13 +280,13 @@ namespace UNO_Game
             return string.Join(",", mano.Select(c => $"{c.Color},{c.Valor},{c.NombreRecurso}"));
         }
 
-        // JUGAR:color,valor,recurso,turnoSiguiente,sentido(1=horario/0=antihorario),colorActivo
+       
         private string ConstruirMensajeJugar(Carta c, int turno)
         {
             return $"JUGAR:{c.Color},{c.Valor},{c.NombreRecurso},{turno},{(sentidoHorario ? 1 : 0)},{ColorActivo}";
         }
 
-        // ====================== API (SOLO EL HOST) ======================
+            //detalles de la API (solo para el host)
 
         private void AvisarErrorApi(string que, string detalle)
         {
@@ -353,8 +350,7 @@ namespace UNO_Game
             if (error != null) AvisarErrorApi("finalizar la partida", error);
         }
 
-        // ====================== ENVÍO DE MENSAJES ======================
-
+       
         private async Task Enviar(NetworkStream stream, string mensaje)
         {
             if (stream == null) return;
@@ -366,7 +362,7 @@ namespace UNO_Game
             finally { _bloqueoEscritura.Release(); }
         }
 
-        // Host: manda a los dos clientes. Cliente: manda al host.
+     
         private async Task EnviarATodos(string mensaje)
         {
             if (esHost)
@@ -380,24 +376,24 @@ namespace UNO_Game
             }
         }
 
-        // Host: reenvía lo que mandó un cliente al otro cliente
+       
         private async Task Retransmitir(string mensaje, NetworkStream origen)
         {
             if (streamP2 != null && streamP2 != origen) await Enviar(streamP2, mensaje);
             if (streamP3 != null && streamP3 != origen) await Enviar(streamP3, mensaje);
         }
 
-        // ====================== LÓGICA DEL HOST: CONTEO Y UNO ======================
+        
 
-        // Host: manda a todos cuántas cartas tiene cada jugador
+        // Host: manda a todos cuantsdas cartas tiene cada jugador
         private async Task HostEnviarConteo()
         {
             await EnviarATodos($"CONTEO:{conteoCartas[1]},{conteoCartas[2]},{conteoCartas[3]}");
             EnUI(() => RefrescarEtiquetas());
         }
 
-        // Host: cada vez que alguien TIRA o ROBA, revisa si otro jugador se quedó con 1 carta
-        // y no gritó UNO. Si no lo gritó a tiempo, se le castiga con 2 cartas.
+        // para Host: cada vez que alguien TIRA o ROBA, revisa si otro jugador se quedo con 1 carta
+        // y no grito UNO. Si no lo grito a tiempo, se le castiga con 2 cartas.
         private async Task HostRevisarUNO(int actor)
         {
             for (int v = 1; v <= 3; v++)
@@ -405,7 +401,7 @@ namespace UNO_Game
                 if (v == actor) continue;
 
                 bool castigar = unoPendiente[v] && !unoGritado[v] && conteoCartas[v] == 1;
-                unoPendiente[v] = false;   // la "ventana" de UNO se cierra en cuanto otro actúa
+                unoPendiente[v] = false;   
 
                 if (castigar)
                 {
@@ -416,7 +412,7 @@ namespace UNO_Game
             }
         }
 
-        // Host: un jugador (el host o un cliente) acaba de tirar una carta
+
         private async Task HostAlJugarCarta(int actor, Carta carta)
         {
             conteoCartas[actor]--;
@@ -440,7 +436,7 @@ namespace UNO_Game
             await HostEnviarConteo();
         }
 
-        // Host: un jugador acaba de robar una carta
+
         private async Task HostAlRobar(int jugador, Carta carta)
         {
             conteoCartas[jugador]++;
@@ -453,7 +449,7 @@ namespace UNO_Game
             await HostEnviarConteo();
         }
 
-        // ====================== CIERRE ======================
+ 
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
@@ -463,7 +459,7 @@ namespace UNO_Game
 
         private void FormPartida_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Primero se pregunta; solo si confirma (o ya terminó la partida) se cierra la red
+           
             if (!HayGanador && !_cerrando)
             {
                 var respuesta = MessageBox.Show(
@@ -503,11 +499,10 @@ namespace UNO_Game
             _desconexionAvisada = true;
 
             MessageBox.Show(motivo);
-            _cerrando = true;   // para que FormClosing no vuelva a preguntar
+            _cerrando = true;   
             this.Close();
         }
 
-        // ====================== CARGA / CONEXIÓN ======================
 
         private async void FormPartida_Load(object sender, EventArgs e)
         {
@@ -579,10 +574,9 @@ namespace UNO_Game
             }
         }
 
-        // ARRANQUE REAL DE LA PARTIDA (Sólo el Host genera las cartas)
         private async Task IniciarJuegoReal()
         {
-            // Registrar la partida en la API (en segundo plano, no retrasa el juego)
+            
             _tareaCrearPartida = CrearPartidaApi();
 
             Random rand_turno = new Random();
@@ -599,11 +593,11 @@ namespace UNO_Game
             conteoCartas[2] = mazoP2.Count;
             conteoCartas[3] = mazoP3.Count;
 
-            // La primera carta de la mesa no puede ser comodín ni de acción
+            // La primera carta de la mesa no puede ser comodin ni de accion
             CartaEnMesa = mazoJuego.RobarCarta();
             while (EsCartaEspecial(CartaEnMesa))
             {
-                pozoDescarte.Add(CartaEnMesa);   // se guarda para que se recicle después
+                pozoDescarte.Add(CartaEnMesa);   // se guarda para que se recicle luego
                 CartaEnMesa = mazoJuego.RobarCarta();
             }
             ColorActivo = CartaEnMesa.Color;
@@ -623,24 +617,23 @@ namespace UNO_Game
                 ActualizarInterfazVisual();
             });
 
-            // Manos iniciales
+            //Manos iniciales
             await Enviar(streamP2, "MANO:2|" + ManoAString(mazoP2));
             await Enviar(streamP3, "MANO:3|" + ManoAString(mazoP3));
 
-            // Estado de la mesa: carta, de quién es el turno, sentido y color
+            //estado de la mesa: carta, de quien es el turno, sentido y color
             string estadoMesa = ConstruirMensajeJugar(CartaEnMesa, turnoActual);
             await Enviar(streamP2, estadoMesa);
             await Enviar(streamP3, estadoMesa);
 
-            // Conteo inicial de cartas de cada jugador
+            //onteo inicial de cartas de cada jugador
             await HostEnviarConteo();
 
-            // Escuchar a los invitados
+            //Escuchar a los invitados
             _ = EscucharMensajesDeRed(streamP2);
             _ = EscucharMensajesDeRed(streamP3);
         }
 
-        // ====================== TURNOS ======================
 
         private void AvanzarTurno(int pasos = 1)
         {
@@ -675,7 +668,6 @@ namespace UNO_Game
             return siguiente;
         }
 
-        // ====================== DIBUJO DE CARTAS ======================
 
         private void MostrarMazoJugador(List<Carta> mazo, FlowLayoutPanel panel)
         {
@@ -708,10 +700,8 @@ namespace UNO_Game
             }
 
             panel.Visible = true;
-            AcomodarPanelMano();   // también hace BringToFront del panel y del botón UNO
+            AcomodarPanelMano();
         }
-
-        // ====================== JUGAR UNA CARTA ======================
 
         private async void CartaJugador_Click(object sender, EventArgs e)
         {
@@ -738,7 +728,7 @@ namespace UNO_Game
                 return;
             }
 
-            // Si es comodín, se elige el color ANTES de jugarla
+          
             string colorElegido = carta.Color;
             if (carta.Color == "Comodin")
             {
@@ -750,7 +740,7 @@ namespace UNO_Game
                 if (string.IsNullOrEmpty(colorElegido)) colorElegido = "Rojo";
             }
 
-            // Quitar la carta de mi mano y ponerla en la mesa
+          
             List<Carta> miMano = ObtenerMiMano();
             miMano.Remove(carta);
             pic.Dispose();
@@ -762,7 +752,7 @@ namespace UNO_Game
             object recImg = Properties.Resources.ResourceManager.GetObject(carta.NombreRecurso);
             if (recImg != null) Pozo.Image = (Image)recImg;
 
-            // Efectos de la carta
+            //Efectos de la carta
             int victima = CalcularSiguienteTurno();
             int pasos = 1;
             string aviso = null;
@@ -771,7 +761,7 @@ namespace UNO_Game
             {
                 case "MasDos":
                     await AplicarCastigo(victima, 2);
-                    pasos = 2;   // el castigado pierde su turno
+                    pasos = 2;   //el castigado pierde su turno
                     aviso = $"¡Toma 2, {NombreJugador(victima)}!";
                     break;
                 case "MasCuatro":
@@ -792,20 +782,20 @@ namespace UNO_Game
             AvanzarTurno(pasos);
             ActualizarInterfazVisual();
 
-            // Avisar a los demás
+            // Avisar a los demas brochaches
             await EnviarATodos(ConstruirMensajeJugar(carta, turnoActual));
 
-            // Si soy el host, llevo la cuenta de cartas, reviso UNO y guardo en la API
+            //
             if (esHost) await HostAlJugarCarta(1, carta);
 
-            // Aviso que NO bloquea (para que puedas presionar UNO a tiempo)
+     
             string mensaje = "";
             if (carta.Color == "Comodin") mensaje += $"Cambio a {colorElegido}. ";
             if (aviso != null) mensaje += aviso + $" Turno de {NombreJugador(turnoActual)}. ";
             if (miMano.Count == 1) mensaje += "¡Te queda 1 carta, presiona UNO!";
             if (mensaje.Trim().Length > 0) Aviso(mensaje.Trim());
 
-            // Victoria
+            //algun noob ganó
             if (miMano.Count == 0)
             {
                 await EnviarATodos("GANO:" + IdLocal);
@@ -853,7 +843,7 @@ namespace UNO_Game
             }
         }
 
-        // El host reparte el castigo. Si eres cliente, se lo pides al host.
+        // El host reparte el castigo
         private async Task AplicarCastigo(int victima, int cantidad)
         {
             if (!esHost)
@@ -916,10 +906,8 @@ namespace UNO_Game
         private void btnVolver_Click(object sender, EventArgs e) { this.Close(); }
         private void label1_Click(object sender, EventArgs e) { }
 
-        // ====================== RED: ESCUCHAR ======================
+        // RED DE ESCUCHA
 
-        // Acumula lo que llega hasta encontrar <EOF>; así un mensaje cortado a la mitad
-        // o varios pegados en una sola lectura se procesan bien.
         private async Task EscucharMensajesDeRed(NetworkStream streamActivo)
         {
             byte[] buffer = new byte[8192];
@@ -1038,7 +1026,7 @@ namespace UNO_Game
                 if (!esHost) return;
 
                 int solicitante = (origen == streamP2) ? 2 : 3;
-                if (turnoActual != solicitante) return;   // no es su turno
+                if (turnoActual != solicitante) return;   //no es su turno
 
                 Carta cartaRobada = mazoJuego.RobarCarta(pozoDescarte);
                 if (cartaRobada != null)
@@ -1109,10 +1097,7 @@ namespace UNO_Game
             }
         }
 
-        // ====================== BOTÓN UNO ======================
-
-        // Puedes presionarlo cuando te queda 1 carta (hasta que otro jugador tire o robe),
-        // o cuando tienes 2 cartas en tu turno, antes de tirar.
+      
         private async void btnUNO_Click(object sender, EventArgs e)
         {
             if (!JuegoIniciado) return;
