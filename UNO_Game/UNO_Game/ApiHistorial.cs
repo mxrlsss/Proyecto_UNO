@@ -62,7 +62,7 @@ namespace UNO_Game
     {
         private const int PUERTO_API = 8000;
 
-        private static string _ip = "127.0.0.1";
+        private static string _ip = "192.168.100.8"; //modificar por la direccion 
         private static HttpClient _http = CrearCliente(_ip);
 
         public static string ServidorIp

@@ -55,7 +55,7 @@ namespace UNO_Game
             this.PanelMazoP2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.PanelMazoP2.AutoScroll = true;
             this.PanelMazoP2.BackColor = System.Drawing.Color.Transparent;
-            this.PanelMazoP2.Location = new System.Drawing.Point(47, 600);
+            this.PanelMazoP2.Location = new System.Drawing.Point(322, 1207);
             this.PanelMazoP2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PanelMazoP2.Name = "PanelMazoP2";
             this.PanelMazoP2.Size = new System.Drawing.Size(1438, 250);
@@ -74,7 +74,7 @@ namespace UNO_Game
             this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolverMenu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnVolverMenu.Location = new System.Drawing.Point(1196, 12);
+            this.btnVolverMenu.Location = new System.Drawing.Point(1746, 12);
             this.btnVolverMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVolverMenu.Name = "btnVolverMenu";
             this.btnVolverMenu.Size = new System.Drawing.Size(79, 69);
@@ -84,10 +84,11 @@ namespace UNO_Game
             // 
             // MazoRobar
             // 
-            this.MazoRobar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.MazoRobar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MazoRobar.BackColor = System.Drawing.Color.Transparent;
             this.MazoRobar.Image = global::UNO_Game.Properties.Resources.Reverso;
-            this.MazoRobar.Location = new System.Drawing.Point(1016, 270);
+            this.MazoRobar.Location = new System.Drawing.Point(1300, 574);
             this.MazoRobar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MazoRobar.Name = "MazoRobar";
             this.MazoRobar.Size = new System.Drawing.Size(204, 295);
@@ -101,7 +102,7 @@ namespace UNO_Game
             this.Pozo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Pozo.BackColor = System.Drawing.Color.Transparent;
             this.Pozo.Image = global::UNO_Game.Properties.Resources.Rojo1;
-            this.Pozo.Location = new System.Drawing.Point(484, 247);
+            this.Pozo.Location = new System.Drawing.Point(759, 551);
             this.Pozo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Pozo.Name = "Pozo";
             this.Pozo.Size = new System.Drawing.Size(291, 342);
@@ -173,6 +174,7 @@ namespace UNO_Game
             this.ColorCambioP2.TabIndex = 18;
             this.ColorCambioP2.Text = "Color a tirar";
             this.ColorCambioP2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ColorCambioP2.Visible = false;
             this.ColorCambioP2.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnUNO
@@ -196,7 +198,7 @@ namespace UNO_Game
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::UNO_Game.Properties.Resources.Background_partida;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1044, 535);
+            this.ClientSize = new System.Drawing.Size(1594, 1142);
             this.Controls.Add(this.btnUNO);
             this.Controls.Add(this.ColorCambioP2);
             this.Controls.Add(this.P2_Nick);

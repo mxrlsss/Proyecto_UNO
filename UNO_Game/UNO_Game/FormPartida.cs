@@ -30,12 +30,14 @@ namespace UNO_Game
         private string ColorActivo = "";   // Color vigente en la mesa (cambia con los comodines sin tocar la carta)
 
         // IP de conexión adaptada del código del compañero
-        private const string IP_ESTATICA_HOST = "192.168.100.8";
+        private const string IP_ESTATICA_HOST = "10.156.21.169";
 
         private bool MusicaSilencio = false;
-        string P1 = "Jugador 1";
-        string P2 = "Jugador 2";
-        string P3 = "Jugador 3";
+        string P1 = "Ivan";
+        string P2 = "Alexis";
+        string P3 = "Fernando";
+
+        string[] nombres = {"Ivan", "Alexis", "Fernando"};
         public int turnoActual;
         private System.Media.SoundPlayer SoundFondo;
         System.Media.SoundPlayer efecto;
@@ -166,9 +168,11 @@ namespace UNO_Game
             }
 
             var partes = new List<string>();
+            
             for (int i = 1; i <= 3; i++)
             {
-                string nombre = (i == IdLocal) ? "Tú" : $"J{i}";
+
+                string nombre = (i == IdLocal) ? "Tú" : nombres[i-1];
                 string flecha = (i == turnoActual) ? "▶ " : "";
                 partes.Add($"{flecha}{nombre}: {conteoCartas[i]}");
             }
