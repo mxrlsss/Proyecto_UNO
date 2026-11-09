@@ -831,7 +831,7 @@ namespace UNO_Game
                 Carta nuevaCarta = mazoJuego.RobarCarta(pozoDescarte);
                 if (nuevaCarta != null)
                 {
-                    mazoP1.Add(nuevaCarta);
+                    mazoP1.Insert(0, nuevaCarta);
                     MostrarMazoJugador(mazoP1, PanelMazoP2);
                     await HostAlRobar(1, nuevaCarta);
                 }
@@ -861,7 +861,7 @@ namespace UNO_Game
 
                 if (victima == 1)
                 {
-                    mazoP1.Add(castigo);
+                    mazoP1.Insert(0, castigo);
                 }
                 else
                 {
@@ -1042,7 +1042,7 @@ namespace UNO_Game
 
                 List<Carta> mano = ObtenerMiMano();
                 if (mano == null) return;
-                mano.Add(nueva);
+                mano.Insert(0, nueva);
 
                 EnUI(() => MostrarMazoJugador(mano, PanelMazoP2));
             }
